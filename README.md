@@ -1,0 +1,44 @@
+## apcf: Adapted Pair Correlation Function
+
+Reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using GEOS and GDAL libraries directly instead of through PostGIS.
+
+The Adapted Pair Correlation Function extends the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
+
+### Usage
+```r
+# calculate distances between patches of original pattern and 3 nullmodels
+# number of nullmodels should by at least 199 and better yet 999
+ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+                pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
+                max_dist=25, n_sim=3)
+
+# derive PCF and envelope from distances
+pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
+
+# plot PCF
+plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
+```
+
+
+### Requirements
+For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.3.0) are required.
+
+#### Ubuntu
+On Ubuntu bionic (18.04) and beyond one can install the dependencies with 
+```sh
+sudo apt install libgdal-dev libgeos-dev
+```
+
+In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the package repositories and use above command or compile dependencies from source.
+
+
+### Links
+* [GEOS](https://trac.osgeo.org/geos/)
+* [GDAL / OGR](http://www.gdal.org/)
+* [Rcpp](http://www.rcpp.org/)
+* [Rcpp github](https://github.com/RcppCore/Rcpp)
+* [R package `sf`, a modern approach to geo data in R](https://github.com/edzer/sfr)
+
+
+### References
+Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management (259): 107–116. DOI: 10.1016/j.foreco.2009.09.050

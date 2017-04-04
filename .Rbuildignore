@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+TODO.md
+config.log
+config.status
+configure.ac
+autom4te.cache

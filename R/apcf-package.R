@@ -1,0 +1,53 @@
+#' Adapted Pair Correlation Function
+#'
+#' A faster implementation of the adapted Pair Correlation Function (PCF)
+#' presented in Nuske et al. (2009).
+#'
+#' This package mainly provides three functions:
+#' - create null models and calculate distances and ratios,
+#' - turn distances and ratios into an edge corrected PCF, and
+#' - plot Pair Correlation Functions.
+#'
+#'
+#' @section Pattern to Distances & Ratios:
+#' The job consistes of two parts: creating null models / permutations and
+#' calculating distances between all objects of a pattern and determining
+#' the fraction of the perimeter a buffer inside the study area.
+#' Permutations of the original pattern are achieved by randomly rotating
+#' and randomly placing all objects within the study area without overlap.
+#'
+#' The resulting collection of distances and ratios of each null model and the
+#' original pattern are returned as an object of class [dists] (a data.frame
+#' with some additional attributes).
+#'
+#' The library GEOS (>= 3.3.0) is used for the geometrical analysis of the pattern.
+#' Geodata are converted to GEOS Geometries with the help of GDAL/OGR (>= 2.0.0).
+#' The GEOS functions are called from C++ Functions which are integrated into
+#' R via Rcpp and wrapped in the R function [pat2dists()].
+#'
+#'
+#' @section Create an edge corrected PCF:
+#' The [dists] objects are turned into [fv_pcf] objects by the function [dists2pcf()].
+#' A C++ function finds all distances and ratios belonging to a null model or
+#' the original pattern (marked with index 0) and calculates a density function
+#' using the Epanechnikov kernel and Ripley's edge correction. Resulting in as
+#' many PCFs as null models were created plus a PCF for the original pattern.
+#' From the PCF of the null models a pointwise critical envelope is derived.
+#' The arithmetic mean of all PCF of the null models is employed for a bias
+#' correction of the emperical PCF and the upper and lower bound of the envelope.
+#'
+#'
+#' @section Plot a PCF:
+#' [plot.fv_pcf()] is an S3 method of the plot function for the class [fv_pcf].
+#' It provides a nice plot of the emperical PCF together with the pointwise
+#' critical envelope.
+#'
+#'
+#' @references
+#' Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the
+#' pair-correlation function for analysing the spatial distribution of
+#' canopy gaps. Forest Ecology and Management (259): 107–116.
+#'
+#' @docType package
+#' @name apcf-package
+NULL

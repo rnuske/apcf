@@ -9,10 +9,9 @@ NULL
                                " and GDAL ", gdal_version()))
 }
 
-
-apcf_extSoftVersion = function() {
-    structure(c(geos_version(), gdal_version()),
-        names = c("GEOS", "GDAL"))
+apcf_extSoftVersion <- function() {
+  structure(c(geos_version(), gdal_version()),
+            names = c("GEOS", "GDAL"))
 }
 
 .onUnload <- function (libpath) {

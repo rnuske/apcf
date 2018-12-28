@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // geos_version
 std::string geos_version();
-RcppExport SEXP apcf_geos_version() {
+RcppExport SEXP _apcf_geos_version() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -17,7 +17,7 @@ END_RCPP
 }
 // gdal_version
 std::string gdal_version(const char* what);
-RcppExport SEXP apcf_gdal_version(SEXP whatSEXP) {
+RcppExport SEXP _apcf_gdal_version(SEXP whatSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,7 +28,7 @@ END_RCPP
 }
 // pcf_envelope
 Rcpp::DataFrame pcf_envelope(Rcpp::NumericVector sim, Rcpp::NumericVector dist, Rcpp::NumericVector ratio, Rcpp::NumericVector rs, double area, int nobj, double stoyan, int nrank);
-RcppExport SEXP apcf_pcf_envelope(SEXP simSEXP, SEXP distSEXP, SEXP ratioSEXP, SEXP rsSEXP, SEXP areaSEXP, SEXP nobjSEXP, SEXP stoyanSEXP, SEXP nrankSEXP) {
+RcppExport SEXP _apcf_pcf_envelope(SEXP simSEXP, SEXP distSEXP, SEXP ratioSEXP, SEXP rsSEXP, SEXP areaSEXP, SEXP nobjSEXP, SEXP stoyanSEXP, SEXP nrankSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -46,7 +46,7 @@ END_RCPP
 }
 // rand_dists_ratios
 Rcpp::DataFrame rand_dists_ratios(const char* fn_pattern, const char* fn_area, const double max_dist, const unsigned int n_simulations, const unsigned int max_tries, const bool save_randomized_patterns, const char* save_basename, const bool verbose);
-RcppExport SEXP apcf_rand_dists_ratios(SEXP fn_patternSEXP, SEXP fn_areaSEXP, SEXP max_distSEXP, SEXP n_simulationsSEXP, SEXP max_triesSEXP, SEXP save_randomized_patternsSEXP, SEXP save_basenameSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _apcf_rand_dists_ratios(SEXP fn_patternSEXP, SEXP fn_areaSEXP, SEXP max_distSEXP, SEXP n_simulationsSEXP, SEXP max_triesSEXP, SEXP save_randomized_patternsSEXP, SEXP save_basenameSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -61,4 +61,17 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(rand_dists_ratios(fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_apcf_geos_version", (DL_FUNC) &_apcf_geos_version, 0},
+    {"_apcf_gdal_version", (DL_FUNC) &_apcf_gdal_version, 1},
+    {"_apcf_pcf_envelope", (DL_FUNC) &_apcf_pcf_envelope, 8},
+    {"_apcf_rand_dists_ratios", (DL_FUNC) &_apcf_rand_dists_ratios, 8},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_apcf(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

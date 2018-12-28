@@ -24,20 +24,18 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.3.0) are required.
 
 #### Ubuntu
-On Ubuntu bionic (18.04) and beyond one can install the dependencies with 
-```sh
-sudo apt install libgdal-dev libgeos-dev
-```
+On Ubuntu bionic (18.04) and beyond one can install the dependencies with `sudo apt install libgdal-dev libgeos-dev`
 
 In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the package repositories and use above command or compile dependencies from source.
 
 
 ### Links
 * [GEOS](https://trac.osgeo.org/geos/)
-* [GDAL / OGR](http://www.gdal.org/)
-* [Rcpp](http://www.rcpp.org/)
-* [Rcpp github](https://github.com/RcppCore/Rcpp)
-* [R package `sf`, a modern approach to geo data in R](https://github.com/edzer/sfr)
+* [GDAL/OGR Website](http://www.gdal.org/)
+* [GDAL/OGR Github Repository](https://github.com/OSGeo/gdal)
+* [Rcpp Website](http://www.rcpp.org/)
+* [Rcpp Github Repository](https://github.com/RcppCore/Rcpp)
+* [R package `sf`, a modern approach to geo data in R](https://github.com/r-spatial/sf)
 
 
 ### References

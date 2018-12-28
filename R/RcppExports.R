@@ -2,18 +2,18 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 geos_version <- function() {
-    .Call('apcf_geos_version', PACKAGE = 'apcf')
+    .Call('_apcf_geos_version', PACKAGE = 'apcf')
 }
 
 gdal_version <- function(what = "RELEASE_NAME") {
-    .Call('apcf_gdal_version', PACKAGE = 'apcf', what)
+    .Call('_apcf_gdal_version', PACKAGE = 'apcf', what)
 }
 
 pcf_envelope <- function(sim, dist, ratio, rs, area, nobj, stoyan, nrank) {
-    .Call('apcf_pcf_envelope', PACKAGE = 'apcf', sim, dist, ratio, rs, area, nobj, stoyan, nrank)
+    .Call('_apcf_pcf_envelope', PACKAGE = 'apcf', sim, dist, ratio, rs, area, nobj, stoyan, nrank)
 }
 
 rand_dists_ratios <- function(fn_pattern, fn_area, max_dist, n_simulations = 99L, max_tries = 100000L, save_randomized_patterns = FALSE, save_basename = "./pattern", verbose = FALSE) {
-    .Call('apcf_rand_dists_ratios', PACKAGE = 'apcf', fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose)
+    .Call('_apcf_rand_dists_ratios', PACKAGE = 'apcf', fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose)
 }
 

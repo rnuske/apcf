@@ -1,5 +1,5 @@
 # needed by roxygen to add Rcpp stuff to NAMESPACE
-#' @useDynLib apcf
+#' @useDynLib apcf, .registration=TRUE
 #' @importFrom Rcpp evalCpp
 NULL
 

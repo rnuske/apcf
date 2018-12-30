@@ -55,7 +55,7 @@
 #' canopy gaps. Forest Ecology and Management (259): 107–116.
 #'
 #' @examples
-#' dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+#' ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
 #'                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
 #'                 max_dist=25, n_sim=3, verbose=TRUE)
 #'

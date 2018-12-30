@@ -22,10 +22,10 @@ By default (when NULL) tickmark locations are computed}
 
 \item{main, sub}{a main and sub title for the plot, see also \code{\link[=title]{title()}}.}
 
-\item{xaxis, yaxis}{a logical value or a 1-character string giving the desired
-type of axis. The following values are possible: "n" or FALSE for no axis,
-"t" for ticks only, "f" or TRUE for full axis, "o" for full axis in the
-outer margin.}
+\item{xaxis, yaxis}{a logical value or a 1-character string giving the
+desired type of axis. The following values are possible: "n" or FALSE
+for no axis, "t" for ticks only, "f" or TRUE for full axis, "o" for
+full axis in the outer margin.}
 
 \item{ann}{a logical value indicating whether the default annotation
 (title and x and y axis labels) should appear on the plot.}
@@ -44,12 +44,12 @@ a pointwise critical envelope if available.
 }
 \examples{
 # it's advised against setting n_sim < 199
-dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
                 max_dist=25, n_sim=3)
 
 # derive PCF and envelope
-pcf <- dists2pcf(dr, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
+pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
 
 # a simple plot
 plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))

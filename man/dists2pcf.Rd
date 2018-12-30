@@ -23,11 +23,11 @@ Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest values
 between 0.1 and 0.2.}
 
 \item{n_rank}{Rank of the value amongst the n_sim simulated values
-used to construct the envelope. A rank of 1 means that the minimum and
-maximum simulated values will be used. Must be >= 1 and < n_sim/2.
-Determines together with \code{n_sim} in \code{\link[=pat2dists]{pat2dists()}} the alpha level of the
-envelope. If \code{alpha} and \code{n_sim} are fix, n_rank can be calculated by
-\code{(n_sim+1)*alpha/2} eg. \code{(199+1) * 0.05/2 = 5}}
+used to construct the envelope. A rank of 1 means that the minimum
+and maximum simulated values will be used. Must be >= 1 and < n_sim/2.
+Determines together with \code{n_sim} in \code{\link[=pat2dists]{pat2dists()}} the alpha level of
+the envelope. If \code{alpha} and \code{n_sim} are fix, n_rank can be
+calculated by \code{(n_sim+1)*alpha/2} eg. \code{(199+1) * 0.05/2 = 5}}
 }
 \value{
 An object of class \link{fv_pcf} containing the function values of the
@@ -65,12 +65,12 @@ according to (Besag and Diggle, 1977; Buckland, 1984; Stoyan and Stoyan, 1994).
 }
 \examples{
 # it's advised against setting n_sim < 199
-dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
                 max_dist=25, n_sim=3)
 
 # derive PCF and envelope
-pcf <- dists2pcf(dr, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
+pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
 
 }
 \references{

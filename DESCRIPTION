@@ -1,6 +1,6 @@
 Package: apcf
 Title: Adapted Pair Correlation Function
-Version: 0.1.9000
+Version: 0.1.0.9000
 Authors@R:
   person(given="Robert", 
          family="Nuske", 

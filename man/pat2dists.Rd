@@ -9,30 +9,30 @@ pat2dists(area, pattern, max_dist, n_sim = 199, max_tries = 1e+05,
 }
 \arguments{
 \item{area, pattern}{Data source name of study area and pattern
-(interpretation varies by driver - for some drivers, dsn is a file name,
-but may also be a folder, or contain the name and access credentials of
-a database)}
+(interpretation varies by driver - for some drivers, dsn is a file
+name, but may also be a folder, or contain the name and access
+credentials of a database)}
 
 \item{max_dist}{Maximum distance measured in the pattern. Usually smaller
 than half the diameter of the study area.}
 
 \item{n_sim}{Number of simulated patterns (randomizations) to be generated
 for computing the envelope and correcting the biased emperical pcf.
-Determines together with \code{n_rank} in \code{\link[=dists2pcf]{dists2pcf()}} the alpha level of the
-envelope. If \code{alpha} and \code{n_rank} are fix, n_sim can be calculated by
-\code{(n_rank*2/alpha)-1} eg. \code{(5*2/0.05)-1 = 199}.}
+Determines together with \code{n_rank} in \code{\link[=dists2pcf]{dists2pcf()}} the alpha level of
+the envelope. If \code{alpha} and \code{n_rank} are fix, n_sim can be
+calculated by \code{(n_rank*2/alpha)-1} eg. \code{(5*2/0.05)-1 = 199}.}
 
 \item{max_tries}{How often shall a relocation of an object be tried
 while randomizing the pattern.}
 
 \item{save_patterns}{Shall the simulated patterns be saved as Shapefiles
 for debugging/later inspections. Might be a large number of files
-(4 * n_sim). Can be \code{NULL} (no export) or a character string providing a
-basename optionally including a valid/existing path.}
+(4 * n_sim). Can be \code{NULL} (no export) or a character string
+providing a basename optionally including a valid/existing path.}
 
 \item{verbose}{Provide progress information in the console. Roman numerals
-(x: 10, C: 100, D: 500, M: 1000) indicate the progress of the simulation
-and 'e' the emperical PCF.}
+(x: 10, C: 100, D: 500, M: 1000) indicate the progress of the
+simulation and 'e' the emperical PCF.}
 }
 \value{
 An object of class \link{dists}.
@@ -55,7 +55,7 @@ GEOS geometries by \href{http://www.gdal.org}{GDAL/OGR}.
 }
 \examples{
 # it's advised against setting n_sim < 199
-dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
                 max_dist=25, n_sim=3, verbose=TRUE)
 

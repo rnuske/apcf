@@ -51,7 +51,7 @@ These simulated patterns were created for testing the Adapted Pair Correlation
 Function (presented in Nuske et al., 2009).
 }
 \examples{
-dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
                 max_dist=25, n_sim=3, verbose=TRUE)
 

@@ -11,8 +11,8 @@ is.dists(obj)
 }
 \arguments{
 \item{df}{A data frame with the columns \code{sim}, \code{dist}, and \code{ratio}
-containing an indicator of the model run (0:n_sim), distances between the
-objects of the patterns, and the ratios of a buffer with distance
+containing an indicator of the model run (0:n_sim), distances between
+the objects of the patterns, and the ratios of a buffer with distance
 \code{dist} inside the study area (needed for Ripley's edge correction).}
 
 \item{area}{size of the study area in square units}

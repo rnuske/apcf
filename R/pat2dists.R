@@ -15,25 +15,25 @@
 #' GEOS geometries by [GDAL/OGR](http://www.gdal.org).
 #'
 #' @param area,pattern Data source name of study area and pattern
-#'   (interpretation varies by driver - for some drivers, dsn is a file name,
-#'   but may also be a folder, or contain the name and access credentials of
-#'   a database)
+#'        (interpretation varies by driver - for some drivers, dsn is a file
+#'        name, but may also be a folder, or contain the name and access
+#'        credentials of a database)
 #' @param max_dist Maximum distance measured in the pattern. Usually smaller
-#'   than half the diameter of the study area.
+#'        than half the diameter of the study area.
 #' @param n_sim Number of simulated patterns (randomizations) to be generated
-#'   for computing the envelope and correcting the biased emperical pcf.
-#'   Determines together with `n_rank` in [dists2pcf()] the alpha level of the
-#'   envelope. If `alpha` and `n_rank` are fix, n_sim can be calculated by
-#'   `(n_rank*2/alpha)-1` eg. `(5*2/0.05)-1 = 199`.
+#'        for computing the envelope and correcting the biased emperical pcf.
+#'        Determines together with `n_rank` in [dists2pcf()] the alpha level of
+#'        the envelope. If `alpha` and `n_rank` are fix, n_sim can be
+#'        calculated by `(n_rank*2/alpha)-1` eg. `(5*2/0.05)-1 = 199`.
 #' @param max_tries How often shall a relocation of an object be tried
-#'   while randomizing the pattern.
+#'        while randomizing the pattern.
 #' @param save_patterns Shall the simulated patterns be saved as Shapefiles
-#'   for debugging/later inspections. Might be a large number of files
-#'   (4 * n_sim). Can be `NULL` (no export) or a character string providing a
-#'   basename optionally including a valid/existing path.
+#'        for debugging/later inspections. Might be a large number of files
+#'        (4 * n_sim). Can be `NULL` (no export) or a character string
+#'        providing a basename optionally including a valid/existing path.
 #' @param verbose Provide progress information in the console. Roman numerals
-#'   (x: 10, C: 100, D: 500, M: 1000) indicate the progress of the simulation
-#'   and 'e' the emperical PCF.
+#'        (x: 10, C: 100, D: 500, M: 1000) indicate the progress of the
+#'        simulation and 'e' the emperical PCF.
 #'
 #' @return An object of class [dists].
 #'
@@ -46,47 +46,47 @@
 #'
 #' @examples
 #' # it's advised against setting n_sim < 199
-#' dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+#' ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
 #'                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
 #'                 max_dist=25, n_sim=3, verbose=TRUE)
 #'
 #' @export
 pat2dists <- function(area, pattern, max_dist, n_sim=199,
-	max_tries=100000, save_patterns=NULL, verbose=FALSE){
+                      max_tries=100000, save_patterns=NULL, verbose=FALSE){
 
-	if(missing(area) || missing(pattern))
-		stop("area and pattern should specify a data source or filename")
+  if(missing(area) || missing(pattern))
+    stop("area and pattern should specify a data source or filename")
 
-	if(missing(max_dist) || !is.numeric(max_dist))
-		stop("max_dist must be given and must be numeric")
+  if(missing(max_dist) || !is.numeric(max_dist))
+    stop("max_dist must be given and must be numeric")
 
-	if(length(area) > 1 || length(pattern) > 1)
-		warning("using only the first element of area and pattern, respectively")
+  if(length(area) > 1 || length(pattern) > 1)
+    warning("using only the first element of area and pattern, respectively")
 
-    if(is.null(save_patterns)){
-    	save_basename <- ' '
-        save_patterns <- FALSE
+  if(is.null(save_patterns)){
+    save_basename <- ' '
+    save_patterns <- FALSE
+  } else {
+    save_dir <- dirname(save_patterns)
+    if(!dir.exists(save_dir) || file.access(save_dir, 2) != 0){
+      stop(paste0('Can not write in ', save_dir))
     } else {
-    	save_dir <- dirname(save_patterns)
-        if(!dir.exists(save_dir) || file.access(save_dir, 2) != 0){
-        	stop(paste0('Can not write in ', save_dir))
-        } else {
-            test_file <- paste0(save_patterns, '1.shp')
-            if(file.exists(test_file))
-                warning(paste0(save_patterns, '* exists and will be overwritten'))
-            save_basename <- save_patterns
-            save_patterns <- TRUE
-        }
+      test_file <- paste0(save_patterns, '1.shp')
+      if(file.exists(test_file))
+        warning(paste0(save_patterns, '* exists and will be overwritten'))
+      save_basename <- save_patterns
+      save_patterns <- TRUE
     }
+  }
 
-	if(file.exists(area))
-		area = normalizePath(area)
+  if(file.exists(area))
+    area <- normalizePath(area)
 
-	if(file.exists(pattern))
-		pattern = normalizePath(pattern)
+  if(file.exists(pattern))
+    pattern <- normalizePath(pattern)
 
-	rand_dists_ratios(pattern[1], area[1], max_dist, as.integer(n_sim),
-                  as.integer(max_tries), save_patterns, save_basename, verbose)
+  rand_dists_ratios(pattern[1], area[1], max_dist, as.integer(n_sim),
+                    as.integer(max_tries), save_patterns, save_basename, verbose)
 }
 
 

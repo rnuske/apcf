@@ -31,19 +31,19 @@
 #'
 #' @param dists An object of class [dists]. Usually created by [pat2dists()]
 #' @param r A step size or a vector of values for the argument r at which g(r)
-#'   should be evaluated.
+#'        should be evaluated.
 #' @param r_max maximum value for the argument r.
 #' @param kernel String. Choice of smoothing kernel (only the "epanechnikov"
-#'   kernel is currently implemented).
+#'        kernel is currently implemented).
 #' @param stoyan Bandwidth coefficient (smoothing the Epanechnikov kernel).
-#'   Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest values
-#'   between 0.1 and 0.2.
+#'        Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest values
+#'        between 0.1 and 0.2.
 #' @param n_rank Rank of the value amongst the n_sim simulated values
-#'   used to construct the envelope. A rank of 1 means that the minimum and
-#'   maximum simulated values will be used. Must be >= 1 and < n_sim/2.
-#'   Determines together with `n_sim` in [pat2dists()] the alpha level of the
-#'   envelope. If `alpha` and `n_sim` are fix, n_rank can be calculated by
-#'   `(n_sim+1)*alpha/2` eg. `(199+1) * 0.05/2 = 5`
+#'        used to construct the envelope. A rank of 1 means that the minimum
+#'        and maximum simulated values will be used. Must be >= 1 and < n_sim/2.
+#'        Determines together with `n_sim` in [pat2dists()] the alpha level of
+#'        the envelope. If `alpha` and `n_sim` are fix, n_rank can be
+#'        calculated by `(n_sim+1)*alpha/2` eg. `(199+1) * 0.05/2 = 5`
 #'
 #' @return An object of class [fv_pcf] containing the function values of the
 #'   PCF and the envelope.
@@ -74,66 +74,64 @@
 #'
 #' @examples
 #' # it's advised against setting n_sim < 199
-#' dr <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
+#' ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
 #'                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
 #'                 max_dist=25, n_sim=3)
 #'
 #' # derive PCF and envelope
-#' pcf <- dists2pcf(dr, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
+#' pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
 #'
 #' @export
-dists2pcf <- function(dists, r, r_max=NULL, kernel="epanechnikov", stoyan, n_rank)
-{
-    # check parameter ---------------------------------------------------------
-    if(!is.dists(dists))
-        stop("dists must be an object of class dists")
+dists2pcf <- function(dists, r, r_max=NULL, kernel="epanechnikov", stoyan,
+                      n_rank){
+  # check parameter ---------------------------------------------------------
+  if(!is.dists(dists))
+    stop("dists must be an object of class dists")
 
-    # n_rank
-    if(n_rank %% 1 != 0 || n_rank < 1)
-        stop("n_rank must be an integer and >= 1")
-    # n_rank >= n_sim/2 is checked in C++ function do_env(), first time nsim is known
+  # n_rank
+  if(n_rank %% 1 != 0 || n_rank < 1)
+    stop("n_rank must be an integer and >= 1")
+  # n_rank >= n_sim/2 is checked in C++ function do_env(), first time nsim is known
 
-    # lambda
-    if(is.null(area <- attr(dists, 'area', exact=TRUE)) |
-       is.null(n_obj <- attr(dists, 'n_obj', exact=TRUE)))
-        stop("attributes 'area' and 'n_obj' are missing")
-    if(area <= 0)
-        stop("Something went wrong: area of study area is <= 0")
-    if(n_obj < 2)
-        stop("Something went wrong: n_obj < 2")
+  # lambda
+  if(is.null(area <- attr(dists, 'area', exact=TRUE)) |
+     is.null(n_obj <- attr(dists, 'n_obj', exact=TRUE)))
+       stop("attributes 'area' and 'n_obj' are missing")
+  if(area <= 0)
+    stop("Something went wrong: area of study area is <= 0")
+  if(n_obj < 2)
+    stop("Something went wrong: n_obj < 2")
 
-    # r to vector of steps (rs)
-    if(missing(r))
-        stop("r must be given")
-    if(is.null(max_dist <- attr(dists, 'max_dist', exact=TRUE)) & missing(r_max))
-        stop("neither r_max nor the attribute 'max_dist' is available")
-    else
-        if(r_max > max_dist)
-            stop("r_max must be <= max_dist")
+  # r to vector of steps (rs)
+  if(missing(r))
+    stop("r must be given")
+  if(is.null(max_dist <- attr(dists, 'max_dist', exact=TRUE)) & missing(r_max))
+    stop("neither r_max nor the attribute 'max_dist' is available")
+  else
+    if(r_max > max_dist)
+      stop("r_max must be <= max_dist")
 
-    if(length(r) == 1){
-        rs <- seq(from=r, to=r_max, by=r)
+  if(length(r) == 1){
+    rs <- seq(from=r, to=r_max, by=r)
+  } else {
+    step <- unique(diff(r))
+    if(length(step) != 1)
+      stop("r must be equidistant")
+    if(max(r) > r_max || min(r) < step){
+      warning(paste0("reduced r to the range ", step, "-", r_max))
+      rs <- r[r >= step & r <= r_max]
     } else {
-        step <- unique(diff(r))
-        if(length(step) != 1)
-            stop("r must be equidistant")
-        if(max(r) > r_max || min(r) < step)
-        {
-            warning(paste0("reduced r to the range ", step, "-", r_max))
-            rs <- r[r >= step & r <= r_max]
-        }
-        else
-            rs <- r
+      rs <- r
     }
+  }
 
-    # kernel
-    if(tolower(kernel) != "epanechnikov")
-        stop("only the Epanechnikov kernel is currently implemented")
+  # kernel
+  if(tolower(kernel) != "epanechnikov")
+    stop("only the Epanechnikov kernel is currently implemented")
 
+  # create fv_pcf object ----------------------------------------------------
+  out <- pcf_envelope(dists$sim, dists$dist, dists$ratio,
+                      rs, area, n_obj, stoyan, n_rank)
 
-    # create fv_pcf object ----------------------------------------------------
-    out <- pcf_envelope(dists$sim, dists$dist, dists$ratio,
-                        rs, area, n_obj, stoyan, n_rank)
-
-    return(out)
+  return(out)
 }

@@ -1,0 +1,18 @@
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+
+dist: trusty
+
+cache:
+  - packages
+
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
+    packages:
+      - libgeos-dev
+      - libgdal-dev

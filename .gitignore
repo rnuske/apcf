@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
 src/*.o
 src/*.so
 src/*.dll
@@ -9,3 +10,6 @@ src/Makevars
 config.status
 config.log
 autom4te.cache
+
+windows/
+inst/gdal/

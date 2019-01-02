@@ -6,4 +6,5 @@ config.status
 configure.ac
 autom4te.cache
 ^\.travis\.yml$
+^appveyor\.yml$
 ^windows

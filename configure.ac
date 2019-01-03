@@ -1,9 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
-dnl largley (w/o lwgeom & proj4 checks) copied from sf (https://github.com/edzer/sfr) by Edzer Pebesma
+dnl copied largely (w/o proj) from sf (https://github.com/r-spatial/sf) 
 dnl which in turn made use of GDAL stuff from rgdal, (c) Roger Bivand
-m4_define([pkgversion], esyscmd([sh -c "grep Version: DESCRIPTION | cut -d' ' -f2 | tr -d '\n'"]))
-AC_INIT(apcf, [pkgversion], robert.nuske@nw-fva.de)
-AC_CONFIG_SRCDIR(src/rand_dists_ratios.cpp)
+AC_INIT(src/rand_dists_ratios.cpp)
 
 
 #------------------------------------------------------------------------------
@@ -17,9 +15,26 @@ fi
 
 RBIN="${R_HOME}/bin/R"
 
+RVER=`"${RBIN}" --version | head -1 | cut -f3 -d" "`
+RVER_MAJOR=`echo ${RVER} | cut  -f1 -d"."`
+RVER_MINOR=`echo ${RVER} | cut  -f2 -d"."`
+RVER_PATCH=`echo ${RVER} | cut  -f3 -d"."`
+
+if test [$RVER_MAJOR -lt 3] -o [$RVER_MAJOR -eq 3 -a $RVER_MINOR -lt 3]; then
+    AC_MSG_ERROR([apcf is not compatible with R versions before 3.3.0])
+else
+    if test [$RVER_MINOR -eq 3]; then
+        CXX11=`"${RBIN}" CMD config CXX1X`
+        CXX11STD=`"${RBIN}" CMD config CXX1XSTD`
+    else
+        CXX11=`"${RBIN}" CMD config CXX11`
+        CXX11STD=`"${RBIN}" CMD config CXX11STD`
+    fi
+fi
+
 # pick all flags for testing from R
 : ${CC=`"${RBIN}" CMD config CC`}
-: ${CXX=`"${RBIN}" CMD config CXX`}
+: ${CXX=${CXX11} ${CXX11STD}}
 : ${CPP=`"${RBIN}" CMD config CPP`}
 : ${CFLAGS=`"${RBIN}" CMD config CFLAGS`}
 : ${CPPFLAGS=`"${RBIN}" CMD config CPPFLAGS`}
@@ -104,7 +119,7 @@ AC_MSG_CHECKING([GDAL version >= 2.0.0])
 GDAL_MAJ_VER=`echo $GDAL_VERSION | cut -d "." -f1`
 if test ${GDAL_MAJ_VER} -lt 2 ; then
   AC_MSG_RESULT(no)
-  AC_MSG_ERROR([upgrade GDAL to 2.0.0 or later])
+  AC_MSG_ERROR([apcf is not compatible with GDAL versions below 2.0.0])
 else
    AC_MSG_RESULT(yes)
 fi
@@ -186,7 +201,6 @@ else
   AC_MSG_ERROR([pcs.csv not found in GDAL data directory.])
 fi
 
-
 # Optional local copy of GDAL datadir and PROJ_LIB ----------------------------
 data_copy=no
 AC_ARG_WITH([data-copy],
@@ -198,7 +212,7 @@ AC_MSG_NOTICE([Copy data for:])
   proj_lib0="${PROJ_LIB}"
   AC_ARG_WITH([proj-data],
     AC_HELP_STRING([--with-proj-data=DIR],
-                   [location of PROJ.4 data directory]),
+                   [location of PROJ data directory]),
     [proj_lib1=$withval])
   if test -n "${proj_lib0}" ; then
     proj_lib="${proj_lib0}"
@@ -208,12 +222,12 @@ AC_MSG_NOTICE([Copy data for:])
   if test -n "${proj_lib}" ; then
     if test -d "${proj_lib}" ; then
       cp -r "${proj_lib}" "${R_PACKAGE_DIR}"
-      AC_MSG_NOTICE([  PROJ.4: ${proj_lib}])
+      AC_MSG_NOTICE([  PROJ: ${proj_lib}])
     else
-      AC_MSG_ERROR([PROJ.4 data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
+      AC_MSG_ERROR([PROJ data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
     fi
   else
-      AC_MSG_ERROR([PROJ.4 data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
+      AC_MSG_ERROR([PROJ data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
   fi
 
   if test -d "${GDAL_DATADIR}" ; then
@@ -224,8 +238,7 @@ AC_MSG_NOTICE([Copy data for:])
   fi
 fi
 
-
-# test whether PROJ.4 is available to gdal ------------------------------------
+# test whether PROJ is available to gdal --------------------------------------
 gdal_has_proj=no
 [cat > gdal_proj.cpp <<_EOCONF
 #include <gdal.h>
@@ -237,11 +250,11 @@ int main(int argc, char *argv[]) {
     src->importFromEPSG(4326);
     dest->importFromEPSG(3857);
 	OGRCoordinateTransformation *ct = OGRCreateCoordinateTransformation(src, dest);
-	return(ct == NULL); // signals PROJ.4 is not available through gdal
+	return(ct == NULL); // signals PROJ is not available through gdal
 }
 _EOCONF]
 
-AC_MSG_CHECKING(GDAL: checking whether PROJ.4 is available for linking:)
+AC_MSG_CHECKING(GDAL: checking whether PROJ is available for linking:)
 ${CXX} ${CPPFLAGS} -o gdal_proj gdal_proj.cpp ${LIBS} 2> errors.txt
 if test `echo $?` -ne 0 ; then
 gdal_has_proj=no
@@ -257,7 +270,7 @@ if test "${gdal_has_proj}" = no; then
    AC_MSG_ERROR([cannot link projection code])
 fi
 
-AC_MSG_CHECKING(GDAL: checking whether PROJ.4 is available fur running:)
+AC_MSG_CHECKING(GDAL: checking whether PROJ is available fur running:)
 ./gdal_proj
 if test `echo $?` -ne 0 ; then
 gdal_has_proj=no
@@ -267,7 +280,7 @@ gdal_has_proj=yes
 AC_MSG_RESULT(yes)
 fi
 if test "${gdal_has_proj}" = no; then
-   AC_MSG_ERROR([OGRCoordinateTransformation() does not return a coord.trans: PROJ.4 not available?])
+   AC_MSG_ERROR([OGRCoordinateTransformation() does not return a coord.trans: PROJ not available?])
 fi
 rm -fr errors.txt gdal_proj.cpp gdal_proj
 
@@ -275,32 +288,79 @@ rm -fr errors.txt gdal_proj.cpp gdal_proj
 #------------------------------------------------------------------------------
 #  GEOS
 #------------------------------------------------------------------------------
-AC_MSG_CHECKING(geos-config usability)
-GEOS_CONFIG=`which geos-config`
-if test `geos-config --version`
-then
-  GEOS_CLIBS=`geos-config --clibs`
-  #GEOS_DEP_CLIBS=`geos-config --static-clibs` -- this gives -m instead of -lm, which breaks clang
-  # fixed in 3.7.0 at https://github.com/libgeos/libgeos/pull/73#issuecomment-262208677
-  GEOS_DEP_CLIBS="-lgeos_c -lgeos -lm"
-  GEOS_CPPFLAGS=`geos-config --cflags`
-  AC_MSG_RESULT(yes)
-else
-  AC_MSG_RESULT(no)
-  echo "no geos support: geos-dev and/or geos++-dev not installed?"
-  exit 1
+GEOS_CONFIG="geos-config"
+
+GEOS_CONFIG_SET="no"
+
+AC_ARG_WITH([geos-config],
+    AC_HELP_STRING([--with-geos-config=GEOS_CONFIG],
+           [the location of geos-config]),
+           [geos_config=$withval])
+if test [ -n "$geos_config" ] ; then
+    GEOS_CONFIG_SET="yes"
+    AC_SUBST([GEOS_CONFIG],["${geos_config}"])
+    AC_MSG_NOTICE(geos-config set to $GEOS_CONFIG)
 fi
 
-GEOS_VERSION=`geos-config --version`
-AC_MSG_NOTICE([GEOS: ${GEOS_VERSION}])
-AC_MSG_CHECKING([GEOS version >= 3.3.0])
-GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d "."`
-if test ${GEOS_VER_DOT} -lt 330 ; then
+if test ["$GEOS_CONFIG_SET" = "no"] ; then
+  AC_PATH_PROG([GEOS_CONFIG], ["$GEOS_CONFIG"],["no"])
+  if test ["$GEOS_CONFIG" = "no"] ; then
+    AC_MSG_RESULT(no)
+    AC_MSG_ERROR([geos-config not found or not executable.])
+  fi
+else
+  AC_MSG_CHECKING(geos-config exists)
+  if test -r "${GEOS_CONFIG}"; then
+    AC_MSG_RESULT(yes)
+  else
+    AC_MSG_RESULT(no)
+    AC_MSG_ERROR([geos-config not found - configure argument error.])
+  fi
+  AC_MSG_CHECKING(geos-config executable)
+  if test -x "${GEOS_CONFIG}"; then
+    AC_MSG_RESULT(yes)
+  else
+    AC_MSG_RESULT(no)
+    AC_MSG_ERROR([geos-config not executable.])
+  fi
+fi
+
+AC_MSG_CHECKING(geos-config usability)
+if test `${GEOS_CONFIG} --version`
+then
+  GEOS_CLIBS="`${GEOS_CONFIG} --clibs`"
+  #GEOS_DEP_CLIBS=`geos-config --static-clibs` -- this gives -m instead of -lm, which breaks clang
+  # fixed in 3.7.0 at https://github.com/libgeos/libgeos/pull/73#issuecomment-262208677
+  GEOS_DEP_CLIBS=`${GEOS_CONFIG} --static-clibs | sed 's/-m/-lm/g'`
+  GEOS_CPPFLAGS=`${GEOS_CONFIG} --cflags`
+  AC_MSG_RESULT(yes)
+else
   AC_MSG_RESULT(no)
-  AC_MSG_ERROR([upgrade GEOS to 3.3.0 or later])
+  AC_MSG_ERROR([${GEOS_CONFIG} not usable])
+fi
+
+GEOS_VERSION=`${GEOS_CONFIG} --version`
+AC_MSG_NOTICE([GEOS: ${GEOS_VERSION}])
+AC_MSG_CHECKING([GEOS version >= 3.4.0]) # GDAL 2.0.1 requires GEOS 3.1.0
+GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d "."`
+if test ${GEOS_VER_DOT} -lt 340 ; then
+  AC_MSG_RESULT(no)
+  AC_MSG_ERROR([upgrade GEOS to 3.4.0 or later])
 else
   AC_MSG_RESULT(yes)
 fi
+
+AC_SUBST([PKG_CPPFLAGS], ["${INPKG_CPPFLAGS} ${PROJ_CPPFLAGS} ${GDAL_CPPFLAGS} ${GEOS_CPPFLAGS}"])
+AC_SUBST([PKG_LIBS], ["${INPKG_LIBS} ${GDAL_LIBS}"])
+if test "${NEED_DEPS}" = yes; then
+   AC_SUBST([PKG_LIBS], ["${PKG_LIBS} ${GDAL_DEP_LIBS}"])
+fi
+
+# honor PKG_xx overrides
+# for CPPFLAGS we will superfluously double R's flags
+# since we'll set PKG_CPPFLAGS with this, but that shouldn't hurt
+CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
+LIBS="${LIBS} ${PKG_LIBS}"
 
 geosok=yes
 AC_CHECK_HEADERS(geos_c.h,,geosok=no)
@@ -328,46 +388,37 @@ int main() {
 #endif
 _EOCONF]
 
-
-AC_SUBST([PKG_CPPFLAGS], ["${INPKG_CPPFLAGS} ${GDAL_CPPFLAGS} ${GEOS_CPPFLAGS}"])
-AC_SUBST([PKG_LIBS], ["${INPKG_LIBS} ${GDAL_LIBS} ${GEOS_CLIBS}"])
-if test "${NEED_DEPS}" = yes; then
-   AC_SUBST([PKG_LIBS], ["${PKG_LIBS} ${GDAL_DEP_LIBS} ${GEOS_DEP_CLIBS}"])
-fi
-AC_SUBST([PKG_LIBS], ["${PKG_LIBS} -lproj"])
-
-
-# honor PKG_xx overrides
-# for CPPFLAGS we will superfluously double R's flags
-# since we'll set PKG_CPPFLAGS with this, but that shouldn't hurt
-CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
-LIBS="${LIBS} ${PKG_LIBS}"
-
 #echo "${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${LIBS}"
-AC_MSG_CHECKING(geos: linking with -lgeos_c)
-${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${LIBS} 2> errors.txt
+AC_MSG_CHECKING(geos: linking with ${GEOS_CLIBS})
+${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${GEOS_CLIBS} 2> errors.txt
 if test `echo $?` -ne 0 ; then
-geosok=no
-AC_MSG_RESULT(no)
+ geosok=no
+ AC_MSG_RESULT(no)
 else
-AC_MSG_RESULT(yes)
+ AC_SUBST([PKG_LIBS], ["${PKG_LIBS} ${GEOS_CLIBS}"])
+ AC_MSG_RESULT(yes)
 fi
 
 if test "${geosok}" = no; then
-   cat errors.txt
-   AC_MSG_NOTICE([Install failure: compilation and/or linkage problems.])
-   AC_MSG_ERROR([initGEOS_r not found in libgeos_c.])
+  AC_MSG_CHECKING(geos: linking with ${GEOS_DEP_CLIBS})
+  ${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${GEOS_DEP_CLIBS} 2> errors.txt
+  if test `echo $?` -ne 0 ; then
+    geosok=no
+    AC_MSG_RESULT(no)
+    cat errors.txt
+    AC_MSG_NOTICE([Install failure: compilation and/or linkage problems.])
+    AC_MSG_ERROR([initGEOS_r not found in libgeos_c.])
+  else
+    AC_SUBST([PKG_LIBS], ["${PKG_LIBS} ${GEOS_DEP_CLIBS}"])
+    AC_MSG_RESULT(yes)
+  fi
 fi
 
 rm -f geos_test errors.txt geos_test.cpp
 
-if test "${geosok}" = no; then
-   AC_MSG_ERROR([libgeos_c not found in given locations.])
-fi
-
 
 #------------------------------------------------------------------------------
-#  concluding substitution
+#  Concluding Substitutions
 #------------------------------------------------------------------------------
 AC_MSG_NOTICE([Package CPP flags: ${PKG_CPPFLAGS}])
 AC_MSG_NOTICE([Package LIBS: ${PKG_LIBS}])

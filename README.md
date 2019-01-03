@@ -26,7 +26,7 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 
 ### Requirements
-For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.3.0) are required.
+For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.4.0) are required.
 
 #### Ubuntu
 On Ubuntu bionic (18.04) and beyond one can install the dependencies with `sudo apt install libgdal-dev libgeos-dev`

@@ -1,0 +1,42 @@
+kind: pipeline
+name: rocker/geospatial:3.4
+
+steps:
+- name: build 'n check
+  image: rocker/geospatial:3.4
+  commands:
+  - R CMD build .
+  - FILE=$(ls -1t *.tar.gz | head -n 1)
+  - export _R_CHECK_CRAN_INCOMING_=FALSE 
+  - export _R_CHECK_FORCE_SUGGESTS_=FALSE 
+  - R CMD check $FILE --as-cran
+
+---
+
+kind: pipeline
+name: rocker/geospatial:3.5
+
+steps:
+- name: build 'n check
+  image: rocker/geospatial:3.5
+  commands:
+  - R CMD build .
+  - FILE=$(ls -1t *.tar.gz | head -n 1)
+  - export _R_CHECK_CRAN_INCOMING_=FALSE 
+  - export _R_CHECK_FORCE_SUGGESTS_=FALSE 
+  - R CMD check $FILE --as-cran
+
+---
+
+kind: pipeline
+name: rocker/geospatial:devel
+
+steps:
+- name: build 'n check
+  image: rocker/geospatial:devel
+  commands:
+  - R CMD build .
+  - FILE=$(ls -1t *.tar.gz | head -n 1)
+  - export _R_CHECK_CRAN_INCOMING_=FALSE 
+  - export _R_CHECK_FORCE_SUGGESTS_=FALSE 
+  - R CMD check $FILE --as-cran

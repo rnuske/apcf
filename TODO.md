@@ -6,7 +6,7 @@
 [ ] think about max_dist and kernel bandwidth (xlim <- max_dist - bw/2)
 [ ] check imported geometries if assumptions are met
 [ ] unit testing
-[ ] make it compile on windows
+[X] make it compile on windows
 [ ] proper way of seeding RNG 
     (check [report](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3551.pdf) )
 

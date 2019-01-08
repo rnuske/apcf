@@ -61,9 +61,11 @@ ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
 
 }
 \references{
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the
-pair-correlation function for analysing the spatial distribution of
-canopy gaps. Forest Ecology and Management (259): 107–116.
+Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
+Adapting the pair-correlation function for analysing the spatial
+distribution of canopy gaps.
+\emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
+\doi{10.1016/j.foreco.2009.09.050}
 }
 \seealso{
 \code{\link[=dists2pcf]{dists2pcf()}}, \code{\link[=plot.fv_pcf]{plot.fv_pcf()}}

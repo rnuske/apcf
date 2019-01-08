@@ -46,19 +46,21 @@
 #' @source  Nuske et al. (2009)
 #'
 #' @references
-#' Baddeley A., Rubak E. and Turner R. (2015). Spatial Point Patterns:
-#' Methodology and Applications with R. London: Chapman and Hall/CRC Press,
-#' 2015.
+#'  Baddeley A., Rubak E. and Turner R. (2015)
+#'  \emph{Spatial Point Patterns: Methodology and Applications with R}.
+#'  London: Chapman and Hall/CRC.
 #'
-#' Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the
-#' pair-correlation function for analysing the spatial distribution of
-#' canopy gaps. Forest Ecology and Management (259): 107–116.
+#'  Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
+#'  Adapting the pair-correlation function for analysing the spatial
+#'  distribution of canopy gaps.
+#'  \emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
+#'  \doi{10.1016/j.foreco.2009.09.050}
 #'
 #' @examples
 #' ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
 #'                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
 #'                 max_dist=25, n_sim=3, verbose=TRUE)
 #'
-#' @name patterns
+#' @name sim_patterns
 #' @docType data
 NULL

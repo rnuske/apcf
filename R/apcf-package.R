@@ -1,7 +1,16 @@
 #' Adapted Pair Correlation Function
 #'
-#' A faster implementation of the adapted Pair Correlation Function (PCF)
-#' presented in Nuske et al. (2009).
+#' A faster implementation of the adapted Pair Correlation Function presented
+#' in Nuske et al. (2009) in C++ using the libraries GEOS and GDAL directly
+#' instead of through PostGIS.
+#'
+#' The Adapted Pair Correlation Function transfers the concept of the Pair
+#' Correlation Function from point patterns to patterns of patches of finite
+#' size and irregular shape (eg. lakes within a country). The main tasks are
+#' (i) the construction of nullmodels by rondomizing the patches of the
+#' original pattern within the study area, (ii) the edge correction by
+#' determining the proportion of a buffer within the study area, and
+#' (iii) the calculation of the shortest distances between the patches.
 #'
 #' This package mainly provides three functions:
 #' - create null models and calculate distances and ratios,
@@ -10,7 +19,7 @@
 #'
 #'
 #' @section Pattern to Distances & Ratios:
-#' The job consistes of two parts: creating null models / permutations and
+#' The task consistes of two parts: creating null models / permutations and
 #' calculating distances between all objects of a pattern and determining
 #' the fraction of the perimeter a buffer inside the study area.
 #' Permutations of the original pattern are achieved by randomly rotating
@@ -44,9 +53,11 @@
 #'
 #'
 #' @references
-#' Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the
-#' pair-correlation function for analysing the spatial distribution of
-#' canopy gaps. Forest Ecology and Management (259): 107–116.
+#'   Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
+#'   Adapting the pair-correlation function for analysing the spatial
+#'   distribution of canopy gaps.
+#'   \emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
+#'   \doi{10.1016/j.foreco.2009.09.050}
 #'
 #' @docType package
 #' @name apcf-package

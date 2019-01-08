@@ -6,9 +6,25 @@
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
 
 
-Reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using GEOS and GDAL libraries directly instead of through PostGIS.
-
 The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
+
+This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.
+
+
+### Installation
+The development is available from Github using the package remotes (formerly devtools)
+```r
+if(!require("remotes")) install.packages("remotes")
+remotes::install_github("rnuske/apcf")
+```
+
+
+### Requirements
+For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.4.0) are required.
+
+On Ubuntu bionic (18.04) and beyond one can install the dependencies simply with `sudo apt install libgdal-dev libgeos-dev`. 
+In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the `sources.list` and use above command or compile dependencies from source.
+
 
 ### Usage
 ```r
@@ -26,15 +42,6 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 ```
 
 
-### Requirements
-For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.4.0) are required.
-
-#### Ubuntu
-On Ubuntu bionic (18.04) and beyond one can install the dependencies with `sudo apt install libgdal-dev libgeos-dev`
-
-In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the package repositories and use above command or compile dependencies from source.
-
-
 ### Links
 * [GEOS](https://trac.osgeo.org/geos/)
 * [GDAL/OGR Website](http://www.gdal.org/)
@@ -45,4 +52,4 @@ In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.n
 
 
 ### References
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management (259): 107–116. DOI: 10.1016/j.foreco.2009.09.050
+Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management 259(1): 107–116. DOI: 10.1016/j.foreco.2009.09.050

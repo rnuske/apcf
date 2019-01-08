@@ -17,6 +17,6 @@ citEntry(entry="Article",
   url="https://doi.org/10.1016/j.foreco.2009.09.050",
   textVersion = paste("Nuske, R.S., Sprauer, S. and Saborowski J. (2009):",
     "Adapting the pair-correlation function for analysing the spatial",
-    "distribution of canopy gaps. Forest Ecology and Management (259):",
+    "distribution of canopy gaps. Forest Ecology and Management 259(1):",
     "107–116. https://doi.org/10.1016/j.foreco.2009.09.050")
 )

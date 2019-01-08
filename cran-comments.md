@@ -18,10 +18,13 @@ The build system is largely based on the great work of [sf](https://github.com/r
 
 0 errors | 0 warnings | 2+1 notes
 
-* This is a new release.
+* This is a new submission.
 
-* The word 'reimplementation' seems to be quite common in software development. 
-  According to wiktionary it describes the act of implementing again.
+* Possibly mis-spelled words in DESCRIPTION:
+  * Nuske is my last name
+  * et, al., and e.g. are commonly used words/abbreviations 
+  * The word 'reimplementation' seems to be quite common in software development. 
+    According to wiktionary it describes the act of implementing again.
   
 * only on windows: 
   * package size note

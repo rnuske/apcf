@@ -88,10 +88,3 @@ pat2dists <- function(area, pattern, max_dist, n_sim=199,
   rand_dists_ratios(pattern[1], area[1], max_dist, as.integer(n_sim),
                     as.integer(max_tries), save_patterns, save_basename, verbose)
 }
-
-
-# Hack to provide dir.exists in R < 3.2
-#------------------------------------------------------------------------------
-if(!existsFunction('dir.exists')){
-  dir.exists <- function(x){ file.exists(x) & file.info(x)$isdir }
-}

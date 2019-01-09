@@ -3,7 +3,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/rnuske/apcf.svg?branch=master)](https://travis-ci.org/rnuske/apcf) 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rnuske/apcf?branch=master&svg=true)](https://ci.appveyor.com/project/rnuske/apcf) 
 [![Drone.io Status](https://cloud.drone.io/api/badges/rnuske/apcf/status.svg)](https://cloud.drone.io/rnuske/apcf) 
-[![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html) 
+[![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
 
 
@@ -45,7 +45,7 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 ### Links
 * [GEOS](https://trac.osgeo.org/geos/)
-* [GDAL/OGR Website](http://www.gdal.org/)
+* [GDAL/OGR Website](https://www.gdal.org/)
 * [GDAL/OGR Github Repository](https://github.com/OSGeo/gdal)
 * [Rcpp Website](http://www.rcpp.org/)
 * [Rcpp Github Repository](https://github.com/RcppCore/Rcpp)

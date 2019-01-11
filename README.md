@@ -4,6 +4,7 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rnuske/apcf?branch=master&svg=true)](https://ci.appveyor.com/project/rnuske/apcf) 
 [![Drone.io Status](https://cloud.drone.io/api/badges/rnuske/apcf/status.svg)](https://cloud.drone.io/rnuske/apcf) 
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
+[![CRAN](https://www.r-pkg.org/badges/version/apcf)](https://cran.r-project.org/package=apcf) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
 
 
@@ -12,19 +13,24 @@ The Adapted Pair Correlation Function transfers the concept of the Pair Correlat
 This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.
 
 
-### Installation
-The development is available from Github using the package remotes (formerly devtools)
-```r
-if(!require("remotes")) install.packages("remotes")
-remotes::install_github("rnuske/apcf")
-```
-
-
 ### Requirements
 For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.4.0) are required.
 
 On Ubuntu bionic (18.04) and beyond one can install the dependencies simply with `sudo apt install libgdal-dev libgeos-dev`. 
 In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the `sources.list` and use above command or compile dependencies from source.
+
+
+### Installation
+The stable version can be installed from CRAN
+```r
+install.packages("apcf")
+```
+
+and the development is available from Github using the package remotes (formerly devtools)
+```r
+if(!require("remotes")) install.packages("remotes")
+remotes::install_github("rnuske/apcf")
+```
 
 
 ### Usage

@@ -4,7 +4,6 @@
 TODO.md
 config.log
 config.status
-configure.ac
 autom4te.cache
 ^\.drone\.yml$
 ^\.travis\.yml$

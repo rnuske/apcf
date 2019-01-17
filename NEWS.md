@@ -1,5 +1,9 @@
 # News for Package 'apcf'
 
+## Changes in version 0.1.2
+* added configure.ac to package source bundle
+* clarified installation of stable/development version in README
+
 ## Changes in version 0.1.1
 * started using continuous integration tools (Travis, AppVeyor, Drone)
 * made it build on windows

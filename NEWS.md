@@ -3,6 +3,7 @@
 ## Changes in version 0.1.2
 * added configure.ac to package source bundle
 * clarified installation of stable/development version in README
+* special treatment for R-devel in configure regarding R version check
 
 ## Changes in version 0.1.1
 * started using continuous integration tools (Travis, AppVeyor, Drone)

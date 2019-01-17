@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-dnl copied largely (w/o proj) from sf (https://github.com/r-spatial/sf) 
+dnl copied largely (w/o proj) from sf (https://github.com/r-spatial/sf)
 dnl which in turn made use of GDAL stuff from rgdal, (c) Roger Bivand
 AC_INIT(src/rand_dists_ratios.cpp)
 
@@ -20,15 +20,20 @@ RVER_MAJOR=`echo ${RVER} | cut  -f1 -d"."`
 RVER_MINOR=`echo ${RVER} | cut  -f2 -d"."`
 RVER_PATCH=`echo ${RVER} | cut  -f3 -d"."`
 
-if test [$RVER_MAJOR -lt 3] -o [$RVER_MAJOR -eq 3 -a $RVER_MINOR -lt 3]; then
-    AC_MSG_ERROR([apcf is not compatible with R versions before 3.3.0])
+if test [$RVER_MAJOR = "development"]; then
+    CXX11=`"${RBIN}" CMD config CXX11`
+    CXX11STD=`"${RBIN}" CMD config CXX11STD`
 else
-    if test [$RVER_MINOR -eq 3]; then
-        CXX11=`"${RBIN}" CMD config CXX1X`
-        CXX11STD=`"${RBIN}" CMD config CXX1XSTD`
+    if test [$RVER_MAJOR -lt 3] -o [$RVER_MAJOR -eq 3 -a $RVER_MINOR -lt 3]; then
+        AC_MSG_ERROR([apcf is not compatible with R versions before 3.3.0])
     else
-        CXX11=`"${RBIN}" CMD config CXX11`
-        CXX11STD=`"${RBIN}" CMD config CXX11STD`
+        if test [$RVER_MINOR -eq 3]; then
+            CXX11=`"${RBIN}" CMD config CXX1X`
+            CXX11STD=`"${RBIN}" CMD config CXX1XSTD`
+        else
+            CXX11=`"${RBIN}" CMD config CXX11`
+            CXX11STD=`"${RBIN}" CMD config CXX11STD`
+        fi
     fi
 fi
 

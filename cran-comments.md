@@ -1,12 +1,5 @@
 
-This is a re-submission.
-The package was archived by Prof. Brian Ripley for policy violations.
-
-## Changes
-* configure.ac is now part of the source bundle
-* clarified installation of stable/development version of the package in README
-* special treatment for R-devel in configure regarding R version check
-
+This is an update submission.
 
 ## Test environments
 * Ubuntu 18.04, R 3.5.2, R-devel (2019-01-14 r75992) [local]
@@ -20,11 +13,7 @@ The package was archived by Prof. Brian Ripley for policy violations.
 
 
 ## R CMD check results
-0 errors | 0 warnings | 2+1 notes
-
-* Package was archived on CRAN
-  Archived on 2019-01-16 for policy violation.
-  * Changes to fix the policy violations are addressed above
+0 errors | 0 warnings | X+1 notes
 
 * Possibly mis-spelled words in DESCRIPTION:
   * Nuske is the name of the author of the cited paper
@@ -39,5 +28,8 @@ The package was archived by Prof. Brian Ripley for policy violations.
       gdal   3.9Mb
       libs  68.8Mb
       
-    - The large install size is due to the required libraries GDAL & GEOS. 
+    - The large install size is due to the required libraries GDAL & GEOS.
+      apcf can not use the the R packages rgeos, rgdal, sf etc. instead 
+      because it links to GDAL & GEOS from its C++ code. All calculations
+      are done in C++ for perfrmance reasons.
       The package sf is even larger partly because of the additional library proj.

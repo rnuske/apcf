@@ -1,5 +1,8 @@
 # News for Package 'apcf'
 
+## Changes in version 0.X.X
+
+
 ## Changes in version 0.1.2
 * added configure.ac to package source bundle
 * clarified installation of stable/development version in README

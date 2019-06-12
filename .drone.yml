@@ -1,9 +1,9 @@
 kind: pipeline
-name: rocker/geospatial:3.4
+name: rocker/geospatial:3.5
 
 steps:
 - name: build 'n check
-  image: rocker/geospatial:3.4
+  image: rocker/geospatial:3.5
   commands:
   - R CMD build .
   - FILE=$(ls -1t *.tar.gz | head -n 1)
@@ -14,11 +14,11 @@ steps:
 ---
 
 kind: pipeline
-name: rocker/geospatial:3.5
+name: rocker/geospatial:3.6
 
 steps:
 - name: build 'n check
-  image: rocker/geospatial:3.5
+  image: rocker/geospatial:3.6
   commands:
   - mkdir ~/.R 
   - echo 'CXX11FLAGS = -g -O2 -Wall -pedantic -fstack-protector-strong -D_FORTIFY_SOURCE=2' > ~/.R/Makevars

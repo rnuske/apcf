@@ -1,7 +1,7 @@
 # News for Package 'apcf'
 
-## Changes in version 0.X.X
-
+## Changes in version 0.1.3
+* Makevars.win tweaked in expectation of change of win toolchain (thanks @jeroen)
 
 ## Changes in version 0.1.2
 * added configure.ac to package source bundle

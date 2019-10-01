@@ -1,17 +1,3 @@
-kind: pipeline
-name: rocker/geospatial:3.6
-
-steps:
-- name: build 'n check
-  image: rocker/geospatial:3.6
-  commands:
-  - R CMD build .
-  - FILE=$(ls -1t *.tar.gz | head -n 1)
-  - export _R_CHECK_CRAN_INCOMING_=FALSE 
-  - export _R_CHECK_FORCE_SUGGESTS_=FALSE 
-  - R CMD check $FILE --as-cran
-
----
 
 kind: pipeline
 name: rocker/geospatial:latest

@@ -4,10 +4,22 @@
 \alias{plot.fv_pcf}
 \title{Plot PCF}
 \usage{
-\method{plot}{fv_pcf}(x, xlim = NULL, ylim = NULL, xticks = NULL,
-  yticks = NULL, xlab = "r", ylab = "g(r)", main = NULL,
-  sub = NULL, xaxis = TRUE, yaxis = TRUE,
-  ann = graphics::par("ann"), bty = "l", ...)
+\method{plot}{fv_pcf}(
+  x,
+  xlim = NULL,
+  ylim = NULL,
+  xticks = NULL,
+  yticks = NULL,
+  xlab = "r",
+  ylab = "g(r)",
+  main = NULL,
+  sub = NULL,
+  xaxis = TRUE,
+  yaxis = TRUE,
+  ann = graphics::par("ann"),
+  bty = "l",
+  ...
+)
 }
 \arguments{
 \item{x}{an object of class \link{fv_pcf}.}

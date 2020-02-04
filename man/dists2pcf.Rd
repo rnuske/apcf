@@ -4,8 +4,7 @@
 \alias{dists2pcf}
 \title{Convert Distances & Ratios to PCF}
 \usage{
-dists2pcf(dists, r, r_max = NULL, kernel = "epanechnikov", stoyan,
-  n_rank)
+dists2pcf(dists, r, r_max = NULL, kernel = "epanechnikov", stoyan, n_rank)
 }
 \arguments{
 \item{dists}{An object of class \link{dists}. Usually created by \code{\link[=pat2dists]{pat2dists()}}}

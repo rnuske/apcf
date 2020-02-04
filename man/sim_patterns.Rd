@@ -9,10 +9,10 @@ containing the study area and three simulated patterns.
 
 \tabular{ll}{
 \strong{Shapefiles} \tab \strong{Description}\cr
-\code{sim_area.*}      \tab study area\cr
-\code{sim_pat_reg.*}   \tab simulated regular pattern\cr
-\code{sim_pat_rand.*}  \tab simulated random pattern\cr
-\code{sim_pat_clust.*} \tab simulated clustered pattern\cr
+\verb{sim_area.*}      \tab study area\cr
+\verb{sim_pat_reg.*}   \tab simulated regular pattern\cr
+\verb{sim_pat_rand.*}  \tab simulated random pattern\cr
+\verb{sim_pat_clust.*} \tab simulated clustered pattern\cr
 }
 
 The study area is a square of 100 m x 100 m. A set of n = 100 objects were
@@ -20,22 +20,22 @@ created and latter placed according to the designated spatial distribution.
 The size distribution and shapes of the objects are inspired by measurements
 of canopy gaps. The areas of the objects range from 1.6 m2 to 57.7 m2 with
 an arithmetic mean of 9.7 m2 and a median of 5.5 m2. The total area of all
-objects is 969.7 m2, meaning 9.7\% of the study area is covered by objects.
+objects is 969.7 m2, meaning 9.7\\% of the study area is covered by objects.
 
-For the \code{sim_pat_reg.*} dataset, the objects were arranged in a strict
+For the \verb{sim_pat_reg.*} dataset, the objects were arranged in a strict
 regular manner. A centric systematic grid was constructed, and the objects
 of the set were then randomly rotated and randomly placed by locating the
 centroids of the objects exactly on the matching randomly numbered grid
 points, resulting in a regular arrangement of objects with a constant
 distance of the centroids of 10 m.
 
-For the \code{sim_pat_rand.*} dataset with randomly distributed objects, we
+For the \verb{sim_pat_rand.*} dataset with randomly distributed objects, we
 generated a realisation of the Binomial process with intensity 0.01 m^-2,
 meaning one point per 100 m2. The objects were again randomly rotated and
 numbered and objects put on matching points with their centroid as close to
 the point as possible without overlapping other objects.
 
-The \code{sim_pat_clust.*} dataset represents a clustered configuration. Again,
+The \verb{sim_pat_clust.*} dataset represents a clustered configuration. Again,
 we first created a point pattern with 100 points and then put the randomly
 numbered objects on the points. The point pattern was a realisation of
 Matern’s cluster process with w = 0.0006 m^-2 or 6 cluster centres per ha,

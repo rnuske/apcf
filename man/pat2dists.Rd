@@ -4,8 +4,15 @@
 \alias{pat2dists}
 \title{Convert a Pattern to Distances & Ratios}
 \usage{
-pat2dists(area, pattern, max_dist, n_sim = 199, max_tries = 1e+05,
-  save_patterns = NULL, verbose = FALSE)
+pat2dists(
+  area,
+  pattern,
+  max_dist,
+  n_sim = 199,
+  max_tries = 1e+05,
+  save_patterns = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{area, pattern}{Data source name of study area and pattern

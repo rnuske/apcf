@@ -30,7 +30,7 @@
 #' with some additional attributes).
 #'
 #' The library GEOS (>= 3.4.0) is used for the geometrical analysis of the pattern.
-#' Geodata are converted to GEOS Geometries with the help of GDAL/OGR (>= 2.0.0).
+#' Geodata are converted to GEOS Geometries with the help of GDAL/OGR (>= 2.0.1).
 #' The GEOS functions are called from C++ Functions which are integrated into
 #' R via Rcpp and wrapped in the R function [pat2dists()].
 #'

@@ -2004,8 +2004,10 @@ if test -z "${R_HOME}"; then
 fi
 
 RBIN="${R_HOME}/bin/R"
+# RVER=`"${RBIN}" --version | head -1 | cut -f3 -d" "`
+RSCRIPT="${R_HOME}/bin/Rscript"
+RVER=`"${RSCRIPT}" -e 'writeLines(paste(sep=".", base::version$major, base::version$minor))'`
 
-RVER=`"${RBIN}" --version | head -1 | cut -f3 -d" "`
 RVER_MAJOR=`echo ${RVER} | cut  -f1 -d"."`
 RVER_MINOR=`echo ${RVER} | cut  -f2 -d"."`
 RVER_PATCH=`echo ${RVER} | cut  -f3 -d"."`
@@ -2165,14 +2167,14 @@ fi
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: GDAL: ${GDAL_VERSION}" >&5
 $as_echo "$as_me: GDAL: ${GDAL_VERSION}" >&6;}
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking GDAL version >= 2.0.0" >&5
-$as_echo_n "checking GDAL version >= 2.0.0... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking GDAL version >= 2.0.1" >&5
+$as_echo_n "checking GDAL version >= 2.0.1... " >&6; }
 
 GDAL_MAJ_VER=`echo $GDAL_VERSION | cut -d "." -f1`
 if test ${GDAL_MAJ_VER} -lt 2 ; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-  as_fn_error $? "apcf is not compatible with GDAL versions below 2.0.0" "$LINENO" 5
+  as_fn_error $? "apcf is not compatible with GDAL versions below 2.0.1" "$LINENO" 5
 else
    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
@@ -3454,6 +3456,18 @@ fi
 
 rm -f gdal_test errors.txt gdal_test.cpp
 
+GDAL_GE_250="no"
+GDAL_MAJ_VER=`echo $GDAL_VERSION | cut -d "." -f1`
+GDAL_MOD_VER=`echo $GDAL_VERSION | cut -d "." -f2`
+if test "${GDAL_MAJ_VER}" = 2 ; then
+  if test "${GDAL_MOD_VER}" -ge 5 ; then
+    GDAL_GE_250="yes"
+  fi
+else
+  if test "${GDAL_MAJ_VER}" -ge 3 ; then
+    GDAL_GE_250="yes"
+  fi
+fi
 
 GDAL_DATA_TEST_FILE="${GDAL_DATADIR}/pcs.csv"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking GDAL: ${GDAL_DATADIR}/pcs.csv readable" >&5
@@ -3464,7 +3478,9 @@ $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-  as_fn_error $? "pcs.csv not found in GDAL data directory." "$LINENO" 5
+  if test "${GDAL_GE_250}" = "no" ; then
+    as_fn_error $? "pcs.csv not found in GDAL data directory." "$LINENO" 5
+  fi
 fi
 
 # Optional local copy of GDAL datadir and PROJ_LIB ----------------------------
@@ -3678,7 +3694,7 @@ GEOS_VERSION=`${GEOS_CONFIG} --version`
 $as_echo "$as_me: GEOS: ${GEOS_VERSION}" >&6;}
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking GEOS version >= 3.4.0" >&5
 $as_echo_n "checking GEOS version >= 3.4.0... " >&6; } # GDAL 2.0.1 requires GEOS 3.1.0
-GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d "."`
+GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d ".[:alpha:]"`
 if test ${GEOS_VER_DOT} -lt 340 ; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }

@@ -15,7 +15,7 @@ This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al
 
 
 ### Requirements
-For Unix-alikes GDAL (>= 2.0.0) and GEOS (>= 3.4.0) are required.
+For Unix-alikes GDAL (>= 2.0.1) and GEOS (>= 3.4.0) are required.
 
 On Ubuntu bionic (18.04) and beyond one can install the dependencies simply with `sudo apt install libgdal-dev libgeos-dev`. 
 In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the `sources.list` and use above command or compile dependencies from source.

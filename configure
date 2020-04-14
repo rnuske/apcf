@@ -3418,7 +3418,7 @@ _EOCONF
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking GDAL: linking with --libs only" >&5
 $as_echo_n "checking GDAL: linking with --libs only... " >&6; }
-${CXX} ${CPPFLAGS} -o gdal_test gdal_test.cpp ${LIBS} 2> errors.txt
+${CXX} ${CPPFLAGS} ${LDFLAGS} -o gdal_test gdal_test.cpp ${LIBS} 2> errors.txt
 if test `echo $?` -ne 0 ; then
 gdalok=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -3433,7 +3433,7 @@ if test "${gdalok}" = no; then
 $as_echo_n "checking GDAL: linking with --libs and --dep-libs... " >&6; }
 LIBS="${LIBS} ${GDAL_DEP_LIBS}"
 gdalok=yes
-${CXX} ${CPPFLAGS} -o gdal_test gdal_test.cpp ${LIBS} 2>> errors.txt
+${CXX} ${CPPFLAGS} ${LDFLAGS} -o gdal_test gdal_test.cpp ${LIBS} 2>> errors.txt
 if test `echo $?` -ne 0 ; then
 gdalok=no
 fi
@@ -3545,7 +3545,7 @@ _EOCONF
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking GDAL: checking whether PROJ is available for linking:" >&5
 $as_echo_n "checking GDAL: checking whether PROJ is available for linking:... " >&6; }
-${CXX} ${CPPFLAGS} -o gdal_proj gdal_proj.cpp ${LIBS} 2> errors.txt
+${CXX} ${CPPFLAGS} ${LDFLAGS} -o gdal_proj gdal_proj.cpp ${LIBS} 2> errors.txt
 if test `echo $?` -ne 0 ; then
 gdal_has_proj=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -3579,6 +3579,8 @@ if test "${gdal_has_proj}" = no; then
    as_fn_error $? "OGRCoordinateTransformation() does not return a coord.trans: PROJ not available?" "$LINENO" 5
 fi
 rm -fr errors.txt gdal_proj.cpp gdal_proj
+{ $as_echo "$as_me:${as_lineno-$LINENO}: GDAL: ${GDAL_VERSION}" >&5
+$as_echo "$as_me: GDAL: ${GDAL_VERSION}" >&6;}
 
 
 #------------------------------------------------------------------------------
@@ -3761,7 +3763,7 @@ _EOCONF
 #echo "${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${LIBS}"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking geos: linking with ${GEOS_CLIBS}" >&5
 $as_echo_n "checking geos: linking with ${GEOS_CLIBS}... " >&6; }
-${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${GEOS_CLIBS} 2> errors.txt
+${CXX} ${CPPFLAGS} ${LDFLAGS} -o geos_test geos_test.cpp ${GEOS_CLIBS} 2> errors.txt
 if test `echo $?` -ne 0 ; then
  geosok=no
  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -3776,7 +3778,7 @@ fi
 if test "${geosok}" = no; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking geos: linking with ${GEOS_DEP_CLIBS}" >&5
 $as_echo_n "checking geos: linking with ${GEOS_DEP_CLIBS}... " >&6; }
-  ${CXX} ${CPPFLAGS} -o geos_test geos_test.cpp ${GEOS_DEP_CLIBS} 2> errors.txt
+  ${CXX} ${CPPFLAGS} ${LDFLAGS} -o geos_test geos_test.cpp ${GEOS_DEP_CLIBS} 2> errors.txt
   if test `echo $?` -ne 0 ; then
     geosok=no
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5

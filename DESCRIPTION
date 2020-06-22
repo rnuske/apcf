@@ -5,7 +5,7 @@ Authors@R:
   person(given="Robert", 
          family="Nuske", 
          role=c("aut", "cre"),
-         email="robert.nuske@mailbox.org",
+         email="robert.nuske@nw-fva.de",
          comment=c(ORCID="0000-0001-9773-2061"))
 Description: The adapted pair correlation function transfers the concept of the
   pair correlation function from point patterns to patterns of objects of 

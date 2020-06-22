@@ -202,11 +202,11 @@ GDAL_MAJ_VER=`echo $GDAL_VERSION | cut -d "." -f1`
 GDAL_MOD_VER=`echo $GDAL_VERSION | cut -d "." -f2`
 if test "${GDAL_MAJ_VER}" = 2 ; then
   if test "${GDAL_MOD_VER}" -ge 5 ; then
-    GDAL_GE_250="yes" 
+    GDAL_GE_250="yes"
   fi
-else 
+else
   if test "${GDAL_MAJ_VER}" -ge 3 ; then
-    GDAL_GE_250="yes" 
+    GDAL_GE_250="yes"
   fi
 fi
 
@@ -221,7 +221,7 @@ else
   fi
 fi
 
-# Optional local copy of GDAL datadir and PROJ_LIB ----------------------------
+# Optional local copy of GDAL datadir -----------------------------------------
 data_copy=no
 AC_ARG_WITH([data-copy],
     AC_HELP_STRING([--with-data-copy=yes/no],
@@ -229,27 +229,6 @@ AC_ARG_WITH([data-copy],
                [data_copy=$withval])
 if test "${data_copy}" = "yes" ; then
 AC_MSG_NOTICE([Copy data for:])
-  proj_lib0="${PROJ_LIB}"
-  AC_ARG_WITH([proj-data],
-    AC_HELP_STRING([--with-proj-data=DIR],
-                   [location of PROJ data directory]),
-    [proj_lib1=$withval])
-  if test -n "${proj_lib0}" ; then
-    proj_lib="${proj_lib0}"
-  else
-    proj_lib="${proj_lib1}"
-  fi
-  if test -n "${proj_lib}" ; then
-    if test -d "${proj_lib}" ; then
-      cp -r "${proj_lib}" "${R_PACKAGE_DIR}"
-      AC_MSG_NOTICE([  PROJ: ${proj_lib}])
-    else
-      AC_MSG_ERROR([PROJ data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
-    fi
-  else
-      AC_MSG_ERROR([PROJ data files not found; set environment variable PROJ_LIB=DIR or --with-proj-data=DIR.])
-  fi
-
   if test -d "${GDAL_DATADIR}" ; then
     cp -r "${GDAL_DATADIR}" "${R_PACKAGE_DIR}"
     AC_MSG_NOTICE([  GDAL: ${GDAL_DATADIR}])

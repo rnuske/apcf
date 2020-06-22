@@ -3,6 +3,9 @@
 .RData
 .Ruserdata
 
+vignettes/*.R
+vignettes/*.html
+
 src/*.o
 src/*.so
 src/*.dll

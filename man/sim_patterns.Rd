@@ -4,7 +4,8 @@
 \name{sim_patterns}
 \alias{sim_patterns}
 \title{Simulated Patterns (sample data)}
-\format{A set of \href{https://en.wikipedia.org/wiki/Shapefile}{shapefiles}
+\format{
+A set of \href{https://en.wikipedia.org/wiki/Shapefile}{shapefiles}
 containing the study area and three simulated patterns.
 
 \tabular{ll}{
@@ -42,7 +43,8 @@ Matern’s cluster process with w = 0.0006 m^-2 or 6 cluster centres per ha,
 a dispersion radius of R = 10 m and on average y = 16.6 points per cluster.
 
 We used the R-package spatstat (Baddeley et al. 2015) for simulating
-the Binomial process and Matern’s cluster process.}
+the Binomial process and Matern’s cluster process.
+}
 \source{
 Nuske et al. (2009)
 }

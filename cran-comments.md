@@ -1,30 +1,32 @@
 
-This submission contains an update of the configure file to enable the package to compile with the library GDAL version 2 and 3 fixing errors on r-release-linux-x86_64, r-patched-linux-x86_64,  r-devel-linux-x86_64-debian-clang, r-devel-linux-x86_64-debian-gcc.
+This is a Re-submission of a package that was archived because email to maintainer bounced. A different email address is provided now.
+
+I asked Simon Urbanek to set the configure argument "--with-data-copy=yes" for the macOS binary builds. I have not received an answer in the last 2 weeks, will politely ask again.
+
+
 
 
 ## Test environments
-* Ubuntu 18.04, R 3.6.0, R devel [local]
+* Ubuntu 18.04, R 4.0.2, R devel [local]
 * Ubuntu 14.04, libgeos-dev & libgdal-dev from ubuntugis-unstable [on Travis CI], 
-  R 3.6.2 (2017-01-27), devel (2020-02-04 r77771)
-* Debian Stretch, GDAL & GEOS via docker image rocker/geospatial [on Drone CI],  
-  R 3.6.2, devel (2020-01-28 r77738)
+  R 4.0.0 (2020-04-24), devel (2020-06-29 r78750)
+* Debian testing, using docker container rocker/r-devel [on Drone CI],  
+  R 4.0.2 (2020-06-22)
 * Windows Server 2012 R2 x64, GDAL & GEOS from winlib/gdal2 [on AppVeyor CI],
-  R 3.6.2 Patched (2020-01-25 r77764)
-* win-builder, R 3.6.2, R devel (2020-01-27 r77730)
+  4.0.2 Patched (2020-06-24 r78747)
+* win-builder, 4.0.2 (2020-06-22), R devel (2020-07-03 r78775), 3.6.3 (2020-02-29)
 
 
 ## R CMD check results
-0 errors | 0 warnings | 1 notes
+0 errors | 0 warnings | 2 notes
 
-* only on windows: 
-  * checking installed package size ... NOTE
-    installed size is 73.7Mb
-    sub-directories of 1Mb or more:
-      gdal   3.9Mb
-      libs  69.4Mb
+1) New submission
+
+2) only on windows: 
+* checking installed package size ... NOTE
+  installed size is 73.8Mb
+  sub-directories of 1Mb or more:
+    gdal   3.9Mb
+    libs  69.5Mb
       
-    - The large install size is due to the required libraries GDAL & GEOS.
-      apcf can not use the the R packages rgeos, rgdal, sf etc. 
-      because it links to GDAL & GEOS from its C++ code. 
-      All calculations are done in C++ for performance reasons.
-      The package sf is even larger partly because of the additional library proj.
+The large install size is due to the required libraries GDAL & GEOS. apcf can not use the the R packages rgeos, rgdal, sf etc. because it links to GDAL & GEOS from its C++ code. All calculations are done in C++ for performance reasons. The package sf is even larger partly because of the additional library proj.

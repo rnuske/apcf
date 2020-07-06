@@ -1,5 +1,8 @@
 # News for Package 'apcf'
 
+## Changes in version DEVEL
+*
+
 ## Changes in version 0.1.5
 * cleaned up configure
 * new maintainer email address due to problem with email provider

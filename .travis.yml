@@ -3,7 +3,7 @@ r:
   - release
   - devel
 
-dist: trusty
+dist: bionic
 
 cache:
   - packages

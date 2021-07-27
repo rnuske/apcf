@@ -11,7 +11,7 @@ steps:
 - name: build 'n check
   image: rocker/r-devel
   commands:
-  - apt-get install -t unstable -y --no-install-recommends qpdf libgdal-dev libgeos-dev
+  - apt-get install -t unstable -y --no-install-recommends pandoc qpdf libgdal-dev libgeos-dev
   - R -e 'install.packages(c("Rcpp", "knitr", "rmarkdown"))'
   - R CMD build .
   - FILE=$(ls -1t *.tar.gz | head -n 1)

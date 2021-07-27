@@ -1,7 +1,8 @@
 # News for Package 'apcf'
 
-## Changes in version DEVEL
-*
+## Changes in version 0.1.6
+* Windows: update to GDAL 3.2.1 and fix for UCRT support  (thanks @jeroen)
+* drop LazyData from description
 
 ## Changes in version 0.1.5
 * cleaned up configure

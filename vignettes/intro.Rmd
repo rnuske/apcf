@@ -85,7 +85,7 @@ par(op)
 ## Technical Details
 The adapted pair-corelation functions was original implemented in the Geodatabase `PostGIS`. `PostGIS` offers all necessary methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the `GEOS` format for all geometric operations rendered the process quite slow.
 
-In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by [`GEOS`](https://trac.osgeo.org/geos/). The geodata is read and transformed to `GEOS` format only once (thanks to [`GDAL/OGR`](http://www.gdal.org/) all conceivable formats are understood). All further manipulations are within the `GEOS` world. The usage of these two libaries was made possible by [`Rcpp`](http://www.rcpp.org/).
+In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by [`GEOS`](https://trac.osgeo.org/geos). The geodata is read and transformed to `GEOS` format only once (thanks to [`GDAL/OGR`](https://gdal.org) all conceivable formats are understood). All further manipulations are within the `GEOS` world. The usage of these two libaries was made possible by [`Rcpp`](http://www.rcpp.org).
 
 
 ## References

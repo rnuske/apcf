@@ -12,7 +12,7 @@
 #'
 #' Measuring distances between objects and permutation of the pattern is done
 #' with [GEOS](https://trac.osgeo.org/geos) and spatial data are converted to
-#' GEOS geometries by [GDAL/OGR](http://www.gdal.org).
+#' GEOS geometries by [GDAL/OGR](https://gdal.org).
 #'
 #' @param area,pattern Data source name of study area and pattern
 #'        (interpretation varies by driver - for some drivers, dsn is a file

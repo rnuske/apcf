@@ -9,7 +9,6 @@
 
 #include <Rcpp.h>        // Rcpp
 #include <vector>        // vector
-
 #include <gdal.h>        // GDAL* &  OGR* functions (includes ogr_api.h)
 #include <ogr_srs_api.h> // OSR* functions
 #include <geos_c.h>      // GEOS* functions
@@ -19,7 +18,7 @@
 #include "geos_stuff.h"
 
 
-/* GDAL Version 
+/* GDAL Version
  *-----------------------------------------------------------------------------
  * adapted from sf (https://github.com/edzer/sfr/blob/master/src/geos.cpp)
  */
@@ -33,7 +32,7 @@ std::string gdal_version(const char* what="RELEASE_NAME")
 /* import polys
  *-----------------------------------------------------------------------------
  *
- * adapted from the OGR tutorial (http://www.gdal.org/ogr_apitut.html)
+ * adapted from the OGR tutorial (https://gdal.org/tutorials/vector_api_tut.html)
  */
 std::vector<GEOSGeometry*>
 import_polys(GEOSContextHandle_t geosCtxtH,
@@ -133,7 +132,7 @@ import_polys(GEOSContextHandle_t geosCtxtH,
 /* export polys
  *-----------------------------------------------------------------------------
  *
- * adapted from the OGR tutorial (http://www.gdal.org/ogr_apitut.html)
+ * adapted from the OGR tutorial (https://gdal.org/tutorials/vector_api_tut.html)
  *
  * ToDo: check input: driver, dsn, layer must be given
  * ToDo: guess driver from file extension of dsn
@@ -225,7 +224,7 @@ export_polys(GEOSContextHandle_t geosCtxtH,
 
         // wkb to ogr - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         OGRGeometryH hOGRGeom;
-        if(OGR_G_CreateFromWkb((unsigned char *) pabyBuf, hSRS, &hOGRGeom, (int) nSize) 
+        if(OGR_G_CreateFromWkb((unsigned char *) pabyBuf, hSRS, &hOGRGeom, (int) nSize)
             != OGRERR_NONE)
         {
             GDALClose(hDS);

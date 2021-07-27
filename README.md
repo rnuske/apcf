@@ -51,10 +51,10 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 
 ### Links
-* [GEOS](https://trac.osgeo.org/geos/)
-* [GDAL/OGR Website](https://www.gdal.org/)
+* [GEOS](https://trac.osgeo.org/geos)
+* [GDAL/OGR Website](https://gdal.org)
 * [GDAL/OGR Github Repository](https://github.com/OSGeo/gdal)
-* [Rcpp Website](http://www.rcpp.org/)
+* [Rcpp Website](http://www.rcpp.org)
 * [Rcpp Github Repository](https://github.com/RcppCore/Rcpp)
 * [R package `sf`, a modern approach to geo data in R](https://github.com/r-spatial/sf)
 

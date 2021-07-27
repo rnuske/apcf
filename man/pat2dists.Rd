@@ -58,7 +58,7 @@ et al. 2009).
 
 Measuring distances between objects and permutation of the pattern is done
 with \href{https://trac.osgeo.org/geos}{GEOS} and spatial data are converted to
-GEOS geometries by \href{http://www.gdal.org}{GDAL/OGR}.
+GEOS geometries by \href{https://gdal.org}{GDAL/OGR}.
 }
 \examples{
 # it's advised against setting n_sim < 199

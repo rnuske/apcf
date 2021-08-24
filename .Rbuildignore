@@ -9,3 +9,4 @@ autom4te.cache
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^windows
+A_Plan_to_drop_GDAL.md

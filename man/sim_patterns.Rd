@@ -3,17 +3,22 @@
 \docType{data}
 \name{sim_patterns}
 \alias{sim_patterns}
+\alias{sim_area_wkb}
+\alias{sim_pat_clust_wkb}
+\alias{sim_pat_rand_wkb}
+\alias{sim_pat_reg_wkb}
 \title{Simulated Patterns (sample data)}
 \format{
-A set of \href{https://en.wikipedia.org/wiki/Shapefile}{shapefiles}
+A set of \href{https://en.wikipedia.org/wiki/Shapefile}{shapefiles} and
+\href{https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry}{WKB}
 containing the study area and three simulated patterns.
 
-\tabular{ll}{
-\strong{Shapefiles} \tab \strong{Description}\cr
-\verb{sim_area.*}      \tab study area\cr
-\verb{sim_pat_reg.*}   \tab simulated regular pattern\cr
-\verb{sim_pat_rand.*}  \tab simulated random pattern\cr
-\verb{sim_pat_clust.*} \tab simulated clustered pattern\cr
+\tabular{lll}{
+\strong{Dataset name} \tab \strong{Shapefile} \tab \strong{Description}\cr
+\code{sim_area_wkb}      \tab \verb{sim_area.*}      \tab study area\cr
+\code{sim_pat_reg_wkb}   \tab \verb{sim_pat_reg.*}   \tab simulated regular pattern\cr
+\code{sim_pat_rand_wkb}  \tab \verb{sim_pat_rand.*}  \tab simulated random pattern\cr
+\code{sim_pat_clust_wkb} \tab \verb{sim_pat_clust.*} \tab simulated clustered pattern\cr
 }
 
 The study area is a square of 100 m x 100 m. A set of n = 100 objects were
@@ -23,20 +28,20 @@ of canopy gaps. The areas of the objects range from 1.6 m2 to 57.7 m2 with
 an arithmetic mean of 9.7 m2 and a median of 5.5 m2. The total area of all
 objects is 969.7 m2, meaning 9.7\\% of the study area is covered by objects.
 
-For the \verb{sim_pat_reg.*} dataset, the objects were arranged in a strict
+For the \code{sim_pat_reg} dataset, the objects were arranged in a strict
 regular manner. A centric systematic grid was constructed, and the objects
 of the set were then randomly rotated and randomly placed by locating the
 centroids of the objects exactly on the matching randomly numbered grid
 points, resulting in a regular arrangement of objects with a constant
 distance of the centroids of 10 m.
 
-For the \verb{sim_pat_rand.*} dataset with randomly distributed objects, we
+For the \code{sim_pat_rand} dataset with randomly distributed objects, we
 generated a realisation of the Binomial process with intensity 0.01 m^-2,
 meaning one point per 100 m2. The objects were again randomly rotated and
 numbered and objects put on matching points with their centroid as close to
 the point as possible without overlapping other objects.
 
-The \verb{sim_pat_clust.*} dataset represents a clustered configuration. Again,
+The \code{sim_pat_clust} dataset represents a clustered configuration. Again,
 we first created a point pattern with 100 points and then put the randomly
 numbered objects on the points. The point pattern was a realisation of
 Matern’s cluster process with w = 0.0006 m^-2 or 6 cluster centres per ha,
@@ -44,13 +49,28 @@ a dispersion radius of R = 10 m and on average y = 16.6 points per cluster.
 
 We used the R-package spatstat (Baddeley et al. 2015) for simulating
 the Binomial process and Matern’s cluster process.
+
+An object of class \code{WKB} of length 100.
+
+An object of class \code{WKB} of length 100.
+
+An object of class \code{WKB} of length 100.
 }
 \source{
 Nuske et al. (2009)
 }
+\usage{
+sim_area_wkb
+
+sim_pat_clust_wkb
+
+sim_pat_rand_wkb
+
+sim_pat_reg_wkb
+}
 \description{
-These simulated patterns were created for testing the Adapted Pair Correlation
-Function (presented in Nuske et al., 2009).
+The simulated patterns were created for testing the Adapted Pair Correlation
+Function presented in Nuske et al. (2009).
 }
 \examples{
 ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
@@ -69,3 +89,4 @@ distribution of canopy gaps.
 \emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
 \doi{10.1016/j.foreco.2009.09.050}
 }
+\keyword{datasets}

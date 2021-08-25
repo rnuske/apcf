@@ -10,3 +10,4 @@ autom4te.cache
 ^appveyor\.yml$
 ^windows
 A_Plan_to_drop_GDAL.md
+^data-raw$

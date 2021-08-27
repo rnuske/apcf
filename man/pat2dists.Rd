@@ -2,9 +2,20 @@
 % Please edit documentation in R/pat2dists.R
 \name{pat2dists}
 \alias{pat2dists}
+\alias{pat2dists_wkb}
 \title{Convert a Pattern to Distances & Ratios}
 \usage{
 pat2dists(
+  area,
+  pattern,
+  max_dist,
+  n_sim = 199,
+  max_tries = 1e+05,
+  save_patterns = NULL,
+  verbose = FALSE
+)
+
+pat2dists_wkb(
   area,
   pattern,
   max_dist,
@@ -65,6 +76,9 @@ GEOS geometries by \href{https://gdal.org}{GDAL/OGR}.
 ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
                 max_dist=25, n_sim=3, verbose=TRUE)
+
+# it's advised against setting n_sim < 199
+ds <- pat2dists_wkb(area=sim_area_wkb, pattern=sim_pat_reg_wkb, max_dist=5, n_sim=3, verbose=TRUE)
 
 }
 \references{

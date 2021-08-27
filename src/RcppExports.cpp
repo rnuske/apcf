@@ -87,6 +87,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rand_dists_ratios_wkb
+Rcpp::DataFrame rand_dists_ratios_wkb(const Rcpp::List& wkb_pattern, const Rcpp::List& wkb_area, const double max_dist, const unsigned int n_simulations, const unsigned int max_tries, const bool save_randomized_patterns, const char* save_basename, const bool verbose);
+RcppExport SEXP _apcf_rand_dists_ratios_wkb(SEXP wkb_patternSEXP, SEXP wkb_areaSEXP, SEXP max_distSEXP, SEXP n_simulationsSEXP, SEXP max_triesSEXP, SEXP save_randomized_patternsSEXP, SEXP save_basenameSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::List& >::type wkb_pattern(wkb_patternSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::List& >::type wkb_area(wkb_areaSEXP);
+    Rcpp::traits::input_parameter< const double >::type max_dist(max_distSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type n_simulations(n_simulationsSEXP);
+    Rcpp::traits::input_parameter< const unsigned int >::type max_tries(max_triesSEXP);
+    Rcpp::traits::input_parameter< const bool >::type save_randomized_patterns(save_randomized_patternsSEXP);
+    Rcpp::traits::input_parameter< const char* >::type save_basename(save_basenameSEXP);
+    Rcpp::traits::input_parameter< const bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(rand_dists_ratios_wkb(wkb_pattern, wkb_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_apcf_geos_version", (DL_FUNC) &_apcf_geos_version, 0},
@@ -95,6 +113,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_apcf_test_read_polys", (DL_FUNC) &_apcf_test_read_polys, 1},
     {"_apcf_pcf_envelope", (DL_FUNC) &_apcf_pcf_envelope, 8},
     {"_apcf_rand_dists_ratios", (DL_FUNC) &_apcf_rand_dists_ratios, 8},
+    {"_apcf_rand_dists_ratios_wkb", (DL_FUNC) &_apcf_rand_dists_ratios_wkb, 8},
     {NULL, NULL, 0}
 };
 

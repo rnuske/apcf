@@ -325,6 +325,36 @@ test_read_wkb(Rcpp::List & wkb)
 }
 
 
+/* simple test of old poly import
+ *-----------------------------------------------------------------------------
+ *
+ * give it the poly, look whether it crashes, print a WKT representation to stdout
+ */
+
+// [[Rcpp::export]]
+void
+test_read_polys(const char* dsn)
+{
+    GEOSContextHandle_t geosCtxtH = geos_init();
+    OGRSpatialReferenceH hSRS;
+
+    // import polys
+    std::vector<GEOSGeometry*> geosgeom = import_polys(geosCtxtH, dsn, &hSRS);
+
+    // print WKT to stdout
+    GEOSWKTWriter *writer = GEOSWKTWriter_create_r(geosCtxtH);
+    GEOSWKTWriter_setRoundingPrecision(writer, 1);
+    for (int i = 0; i < geosgeom.size(); i++) {
+        std::cout << GEOSWKTWriter_write_r(geosCtxtH, writer, geosgeom[i]) << std::endl;
+    }
+
+    GEOSWKTWriter_destroy_r(geosCtxtH, writer);
+    OSRDestroySpatialReference(hSRS);
+    geos_finish(geosCtxtH);
+}
+
+
+
 /* geometries from sfc
  *-----------------------------------------------------------------------------
  *

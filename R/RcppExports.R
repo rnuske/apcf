@@ -13,6 +13,10 @@ test_read_wkb <- function(wkb) {
     invisible(.Call(`_apcf_test_read_wkb`, wkb))
 }
 
+test_read_polys <- function(dsn) {
+    invisible(.Call(`_apcf_test_read_polys`, dsn))
+}
+
 pcf_envelope <- function(sim, dist, ratio, rs, area, nobj, stoyan, nrank) {
     .Call(`_apcf_pcf_envelope`, sim, dist, ratio, rs, area, nobj, stoyan, nrank)
 }

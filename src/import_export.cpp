@@ -260,6 +260,71 @@ export_polys(GEOSContextHandle_t geosCtxtH,
 
 
 
+
+
+/* Geometries from WKB
+ *-----------------------------------------------------------------------------
+ *
+ * adapted from sf and geos
+ * URL of source
+ */
+std::vector<GEOSGeometry*>
+import_wkb(GEOSContextHandle_t geosCtxtH,
+           const Rcpp::List wkb)
+{
+    GEOSGeometry* geom;
+    std::vector<GEOSGeometry*> output(wkb.size());
+
+    GEOSWKBReader *wkb_reader = GEOSWKBReader_create_r(geosCtxtH);
+
+    for (int i = 0; i < wkb.size(); i++) {
+        Rcpp::RawVector r = wkb[i];
+        geom = GEOSWKBReader_read_r(geosCtxtH, wkb_reader, &(r[0]), r.size());
+
+        // returns NULL on error
+        if (geom == NULL) {
+            GEOSWKBReader_destroy_r(geosCtxtH, wkb_reader);
+            geos_finish(geosCtxtH);
+            Rcpp::Rcout << "Could not convert to geos geometry because of broken geometry '"
+                        <<  (i+1) << "' ." << std::endl;
+            throw std::range_error("Conversion to geos geometry failed.");
+        } else {
+            output[i] = geom;
+        }
+    }
+
+    GEOSWKBReader_destroy_r(geosCtxtH, wkb_reader);
+
+    return output;
+}
+
+/* simple test of wkb import
+ *-----------------------------------------------------------------------------
+ *
+ * give it the wkb, look whether it crashes, print a WKT representation to stdout
+ */
+
+// [[Rcpp::export]]
+void
+test_read_wkb(Rcpp::List & wkb)
+{
+    GEOSContextHandle_t geosCtxtH = geos_init();
+
+    // WKB -> geo geometry
+    std::vector<GEOSGeometry*> geosgeom = import_wkb(geosCtxtH, wkb);
+
+    // print WKT to stdout
+    GEOSWKTWriter *writer = GEOSWKTWriter_create_r(geosCtxtH);
+    GEOSWKTWriter_setRoundingPrecision(writer, 1);
+    for (int i = 0; i < wkb.size(); i++) {
+        std::cout << GEOSWKTWriter_write_r(geosCtxtH, writer, geosgeom[i]) << std::endl;
+    }
+    GEOSWKTWriter_destroy_r(geosCtxtH, writer);
+
+    geos_finish(geosCtxtH);
+}
+
+
 /* geometries from sfc
  *-----------------------------------------------------------------------------
  *

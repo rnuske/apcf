@@ -48,6 +48,19 @@ export_polys(GEOSContextHandle_t geosCtxtH,
 
 
 
+/* import WKB geometries via GEOS
+ *
+ * wkb: An R list of wkb
+ *
+ * Returns a vector of GEOSGeometries
+ *
+ * throws exceptions
+ */
+std::vector<GEOSGeometry*>
+import_wkb(GEOSContextHandle_t geosCtxtH,
+           Rcpp::List wkb);
+
+
 /* import from R's SimpleFeature (package:sf)
  *
  * sfc: a simple feature collection. most generic simple feature type

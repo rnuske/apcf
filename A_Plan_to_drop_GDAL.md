@@ -13,9 +13,18 @@ apcf should take WKB and sf polygons, turn them into geos geometries and return 
 
 ## Plan
 
+For now I think I will not pass geos geometries back to R. 
+
+This would require passing external pointers back and forth, which seems not so easy. The memory the pointer points to must be freed when the R object goes out of scope. The GEOSGeometry needs some special handling with its context and stuff. the geos package has -maybe because of that- some funny globale_context object. I do not entirely grok the init and finish business in the geos package.
+
+sf does not take external pointer into R since it holds the geometries in R objects.
+
+I think the calling R Function pat2dists must figure out which class of geometries it has to deal with and handle it / call the appropriate C++-Function. Reading and working with geometries happens then completely within C++.
+
+
 ### Make it work with WKB
   * create wkb versions of example data
-  * adapt wkb reading code from package geos (C and R code)
+  * adapt wkb reading code from package sf (C and R code)
   * thoroughly test it
   
   * rip out the GDAL stuff
@@ -27,13 +36,15 @@ apcf should take WKB and sf polygons, turn them into geos geometries and return 
     * README, vignette
   
 #### Notes
+* borrowing Code from package geos did not work as expected the design is to different.
+
 *  I don't want to depend on geos because it depends on libgeos. That way I would have the geos library twice: 
   * a) through my code depending on geos library in its usual place (system dependency) 
   * b) libgeos brings complete geos library in via the libgeos package
 
 
 ### Make it work with sf objects
-  * adapt sf reading code from package geos
+  * adapt sf reading code from package sfheaders and geos
   * test it thoroughly
   
 #### Notes

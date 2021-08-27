@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // geos_version
 std::string geos_version();
 RcppExport SEXP _apcf_geos_version() {
@@ -24,6 +29,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const char* >::type what(whatSEXP);
     rcpp_result_gen = Rcpp::wrap(gdal_version(what));
     return rcpp_result_gen;
+END_RCPP
+}
+// test_read_wkb
+void test_read_wkb(Rcpp::List& wkb);
+RcppExport SEXP _apcf_test_read_wkb(SEXP wkbSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List& >::type wkb(wkbSEXP);
+    test_read_wkb(wkb);
+    return R_NilValue;
 END_RCPP
 }
 // pcf_envelope
@@ -66,6 +81,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_apcf_geos_version", (DL_FUNC) &_apcf_geos_version, 0},
     {"_apcf_gdal_version", (DL_FUNC) &_apcf_gdal_version, 1},
+    {"_apcf_test_read_wkb", (DL_FUNC) &_apcf_test_read_wkb, 1},
     {"_apcf_pcf_envelope", (DL_FUNC) &_apcf_pcf_envelope, 8},
     {"_apcf_rand_dists_ratios", (DL_FUNC) &_apcf_rand_dists_ratios, 8},
     {NULL, NULL, 0}

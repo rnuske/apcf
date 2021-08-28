@@ -9,7 +9,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
 
 
-The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
+The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by randomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
 
 This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.
 

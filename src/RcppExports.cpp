@@ -31,37 +31,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// test_read_wkb
-void test_read_wkb(Rcpp::List& wkb);
-RcppExport SEXP _apcf_test_read_wkb(SEXP wkbSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::List& >::type wkb(wkbSEXP);
-    test_read_wkb(wkb);
-    return R_NilValue;
-END_RCPP
-}
-// test_read_write_wkb
-Rcpp::List test_read_write_wkb(Rcpp::List& wkb);
-RcppExport SEXP _apcf_test_read_write_wkb(SEXP wkbSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::List& >::type wkb(wkbSEXP);
-    rcpp_result_gen = Rcpp::wrap(test_read_write_wkb(wkb));
-    return rcpp_result_gen;
-END_RCPP
-}
-// test_read_polys
-void test_read_polys(const char* dsn);
-RcppExport SEXP _apcf_test_read_polys(SEXP dsnSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const char* >::type dsn(dsnSEXP);
-    test_read_polys(dsn);
-    return R_NilValue;
-END_RCPP
-}
 // pcf_envelope
 Rcpp::DataFrame pcf_envelope(Rcpp::NumericVector sim, Rcpp::NumericVector dist, Rcpp::NumericVector ratio, Rcpp::NumericVector rs, double area, int nobj, double stoyan, int nrank);
 RcppExport SEXP _apcf_pcf_envelope(SEXP simSEXP, SEXP distSEXP, SEXP ratioSEXP, SEXP rsSEXP, SEXP areaSEXP, SEXP nobjSEXP, SEXP stoyanSEXP, SEXP nrankSEXP) {
@@ -119,9 +88,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_apcf_geos_version", (DL_FUNC) &_apcf_geos_version, 0},
     {"_apcf_gdal_version", (DL_FUNC) &_apcf_gdal_version, 1},
-    {"_apcf_test_read_wkb", (DL_FUNC) &_apcf_test_read_wkb, 1},
-    {"_apcf_test_read_write_wkb", (DL_FUNC) &_apcf_test_read_write_wkb, 1},
-    {"_apcf_test_read_polys", (DL_FUNC) &_apcf_test_read_polys, 1},
     {"_apcf_pcf_envelope", (DL_FUNC) &_apcf_pcf_envelope, 8},
     {"_apcf_rand_dists_ratios", (DL_FUNC) &_apcf_rand_dists_ratios, 8},
     {"_apcf_rand_dists_ratios_wkb", (DL_FUNC) &_apcf_rand_dists_ratios_wkb, 7},

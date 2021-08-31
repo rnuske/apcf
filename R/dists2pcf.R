@@ -74,8 +74,7 @@
 #'
 #' @examples
 #' # it's advised against setting n_sim < 199
-#' ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
-#'                 pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
+#' ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
 #'                 max_dist=25, n_sim=3)
 #'
 #' # derive PCF and envelope

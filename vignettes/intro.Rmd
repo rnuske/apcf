@@ -45,8 +45,7 @@ To present the workflow we make use of the simulated patterns presented in Nuske
 It returns an object of class `dists` containing a data.frame with the columns `sim`, `dist`, and `prop` with an indicator of the model run (`0:n_sim`), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.
 
 ```{r}
-dists <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
-                   pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
+dists <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
                    max_dist=25, n_sim=9, verbose=FALSE)
 head(dists)
 ```

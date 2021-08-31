@@ -13,6 +13,10 @@ test_read_wkb <- function(wkb) {
     invisible(.Call(`_apcf_test_read_wkb`, wkb))
 }
 
+test_read_write_wkb <- function(wkb) {
+    .Call(`_apcf_test_read_write_wkb`, wkb)
+}
+
 test_read_polys <- function(dsn) {
     invisible(.Call(`_apcf_test_read_polys`, dsn))
 }
@@ -25,7 +29,7 @@ rand_dists_ratios <- function(fn_pattern, fn_area, max_dist, n_simulations = 99L
     .Call(`_apcf_rand_dists_ratios`, fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose)
 }
 
-rand_dists_ratios_wkb <- function(wkb_pattern, wkb_area, max_dist, n_simulations = 99L, max_tries = 100000L, save_randomized_patterns = FALSE, save_basename = "./pattern", verbose = FALSE) {
-    .Call(`_apcf_rand_dists_ratios_wkb`, wkb_pattern, wkb_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose)
+rand_dists_ratios_wkb <- function(wkb_pattern, wkb_area, max_dist, n_simulations = 99L, max_tries = 100000L, save_randomized_pattern = FALSE, verbose = FALSE) {
+    .Call(`_apcf_rand_dists_ratios_wkb`, wkb_pattern, wkb_area, max_dist, n_simulations, max_tries, save_randomized_pattern, verbose)
 }
 

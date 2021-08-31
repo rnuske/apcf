@@ -50,7 +50,7 @@ export_polys(GEOSContextHandle_t geosCtxtH,
 
 /* import WKB geometries via GEOS
  *
- * wkb: An R list of wkb
+ * wkb: An R list of raw vectors (WKB)
  *
  * Returns a vector of GEOSGeometries
  *
@@ -59,6 +59,19 @@ export_polys(GEOSContextHandle_t geosCtxtH,
 std::vector<GEOSGeometry*>
 import_wkb(GEOSContextHandle_t geosCtxtH,
            Rcpp::List wkb);
+
+
+/* Export WKB geometries to R as list of raw vectors
+ *
+ * vGeom: vector of GeosGeometries
+ *
+ * Returns an Rcpp::List of raw vectors. Each raw vector holds one WKB geometry.
+ *
+ * throws exceptions
+ */
+Rcpp::List
+export_wkb(GEOSContextHandle_t geosCtxtH,
+           const std::vector<GEOSGeometry*> vGeom);
 
 
 /* import from R's SimpleFeature (package:sf)

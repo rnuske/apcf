@@ -16,7 +16,7 @@ sim_pat_rand_wkb  <- st_as_binary(st_geometry(pat_rand), precision=100)
 sim_pat_reg_wkb   <- st_as_binary(st_geometry(pat_reg), precision=100)
 
 
-# replace geometry with centimeter precision geom
+# replace geometry with reduced precision geom
 st_geometry(area) <- st_as_sfc(sim_area_wkb)
 st_geometry(pat_clust) <- st_as_sfc(sim_pat_clust_wkb)
 st_geometry(pat_rand) <- st_as_sfc(sim_pat_rand_wkb)
@@ -29,11 +29,11 @@ st_crs(pat_rand) <- st_crs('epsg:25832')
 st_crs(pat_reg) <- st_crs('epsg:25832')
 
 
-# write new shapefiles with centimeter precision
-st_write(area, "inst/shapes/sim_area.shp", driver="ESRI Shapefile")
-st_write(pat_clust, "inst/shapes/sim_pat_clust.shp", driver="ESRI Shapefile")
-st_write(pat_rand, "inst/shapes/sim_pat_rand.shp", driver="ESRI Shapefile")
-st_write(pat_reg, "inst/shapes/sim_pat_reg.shp", driver="ESRI Shapefile")
+# write new shapefiles with reduced precision
+st_write(area, "inst/shapes/sim_area.shp", driver="ESRI Shapefile", delete_layer=TRUE)
+st_write(pat_clust, "inst/shapes/sim_pat_clust.shp", driver="ESRI Shapefile", delete_layer=TRUE)
+st_write(pat_rand, "inst/shapes/sim_pat_rand.shp", driver="ESRI Shapefile", delete_layer=TRUE)
+st_write(pat_reg, "inst/shapes/sim_pat_reg.shp", driver="ESRI Shapefile", delete_layer=TRUE)
 
 
 
@@ -94,3 +94,13 @@ plot(st_geometry(pat_reg.o), border='red', lty='dashed', add=T)
 # => no visible differences
 
 par(op)
+
+
+# I did also compare results of apcf calculations with geometries of different
+# precision (centimeter, millimeter, micrometer).
+# There were very tiny differences between shapfile and WKB in the empirical
+# pcf  which do not change the interpretation of the pcf.
+# The differences were in the same range for centimeter, millimeter and
+# micrometer resolution.
+# I think  differences are rather due to different kind of conversion
+# to digital numbers in shapefile and WKB.

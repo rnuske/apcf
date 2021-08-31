@@ -21,7 +21,7 @@ pat2dists_wkb(
   max_dist,
   n_sim = 199,
   max_tries = 1e+05,
-  save_patterns = NULL,
+  save_pattern = FALSE,
   verbose = FALSE
 )
 }
@@ -78,8 +78,9 @@ ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
                 max_dist=25, n_sim=3, verbose=TRUE)
 
 # it's advised against setting n_sim < 199
-ds <- pat2dists_wkb(area=sim_area_wkb, pattern=sim_pat_reg_wkb, max_dist=5, n_sim=3, verbose=TRUE)
+ds <- pat2dists_wkb(area=sim_area_wkb, pattern=sim_pat_reg_wkb, max_dist=5, n_sim=3, verbose=TRUE, save_pattern=TRUE)
 
+plot(st_as_sfc(attr(ds, 'randPattern')))
 }
 \references{
 Nuske, R.S., Sprauer, S. and Saborowski J. (2009)

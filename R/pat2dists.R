@@ -97,15 +97,15 @@ pat2dists <- function(area, pattern, max_dist, n_sim=199,
 #'
 #' @examples
 #' # it's advised against setting n_sim < 199
-#' ds <- pat2dists_wkb(area=sim_area_wkb, pattern=sim_pat_reg_wkb, max_dist=25, n_sim=3, verbose=TRUE)
+#' ds <- pat2dists_wkb(area=sim_area_wkb, pattern=sim_pat_reg_wkb, max_dist=5, n_sim=3, verbose=TRUE, save_pattern=TRUE)
 #'
+#' plot(st_as_sfc(attr(ds, 'randPattern')))
 #' @rdname pat2dists
-pat2dists_wkb <-  function(area, pattern, max_dist, n_sim=199,
-                           max_tries=100000, save_patterns=NULL, verbose=FALSE){
-  save_basename <- ' '
-  save_patterns <- FALSE
+pat2dists_wkb <-  function(area, pattern, max_dist, n_sim=199, max_tries=100000,
+                           save_pattern=FALSE, verbose=FALSE){
+
   # no input checks for now
   # expect area and pattern to be lists of WKB objects
   rand_dists_ratios_wkb(pattern, area, max_dist, as.integer(n_sim),
-                        as.integer(max_tries), save_patterns, save_basename, verbose)
+                        as.integer(max_tries), save_pattern, verbose)
 }

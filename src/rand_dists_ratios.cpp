@@ -140,13 +140,13 @@ rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
                       const double max_dist,
                       const unsigned int n_simulations = 99,
                       const unsigned int max_tries = 100000,
-                      const bool save_randomized_patterns = false,
-                      const char* save_basename = "./pattern",
+                      const bool save_randomized_pattern = false,
                       const bool verbose = false)
 {
     GEOSContextHandle_t geosCtxtH = geos_init();
-    OGRSpatialReferenceH hSRS;
 
+    bool save_randPattern = save_randomized_pattern;
+    Rcpp::List randPattern;
 
     // import -----------------------------------------------------------------
     GEOSGeometry* area = import_wkb(geosCtxtH, wkb_area)[0];
@@ -207,12 +207,11 @@ rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
             // randomize patches
             temp_pattern = randomize_pattern(geosCtxtH, pattern_sorted, area, max_tries, false);
 
-            // save randomized patterns for debugging
-            if(save_randomized_patterns)
+            // save one randomized pattern for debugging
+            if(save_randPattern)
             {
-                export_polys(geosCtxtH, temp_pattern,
-                             (save_basename + std::to_string(i) + ".shp").c_str(),
-                             NULL, "ESRI Shapefile",  hSRS);
+                randPattern = export_wkb(geosCtxtH, temp_pattern);
+                save_randPattern = false;
             }
 
             // calc distances and ratios
@@ -232,7 +231,6 @@ rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
         Rcpp::Rcout << std::endl;
 
     // clean up ---------------------------------------------------------------
-    OSRDestroySpatialReference(hSRS);
     GEOSGeom_destroy_r(geosCtxtH, area);
     for (unsigned int i = 0; i < n_patches; i++)
         GEOSGeom_destroy_r(geosCtxtH, pattern[i]);
@@ -250,6 +248,10 @@ rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
     sdp_df.attr("n_obj")    = n_patches;
     sdp_df.attr("max_dist") = max_dist;
     sdp_df.attr("class")    = Rcpp::CharacterVector::create("dists", "data.frame");
+
+    if(save_randomized_pattern){
+        sdp_df.attr("randPattern") = randPattern;
+    }
 
     return sdp_df;
 }

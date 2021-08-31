@@ -20,17 +20,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// gdal_version
-std::string gdal_version(const char* what);
-RcppExport SEXP _apcf_gdal_version(SEXP whatSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const char* >::type what(whatSEXP);
-    rcpp_result_gen = Rcpp::wrap(gdal_version(what));
-    return rcpp_result_gen;
-END_RCPP
-}
 // pcf_envelope
 Rcpp::DataFrame pcf_envelope(Rcpp::NumericVector sim, Rcpp::NumericVector dist, Rcpp::NumericVector ratio, Rcpp::NumericVector rs, double area, int nobj, double stoyan, int nrank);
 RcppExport SEXP _apcf_pcf_envelope(SEXP simSEXP, SEXP distSEXP, SEXP ratioSEXP, SEXP rsSEXP, SEXP areaSEXP, SEXP nobjSEXP, SEXP stoyanSEXP, SEXP nrankSEXP) {
@@ -46,24 +35,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type stoyan(stoyanSEXP);
     Rcpp::traits::input_parameter< int >::type nrank(nrankSEXP);
     rcpp_result_gen = Rcpp::wrap(pcf_envelope(sim, dist, ratio, rs, area, nobj, stoyan, nrank));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rand_dists_ratios
-Rcpp::DataFrame rand_dists_ratios(const char* fn_pattern, const char* fn_area, const double max_dist, const unsigned int n_simulations, const unsigned int max_tries, const bool save_randomized_patterns, const char* save_basename, const bool verbose);
-RcppExport SEXP _apcf_rand_dists_ratios(SEXP fn_patternSEXP, SEXP fn_areaSEXP, SEXP max_distSEXP, SEXP n_simulationsSEXP, SEXP max_triesSEXP, SEXP save_randomized_patternsSEXP, SEXP save_basenameSEXP, SEXP verboseSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const char* >::type fn_pattern(fn_patternSEXP);
-    Rcpp::traits::input_parameter< const char* >::type fn_area(fn_areaSEXP);
-    Rcpp::traits::input_parameter< const double >::type max_dist(max_distSEXP);
-    Rcpp::traits::input_parameter< const unsigned int >::type n_simulations(n_simulationsSEXP);
-    Rcpp::traits::input_parameter< const unsigned int >::type max_tries(max_triesSEXP);
-    Rcpp::traits::input_parameter< const bool >::type save_randomized_patterns(save_randomized_patternsSEXP);
-    Rcpp::traits::input_parameter< const char* >::type save_basename(save_basenameSEXP);
-    Rcpp::traits::input_parameter< const bool >::type verbose(verboseSEXP);
-    rcpp_result_gen = Rcpp::wrap(rand_dists_ratios(fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -87,9 +58,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_apcf_geos_version", (DL_FUNC) &_apcf_geos_version, 0},
-    {"_apcf_gdal_version", (DL_FUNC) &_apcf_gdal_version, 1},
     {"_apcf_pcf_envelope", (DL_FUNC) &_apcf_pcf_envelope, 8},
-    {"_apcf_rand_dists_ratios", (DL_FUNC) &_apcf_rand_dists_ratios, 8},
     {"_apcf_rand_dists_ratios_wkb", (DL_FUNC) &_apcf_rand_dists_ratios_wkb, 7},
     {NULL, NULL, 0}
 };

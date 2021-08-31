@@ -5,13 +5,11 @@ NULL
 
 
 .onAttach <- function(libname, pkgname){
-  packageStartupMessage(paste0("Linking to GEOS ", geos_version(),
-                               " and GDAL ", gdal_version()))
+  packageStartupMessage(paste0("Linking to GEOS ", geos_version()))
 }
 
 apcf_extSoftVersion <- function() {
-  structure(c(geos_version(), gdal_version()),
-            names = c("GEOS", "GDAL"))
+  structure(c(geos_version()), names = c("GEOS"))
 }
 
 .onUnload <- function (libpath) {

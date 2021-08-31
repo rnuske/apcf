@@ -11,12 +11,12 @@ steps:
 - name: build 'n check
   image: rocker/r-devel
   commands:
-  - apt-get install -t unstable -y --no-install-recommends pandoc qpdf libgdal-dev libgeos-dev
-  - R -e 'install.packages(c("Rcpp", "knitr", "rmarkdown"))'
+  - apt-get install -t unstable -y --no-install-recommends pandoc qpdf libudunits2-dev libgdal-dev libgeos-dev libproj-dev libssl-dev
+  - R -e 'install.packages(c("Rcpp", "sf", "knitr", "rmarkdown"))'
   - R CMD build .
   - FILE=$(ls -1t *.tar.gz | head -n 1)
-  - export _R_CHECK_CRAN_INCOMING_=FALSE 
-  - export _R_CHECK_FORCE_SUGGESTS_=FALSE 
+  - export _R_CHECK_CRAN_INCOMING_=FALSE
+  - export _R_CHECK_FORCE_SUGGESTS_=FALSE
   - R CMD check $FILE --as-cran
 
 ## Doesn't work at the moment. Missing checkbashism and has LaTeX font problems

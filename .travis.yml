@@ -15,4 +15,7 @@ addons:
     packages:
       - libgeos-dev
       - libgdal-dev
+      - libproj-dev
+      - libudunits2-dev
+      - libssl-dev
       - devscripts

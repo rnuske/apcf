@@ -16,3 +16,4 @@ autom4te.cache
 
 windows/
 inst/gdal/
+docs

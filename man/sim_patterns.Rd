@@ -78,14 +78,13 @@ ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
 
 }
 \references{
-Baddeley A., Rubak E. and Turner R. (2015)
-\emph{Spatial Point Patterns: Methodology and Applications with R}.
-London: Chapman and Hall/CRC.
+Baddeley A., Rubak E. and Turner, R. (2015): Spatial Point Patterns:
+Methodology and Applications with R. Chapman and Hall/CRC, London.
+https://doi.org/10.1201/b19708
 
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
-Adapting the pair-correlation function for analysing the spatial
-distribution of canopy gaps.
-\emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
-\doi{10.1016/j.foreco.2009.09.050}
+Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
+pair-correlation function for analysing the spatial distribution of canopy
+gaps. Forest Ecology and Management, 259(1): 107–116.
+https://doi.org/10.1016/j.foreco.2009.09.050
 }
 \keyword{datasets}

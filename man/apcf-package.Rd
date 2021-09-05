@@ -52,20 +52,19 @@ using the Epanechnikov kernel and Ripley's edge correction. Resulting in as
 many PCFs as null models were created plus a PCF for the original pattern.
 From the PCF of the null models a pointwise critical envelope is derived.
 The arithmetic mean of all PCF of the null models is employed for a bias
-correction of the emperical PCF and the upper and lower bound of the envelope.
+correction of the empirical PCF and the upper and lower bound of the envelope.
 }
 
 \section{Plot a PCF}{
 
 \code{\link[=plot.fv_pcf]{plot.fv_pcf()}} is an S3 method of the plot function for the class \link{fv_pcf}.
-It provides a nice plot of the emperical PCF together with the pointwise
+It provides a nice plot of the empirical PCF together with the pointwise
 critical envelope.
 }
 
 \references{
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
-Adapting the pair-correlation function for analysing the spatial
-distribution of canopy gaps.
-\emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
-\doi{10.1016/j.foreco.2009.09.050}
+Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
+pair-correlation function for analysing the spatial distribution of canopy
+gaps. Forest Ecology and Management, 259(1): 107–116.
+https://doi.org/10.1016/j.foreco.2009.09.050
 }

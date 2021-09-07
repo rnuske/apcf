@@ -1,54 +1,35 @@
-
-# Doing this weird stunt (r-devel container for r-release checks)
-# to get a container with working LaTeX and checkbashism.
-# Would be definitely better to create a custom docker container instead of
-# installing Debian and R packages agian and again.
+# rocker/geospatial is way to heavy. couldn't get r-devel to behave. 
+# so went with r-ci (https://github.com/eddelbuettel/r-ci).
 
 kind: pipeline
-name: r-release_via_r-devel
+name: r-ci (light)
 
 steps:
 - name: build 'n check
-  image: rocker/r-devel
+  image: rocker/r-bspm:20.04
   commands:
-  - apt-get install -t unstable -y --no-install-recommends pandoc qpdf libudunits2-dev libgdal-dev libgeos-dev libproj-dev libssl-dev
-  - R -e 'install.packages(c("Rcpp", "sf", "knitr", "rmarkdown"))'
-  - R CMD build .
-  - FILE=$(ls -1t *.tar.gz | head -n 1)
-  - export _R_CHECK_CRAN_INCOMING_=FALSE
-  - export _R_CHECK_FORCE_SUGGESTS_=FALSE
-  - R CMD check $FILE --as-cran
+  - wget https://eddelbuettel.github.io/r-ci/run.sh && chmod 0755 run.sh
+  - ./run.sh bootstrap
+  - apt-get install -y --no-install-recommends libgeos-dev
+  - ./run.sh install_deps
+  - export _R_CHECK_FORCE_SUGGESTS_="false"; ./run.sh run_tests
 
-## Doesn't work at the moment. Missing checkbashism and has LaTeX font problems
-#
-#kind: pipeline
-#name: rocker/geospatial:latest
-#
-#steps:
-#- name: build 'n check
-#  image: rocker/geospatial:latest
-#  commands:
-#  - mkdir ~/.R
-#  - echo 'CXX11FLAGS = -g -O2 -Wall -pedantic -fstack-protector-strong -D_FORTIFY_SOURCE=2' > ~/.R/Makevars
-#  - R CMD build .
-#  - FILE=$(ls -1t *.tar.gz | head -n 1)
-#  - export _R_CHECK_CRAN_INCOMING_=FALSE
-#  - export _R_CHECK_FORCE_SUGGESTS_=FALSE
-#  - R CMD check $FILE --as-cran
-#
 #---
-#
+# takes more than twice the time of light
+
 #kind: pipeline
-#name: rocker/geospatial:devel
+#name: r-ci (full)
 #
 #steps:
 #- name: build 'n check
-#  image: rocker/geospatial:devel
+#  image: rocker/r-bspm:20.04
 #  commands:
-#  - mkdir ~/.R
-#  - echo 'CXX11FLAGS = -g -O2 -Wall -pedantic -fstack-protector-strong -D_FORTIFY_SOURCE=2' > ~/.R/Makevars
-#  - R CMD build .
-#  - FILE=$(ls -1t *.tar.gz | head -n 1)
-#  - export _R_CHECK_CRAN_INCOMING_=FALSE
-#  - export _R_CHECK_FORCE_SUGGESTS_=FALSE
-#  - R CMD check $FILE --as-cran
+#  - wget https://eddelbuettel.github.io/r-ci/run.sh && chmod 0755 run.sh
+#  - export ADDED_PPAS="ppa:ubuntugis/ppa"
+#  - export BOOTSTRAP_LATEX="true"
+#  - export R_BUILD_ARGS=""
+#  - export R_CHECK_ARGS="--as-cran"
+#  - ./run.sh bootstrap
+#  - ./run.sh install_all
+#  - apt-get install -y --no-install-recommends libgeos-dev
+#  - export _R_CHECK_FORCE_SUGGESTS_="true"; ./run.sh run_tests

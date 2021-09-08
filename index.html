@@ -89,6 +89,7 @@
 <div id="apcf-adapted-pair-correlation-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#apcf-adapted-pair-correlation-function" class="anchor"></a>apcf: Adapted Pair Correlation Function</h2>
+<!-- badges: start -->
 
 <p>The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.</p>
 <p>This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.</p>
@@ -179,8 +180,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://app.travis-ci.com/github/rnuske/apcf"><img src="https://app.travis-ci.com/rnuske/apcf.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/rnuske/apcf"><img src="https://ci.appveyor.com/api/projects/status/github/rnuske/apcf?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://github.com/rnuske/apcf/actions"><img src="https://github.com/rnuske/apcf/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://cloud.drone.io/rnuske/apcf"><img src="https://cloud.drone.io/api/badges/rnuske/apcf/status.svg" alt="Drone.io Status"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0.html"><img src="https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat" alt="Package-License"></a></li>
 <li><a href="https://cran.r-project.org/package=apcf"><img src="https://www.r-pkg.org/badges/version/apcf" alt="CRAN"></a></li>

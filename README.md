@@ -1,12 +1,13 @@
 ## apcf: Adapted Pair Correlation Function
 
-[![Travis-CI Build Status](https://app.travis-ci.com/rnuske/apcf.svg?branch=master)](https://app.travis-ci.com/github/rnuske/apcf) 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rnuske/apcf?branch=master&svg=true)](https://ci.appveyor.com/project/rnuske/apcf) 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/rnuske/apcf/workflows/R-CMD-check/badge.svg)](https://github.com/rnuske/apcf/actions)
 [![Drone.io Status](https://cloud.drone.io/api/badges/rnuske/apcf/status.svg)](https://cloud.drone.io/rnuske/apcf) 
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](https://www.r-pkg.org/badges/version/apcf)](https://cran.r-project.org/package=apcf) 
 [![Dependencies](https://tinyverse.netlify.com/badge/apcf)](https://cran.r-project.org/package=apcf) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
+<!-- badges: end -->
 
 
 The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.

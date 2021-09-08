@@ -91,13 +91,13 @@
 <a href="#apcf-adapted-pair-correlation-function" class="anchor"></a>apcf: Adapted Pair Correlation Function</h2>
 <!-- badges: start -->
 
-<p>The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.</p>
-<p>This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.</p>
+<p>The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by randomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.</p>
+<p>This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using only the GEOS library.</p>
 <div id="requirements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#requirements" class="anchor"></a>Requirements</h3>
-<p>For Unix-alikes GDAL (&gt;= 2.0.1) and GEOS (&gt;= 3.4.0) are required.</p>
-<p>On Ubuntu bionic (18.04) and beyond one can install the dependencies simply with <code>sudo apt install libgdal-dev libgeos-dev</code>. In earlier Ubuntu version either add <a href="http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/">ubuntugis-unstable</a> to the <code>sources.list</code> and use above command or compile dependencies from source.</p>
+<p>For Unix-alikes GEOS (&gt;= 3.4.0) is required.</p>
+<p>On Ubuntu bionic (18.04) and beyond one can install the dependency simply with <code>sudo apt install libgeos-dev</code>. In earlier Ubuntu version either add <a href="http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/">ubuntugis-unstable</a> to the <code>sources.list</code> and use above command or compile GEOS from source.</p>
 </div>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
@@ -105,7 +105,7 @@
 <p>The stable version can be installed from CRAN</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"apcf"</span><span class="op">)</span></code></pre></div>
-<p>and the development is available from Github using the package remotes (formerly devtools)</p>
+<p>and the development version is available from Github using the package remotes (formerly devtools)</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rnuske/apcf"</span><span class="op">)</span></code></pre></div>
@@ -116,8 +116,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># calculate distances between patches of original pattern and 3 nullmodels</span>
 <span class="co"># number of nullmodels should by at least 199 and better yet 999</span>
-<span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/sim_area.shp"</span>, package<span class="op">=</span><span class="st">"apcf"</span><span class="op">)</span>,
-                pattern<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/sim_pat_reg.shp"</span>, package<span class="op">=</span><span class="st">"apcf"</span><span class="op">)</span>,
+<span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,
                 max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
 
 <span class="co"># derive PCF and envelope from distances</span>
@@ -131,17 +130,14 @@
 <a href="#links" class="anchor"></a>Links</h3>
 <ul>
 <li><a href="https://trac.osgeo.org/geos">GEOS</a></li>
-<li><a href="https://gdal.org">GDAL/OGR Website</a></li>
-<li><a href="https://github.com/OSGeo/gdal">GDAL/OGR Github Repository</a></li>
 <li><a href="http://www.rcpp.org">Rcpp Website</a></li>
-<li><a href="https://github.com/RcppCore/Rcpp">Rcpp Github Repository</a></li>
 <li><a href="https://github.com/r-spatial/sf">R package <code>sf</code>, a modern approach to geo data in R</a></li>
 </ul>
 </div>
 <div id="references" class="section level3">
 <h3 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h3>
-<p>Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management 259(1): 107–116. DOI: 10.1016/j.foreco.2009.09.050</p>
+<p>Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management 259(1): 107–116. <a href="https://doi.org/10.1016/j.foreco.2009.09.050" class="uri">https://doi.org/10.1016/j.foreco.2009.09.050</a></p>
 </div>
 </div>
   </div>

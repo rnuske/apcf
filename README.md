@@ -10,16 +10,16 @@
 <!-- badges: end -->
 
 
-The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by rondomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
+The Adapted Pair Correlation Function transfers the concept of the Pair Correlation Function from point patterns to patterns of patches of finite size and irregular shape (eg. lakes within a country). The main tasks are (i) the construction of nullmodels by randomizing the patches of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the patches.
 
-This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the libraries GEOS and GDAL directly instead of through PostGIS.
+This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using only the GEOS library.
 
 
 ### Requirements
-For Unix-alikes GDAL (>= 2.0.1) and GEOS (>= 3.4.0) are required.
+For Unix-alikes GEOS (>= 3.4.0) is required.
 
-On Ubuntu bionic (18.04) and beyond one can install the dependencies simply with `sudo apt install libgdal-dev libgeos-dev`. 
-In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the `sources.list` and use above command or compile dependencies from source.
+On Ubuntu bionic (18.04) and beyond one can install the dependency simply with `sudo apt install libgeos-dev`. 
+In earlier Ubuntu version either add [ubuntugis-unstable](http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/) to the `sources.list` and use above command or compile GEOS from source.
 
 
 ### Installation
@@ -28,7 +28,7 @@ The stable version can be installed from CRAN
 install.packages("apcf")
 ```
 
-and the development is available from Github using the package remotes (formerly devtools)
+and the development version is available from Github using the package remotes (formerly devtools)
 ```r
 if(!require("remotes")) install.packages("remotes")
 remotes::install_github("rnuske/apcf")
@@ -39,8 +39,7 @@ remotes::install_github("rnuske/apcf")
 ```r
 # calculate distances between patches of original pattern and 3 nullmodels
 # number of nullmodels should by at least 199 and better yet 999
-ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
-                pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
+ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
                 max_dist=25, n_sim=3)
 
 # derive PCF and envelope from distances
@@ -53,12 +52,9 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 ### Links
 * [GEOS](https://trac.osgeo.org/geos)
-* [GDAL/OGR Website](https://gdal.org)
-* [GDAL/OGR Github Repository](https://github.com/OSGeo/gdal)
 * [Rcpp Website](http://www.rcpp.org)
-* [Rcpp Github Repository](https://github.com/RcppCore/Rcpp)
 * [R package `sf`, a modern approach to geo data in R](https://github.com/r-spatial/sf)
 
 
 ### References
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management 259(1): 107–116. DOI: 10.1016/j.foreco.2009.09.050
+Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps. Forest Ecology and Management 259(1): 107–116. https://doi.org/10.1016/j.foreco.2009.09.050

@@ -99,9 +99,9 @@
 <h2 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h2>
 <p>The method suggested by Nuske et al. (2009) requires a certain number of null models for correcting the biased PCF and constructing a pointwise critical envelope. Null models are constructed by randomly moving (shift and rotation) the objects within the study area.</p>
-<p>The alpha level of the pointwise critical envelope is <span class="math inline">\(\alpha = {n\_rank * 2} / {n\_sim + 1}\)</span> according to (Besag and Diggle 1977, Buckland 1984, Stoyan and Stoyan, 1994).</p>
-<p>For the edge correction (based on Ripley, 1981) a buffer with buffer distance <span class="math inline">\(r_{ij}\)</span> is constructed around the object <em>i</em> for each pair of objects <em>i</em> and <em>j</em>. The object <em>j</em> is then weighted by the inverse of the proportion <span class="math inline">\(p_{ij}\)</span> of the buffer perimeter being within the study area.</p>
-<p>Being a density function the frequently used Epanechnikov kernel (Silverman, 1986; Stoyan and Stoyan, 1994) is used for smoothing the PCF. The smoothing is controlled by the bandwith parameter <span class="math inline">\(\delta\)</span> and the step size <em>r</em>. Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest to set <em>c</em> aka stoyan-parameter of <span class="math inline">\(c / {\sqrt{\lambda}}\)</span> between 0.1 and 0.2 with <span class="math inline">\(\lambda\)</span> being the intensity of the pattern.</p>
+<p>The alpha level of the pointwise critical envelope is <span class="math inline">\(\alpha = {n\_rank * 2} / {n\_sim + 1}\)</span> according to (Besag and Diggle 1977, Buckland 1984, Stoyan and Stoyan 1994).</p>
+<p>For the edge correction (based on Ripley 1981) a buffer with buffer distance <span class="math inline">\(r_{ij}\)</span> is constructed around the object <em>i</em> for each pair of objects <em>i</em> and <em>j</em>. The object <em>j</em> is then weighted by the inverse of the proportion <span class="math inline">\(p_{ij}\)</span> of the buffer perimeter being within the study area.</p>
+<p>Being a density function the frequently used Epanechnikov kernel (Silverman 1986, Stoyan and Stoyan 1994) is used for smoothing the PCF. The smoothing is controlled by the bandwith parameter <span class="math inline">\(\delta\)</span> and the step size <em>r</em>. Penttinen et al. (1992) and Stoyan and Stoyan (1994) suggest to set <em>c</em> aka stoyan-parameter of <span class="math inline">\(c / {\sqrt{\lambda}}\)</span> between 0.1 and 0.2 with <span class="math inline">\(\lambda\)</span> being the intensity of the pattern.</p>
 <p>To separate the computationally intensive part (randomization of the objects and the calculation of the proportion of the buffer inside the study area) from the smoothing of the PCF we use a two step approach:</p>
 <ul>
 <li>calculate distances and buffer fractions for original and randomized patterns</li>
@@ -111,7 +111,7 @@
 <div id="example-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example-data" class="anchor"></a>Example Data</h2>
-<p>To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). The Shapefiles are part of the package apcf and documented as <code>?simulated patterns</code></p>
+<p>To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). Shapefiles and WKB representations of the data are part of this package and documented as <code><a href="../reference/sim_patterns.html">?sim_patterns</a></code>.</p>
 <div class="figure">
 <img src="simulated_patterns.png" alt=""><p class="caption">Simulated patterns (a: regular, b: random, c: clustered)</p>
 </div>
@@ -119,10 +119,11 @@
 <div id="from-pattern-to-distances" class="section level2">
 <h2 class="hasAnchor">
 <a href="#from-pattern-to-distances" class="anchor"></a>From Pattern to Distances</h2>
-<p><code><a href="../reference/pat2dists.html">pat2dists()</a></code> calculates distances between all object of a pattern closer than <code>max_dist</code> and determines the fraction of a buffer with distance <code>dist</code> inside the study area (needed for edge correction). It randomizes the original pattern to generate <code>n_sim</code> null models used for correcting the biased PCF and constructing an envelope.</p>
+<p><code><a href="../reference/pat2dists.html">pat2dists()</a></code> calculates distances between all object of a pattern closer than <code>max_dist</code> and determines the fraction of a buffer with distance <code>dist</code> inside the study area (needed for edge correction). It randomizes the original pattern to generate <code>n_sim</code> null models used for correcting the biased PCF and constructing an envelope. It’s advised against setting <code>n_sim &lt; 199</code>, better still is 999 or even 9999.</p>
 <p>It returns an object of class <code>dists</code> containing a data.frame with the columns <code>sim</code>, <code>dist</code>, and <code>prop</code> with an indicator of the model run (<code>0:n_sim</code>), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,
+<code class="sourceCode R"><span class="co"># it's advised against setting n_sim &lt; 199</span>
+<span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,
                    max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">9</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">dists</span><span class="op">)</span>
 <span class="co">##   sim     dist     ratio</span>
@@ -137,7 +138,7 @@
 <h2 class="hasAnchor">
 <a href="#from-distances-to-pcf" class="anchor"></a>From Distances to PCF</h2>
 <p><code><a href="../reference/dists2pcf.html">dists2pcf()</a></code> estimates the adapted pair correlation function of a pattern of polygons together with a pointwise critical envelope using kernel methods based on distances between objects.</p>
-<p>It returns an object of class <code>fv_pcf</code> containing the function values of the PCF and the pointwise critical envelope. The number of null models, the rank of envelope value among the n_sim values and the bandwith/stoyan parameter are passed along as well.</p>
+<p>It returns an object of class <code>fv_pcf</code> containing the function values of the PCF and the pointwise critical envelope. The number of null models, the rank of envelope value among the n_sim values and the bandwith/stoyan parameter are passed along.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pcf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dists2pcf.html">dists2pcf</a></span><span class="op">(</span><span class="va">dists</span>, r<span class="op">=</span><span class="fl">0.2</span>, r_max<span class="op">=</span><span class="fl">25</span>, stoyan<span class="op">=</span><span class="fl">0.15</span>, n_rank<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pcf</span><span class="op">)</span>
@@ -148,12 +149,12 @@
 <span class="co">## Significance level of pointwise Monte Carlo test: 0.2</span>
 <span class="co">## </span>
 <span class="co">##     r           g       lwr      upr</span>
-<span class="co">## 1 0.2 0.000000000 0.8543455 1.402767</span>
-<span class="co">## 2 0.4 0.000000000 0.8368335 1.358141</span>
-<span class="co">## 3 0.6 0.000000000 0.8261545 1.323557</span>
-<span class="co">## 4 0.8 0.000000000 0.8420105 1.300010</span>
-<span class="co">## 5 1.0 0.005701689 0.8428904 1.267461</span>
-<span class="co">## 6 1.2 0.013089814 0.8373306 1.237325</span></code></pre></div>
+<span class="co">## 1 0.2 0.000000000 0.8014547 1.422090</span>
+<span class="co">## 2 0.4 0.000000000 0.7838634 1.397376</span>
+<span class="co">## 3 0.6 0.000000000 0.8124453 1.342007</span>
+<span class="co">## 4 0.8 0.000000000 0.8228521 1.276016</span>
+<span class="co">## 5 1.0 0.005731441 0.8105229 1.216217</span>
+<span class="co">## 6 1.2 0.013068193 0.8100522 1.172154</span></code></pre></div>
 </div>
 <div id="plotting-the-pcf" class="section level2">
 <h2 class="hasAnchor">
@@ -176,8 +177,8 @@
 <div id="technical-details" class="section level2">
 <h2 class="hasAnchor">
 <a href="#technical-details" class="anchor"></a>Technical Details</h2>
-<p>The adapted pair-corelation functions was original implemented in the Geodatabase <code>PostGIS</code>. <code>PostGIS</code> offers all necessary methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the <code>GEOS</code> format for all geometric operations rendered the process quite slow.</p>
-<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://trac.osgeo.org/geos"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once (thanks to <a href="https://gdal.org"><code>GDAL/OGR</code></a> all conceivable formats are understood). All further manipulations are within the <code>GEOS</code> world. The usage of these two libaries was made possible by <a href="http://www.rcpp.org"><code>Rcpp</code></a>.</p>
+<p>The adapted pair-corelation functions was original implemented in the Geodatabase <code>PostGIS</code>. <code>PostGIS</code> offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the <code>GEOS</code> format for geometric operations rendered the process quite slow.</p>
+<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://trac.osgeo.org/geos"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once. All further manipulations are within the <code>GEOS</code> world. The usage of the GEOS library was made possible by <a href="http://www.rcpp.org"><code>Rcpp</code></a>.</p>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">

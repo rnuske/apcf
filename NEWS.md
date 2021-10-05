@@ -1,3 +1,6 @@
+# apcf 0.1.6.900
+* updated configure
+
 # apcf 0.1.6
 * Windows: update to GDAL 3.2.1 and fix for UCRT support  (thanks @jeroen)
 * drop LazyData from description

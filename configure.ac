@@ -1,7 +1,8 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl copied largely (w/o proj) from sf (https://github.com/r-spatial/sf)
 dnl which in turn made use of GDAL stuff from rgdal, (c) Roger Bivand
-AC_INIT(src/rand_dists_ratios.cpp)
+AC_INIT
+AC_CONFIG_SRCDIR([src/rand_dists_ratios.cpp])
 
 
 #------------------------------------------------------------------------------
@@ -62,8 +63,7 @@ GDAL_CONFIG="gdal-config"
 GDAL_CONFIG_SET="no"
 
 AC_ARG_WITH([gdal-config],
-    AC_HELP_STRING([--with-gdal-config=GDAL_CONFIG],
-           [the location of gdal-config]),
+    AS_HELP_STRING([--with-gdal-config=GDAL_CONFIG],[the location of gdal-config]),
            [gdal_config=$withval])
 if test [ -n "$gdal_config" ] ; then
     GDAL_CONFIG_SET="yes"
@@ -225,8 +225,7 @@ fi
 # Optional local copy of GDAL datadir -----------------------------------------
 data_copy=no
 AC_ARG_WITH([data-copy],
-    AC_HELP_STRING([--with-data-copy=yes/no],
-               [local copy of data directories in package, default no]),
+    AS_HELP_STRING([--with-data-copy=yes/no],[local copy of data directories in package, default no]),
                [data_copy=$withval])
 if test "${data_copy}" = "yes" ; then
 AC_MSG_NOTICE([Copy data for:])
@@ -294,8 +293,7 @@ GEOS_CONFIG="geos-config"
 GEOS_CONFIG_SET="no"
 
 AC_ARG_WITH([geos-config],
-    AC_HELP_STRING([--with-geos-config=GEOS_CONFIG],
-           [the location of geos-config]),
+    AS_HELP_STRING([--with-geos-config=GEOS_CONFIG],[the location of geos-config]),
            [geos_config=$withval])
 if test [ -n "$geos_config" ] ; then
     GEOS_CONFIG_SET="yes"

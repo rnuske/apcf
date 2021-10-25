@@ -1,7 +1,5 @@
 ## apcf: Adapted Pair Correlation Function
 
-[![Travis-CI Build Status](https://travis-ci.com/rnuske/apcf.svg?branch=master)](https://travis-ci.com/rnuske/apcf) 
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rnuske/apcf?branch=master&svg=true)](https://ci.appveyor.com/project/rnuske/apcf) 
 [![Drone.io Status](https://cloud.drone.io/api/badges/rnuske/apcf/status.svg)](https://cloud.drone.io/rnuske/apcf) 
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](https://www.r-pkg.org/badges/version/apcf)](https://cran.r-project.org/package=apcf) 

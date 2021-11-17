@@ -149,12 +149,12 @@
 <span class="co">## Significance level of pointwise Monte Carlo test: 0.2</span>
 <span class="co">## </span>
 <span class="co">##     r           g       lwr      upr</span>
-<span class="co">## 1 0.2 0.000000000 0.7191732 1.180490</span>
-<span class="co">## 2 0.4 0.000000000 0.7189874 1.184121</span>
-<span class="co">## 3 0.6 0.000000000 0.7422047 1.182563</span>
-<span class="co">## 4 0.8 0.000000000 0.7435958 1.169558</span>
-<span class="co">## 5 1.0 0.005852701 0.7462398 1.132454</span>
-<span class="co">## 6 1.2 0.013436148 0.7704576 1.140673</span></code></pre></div>
+<span class="co">## 1 0.2 0.000000000 0.5785870 1.261504</span>
+<span class="co">## 2 0.4 0.000000000 0.6221219 1.217768</span>
+<span class="co">## 3 0.6 0.000000000 0.6705365 1.170929</span>
+<span class="co">## 4 0.8 0.000000000 0.6890234 1.135222</span>
+<span class="co">## 5 1.0 0.005320235 0.7077233 1.165979</span>
+<span class="co">## 6 1.2 0.012199424 0.7529246 1.195857</span></code></pre></div>
 </div>
 <div id="plotting-the-pcf" class="section level2">
 <h2 class="hasAnchor">
@@ -178,7 +178,7 @@
 <h2 class="hasAnchor">
 <a href="#technical-details" class="anchor"></a>Technical Details</h2>
 <p>The adapted pair-corelation functions was original implemented in the Geodatabase <code>PostGIS</code>. <code>PostGIS</code> offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the <code>GEOS</code> format for geometric operations rendered the process quite slow.</p>
-<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://trac.osgeo.org/geos"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once. All further manipulations are within the <code>GEOS</code> world. The usage of the GEOS library was made possible by <a href="http://www.rcpp.org"><code>Rcpp</code></a>.</p>
+<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://libgeos.org"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once. All further manipulations are within the <code>GEOS</code> world. The usage of the GEOS library was made possible by <a href="http://www.rcpp.org"><code>Rcpp</code></a>.</p>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">

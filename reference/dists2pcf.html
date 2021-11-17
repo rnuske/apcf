@@ -228,14 +228,14 @@ Methods of geometrical statistics. John Wiley &amp; Sons, Chichester.</p>
     <div class='dont-index'><p><code><a href='pat2dists.html'>pat2dists()</a></code>, <code><a href='plot.fv_pcf.html'>plot.fv_pcf()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># it's advised against setting n_sim &lt; 199</span>
-<span class='va'>ds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pat2dists.html'>pat2dists</a></span><span class='op'>(</span>area<span class='op'>=</span><span class='va'>sim_area_wkb</span>, pattern<span class='op'>=</span><span class='va'>sim_pat_reg_wkb</span>,
-                max_dist<span class='op'>=</span><span class='fl'>25</span>, n_sim<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
-
-<span class='co'># derive PCF and envelope</span>
-<span class='va'>pcf</span> <span class='op'>&lt;-</span> <span class='fu'>dists2pcf</span><span class='op'>(</span><span class='va'>ds</span>, r<span class='op'>=</span><span class='fl'>0.2</span>, r_max<span class='op'>=</span><span class='fl'>25</span>, stoyan<span class='op'>=</span><span class='fl'>0.15</span>, n_rank<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># it's advised against setting n_sim &lt; 199</span></span>
+<span class='r-in'><span class='va'>ds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pat2dists.html'>pat2dists</a></span><span class='op'>(</span>area<span class='op'>=</span><span class='va'>sim_area_wkb</span>, pattern<span class='op'>=</span><span class='va'>sim_pat_reg_wkb</span>,</span>
+<span class='r-in'>                max_dist<span class='op'>=</span><span class='fl'>25</span>, n_sim<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># derive PCF and envelope</span></span>
+<span class='r-in'><span class='va'>pcf</span> <span class='op'>&lt;-</span> <span class='fu'>dists2pcf</span><span class='op'>(</span><span class='va'>ds</span>, r<span class='op'>=</span><span class='fl'>0.2</span>, r_max<span class='op'>=</span><span class='fl'>25</span>, stoyan<span class='op'>=</span><span class='fl'>0.15</span>, n_rank<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

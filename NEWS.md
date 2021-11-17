@@ -1,5 +1,7 @@
 # News for Package 'apcf'
 
+## Changes in version 0.1.7.900
+
 ## Changes in version 0.1.7
 * updated message generation in configure.ac as requested by CRAN
 

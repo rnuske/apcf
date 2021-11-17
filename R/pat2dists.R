@@ -11,7 +11,7 @@
 #' et al. 2009).
 #'
 #' Measuring distances between objects and permutation of the pattern is done
-#' with [GEOS](https://trac.osgeo.org/geos).
+#' with [GEOS](https://libgeos.org).
 #'
 #' @param area,pattern WKB (list of raw vectors) of study area and pattern.
 #' @param max_dist Maximum distance measured in the pattern. Usually smaller

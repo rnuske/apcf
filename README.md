@@ -51,7 +51,7 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 
 ### Links
-* [GEOS](https://trac.osgeo.org/geos)
+* [GEOS](https://libgeos.org)
 * [Rcpp Website](http://www.rcpp.org)
 * [R package `sf`, a modern approach to geo data in R](https://github.com/r-spatial/sf)
 

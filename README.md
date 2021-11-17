@@ -49,7 +49,7 @@ plot(x=pcf, xlim=c(0, 20), ylim=c(0, 2.2))
 
 
 ### Links
-* [GEOS](https://trac.osgeo.org/geos)
+* [GEOS](https://libgeos.org)
 * [GDAL/OGR Website](https://gdal.org)
 * [GDAL/OGR Github Repository](https://github.com/OSGeo/gdal)
 * [Rcpp Website](http://www.rcpp.org)

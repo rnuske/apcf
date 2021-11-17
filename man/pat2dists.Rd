@@ -57,7 +57,7 @@ the biased pcf and constructing a pointwise critical envelope (cf. Nuske
 et al. 2009).
 
 Measuring distances between objects and permutation of the pattern is done
-with \href{https://trac.osgeo.org/geos}{GEOS} and spatial data are converted to
+with \href{https://libgeos.org}{GEOS} and spatial data are converted to
 GEOS geometries by \href{https://gdal.org}{GDAL/OGR}.
 }
 \examples{

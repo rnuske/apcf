@@ -11,7 +11,7 @@
 #' et al. 2009).
 #'
 #' Measuring distances between objects and permutation of the pattern is done
-#' with [GEOS](https://trac.osgeo.org/geos) and spatial data are converted to
+#' with [GEOS](https://libgeos.org) and spatial data are converted to
 #' GEOS geometries by [GDAL/OGR](https://gdal.org).
 #'
 #' @param area,pattern Data source name of study area and pattern

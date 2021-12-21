@@ -1,5 +1,8 @@
-# apcf 0.1.6.900
-* updated configure
+# apcf 0.1.7.902
+* using package wk for facilitating sf geometries
+
+# apcf 0.1.7
+* updated message generation in configure.ac as requested by CRAN
 
 # apcf 0.1.6
 * Windows: update to GDAL 3.2.1 and fix for UCRT support  (thanks @jeroen)

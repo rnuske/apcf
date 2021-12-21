@@ -59,7 +59,8 @@ pat2dists <- function(area, pattern, max_dist, n_sim=199, max_tries=100000,
                       save_pattern=FALSE, verbose=FALSE){
 
   if(missing(area) || missing(pattern))
-    stop("area and pattern should specify a WKB")
+    stop("area and pattern should specify a WKB",
+         "or sth. convertible to WKB by package wk")
 
   if(missing(max_dist) || !is.numeric(max_dist))
     stop("max_dist must be given and must be numeric")
@@ -68,7 +69,9 @@ pat2dists <- function(area, pattern, max_dist, n_sim=199, max_tries=100000,
     warning("using only the first element of area")
 
   # expect area and pattern to be lists of WKB objects
-  # no input checks for now
+  # check if it's a valid WKB, no check of geometry type yet
+  area <- wk::validate_wk_wkb(wk::as_wkb(area))
+  pattern <- wk::validate_wk_wkb(wk::as_wkb(pattern))
 
   rand_dists_ratios_wkb(pattern, area[1], max_dist, as.integer(n_sim),
                         as.integer(max_tries), save_pattern, verbose)

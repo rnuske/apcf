@@ -24,6 +24,8 @@
 #'
 #' @seealso [pat2dists()], [dists2pcf()]
 #'
+#' @import graphics
+#'
 #' @examples
 #' # it's advised against setting n_sim < 199
 #' ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,

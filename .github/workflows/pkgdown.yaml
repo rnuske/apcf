@@ -3,7 +3,9 @@
 on:
   push:
     branches: [main, master, drop_gdal]
-    tags: ['*']
+  release:
+    types: [published]
+  workflow_dispatch:
 
 name: pkgdown
 

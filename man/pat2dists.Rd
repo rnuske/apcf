@@ -56,19 +56,6 @@ et al. 2009).
 Measuring distances between objects and permutation of the pattern is done
 with \href{https://libgeos.org}{GEOS}.
 }
-\examples{
-# it's advised against setting n_sim < 199
-ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                max_dist=25, n_sim=3)
-
-# verbose and returns one randomized pattern for debugging
-ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                max_dist=5, n_sim=3, verbose=TRUE, save_pattern=TRUE)
-
-if (requireNamespace("sf", quietly=TRUE))
-  plot(sf::st_as_sfc(attr(ds, 'randPattern')))
-
-}
 \references{
 Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
 pair-correlation function for analysing the spatial distribution of canopy

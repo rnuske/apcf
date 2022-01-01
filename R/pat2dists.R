@@ -50,9 +50,10 @@
 #' ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
 #'                 max_dist=5, n_sim=3, verbose=TRUE, save_pattern=TRUE)
 #'
-#' if (requireNamespace("sf", quietly=TRUE))
-#'   plot(sf::st_as_sfc(attr(ds, 'randPattern')))
-#'
+#' \dontrun{
+#'   wk's plot function needs package 'vctrs'
+#'   plot(wk::as_wkb(attr(ds, "randPattern")))
+#' }
 #' @export
 
 pat2dists <- function(area, pattern, max_dist, n_sim=199, max_tries=100000,

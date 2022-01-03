@@ -103,7 +103,7 @@ export_wkb(GEOSContextHandle_t geosCtxtH,
         output[i] = raw; // raw vector to list
     }
 
-    output.attr("class") = Rcpp::CharacterVector::create("WKB");
+    output.attr("class") = Rcpp::CharacterVector::create("wk_wkb", "wk_vctr", "WKB");
     return output;
 }
 

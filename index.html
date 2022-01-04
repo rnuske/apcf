@@ -106,8 +106,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># calculate distances between patches of original pattern and 3 nullmodels</span>
 <span class="co"># number of nullmodels should by at least 199 and better yet 999</span>
-<span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,
-                max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg</span>, max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
 
 <span class="co"># derive PCF and envelope from distances</span>
 <span class="va">pcf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dists2pcf.html">dists2pcf</a></span><span class="op">(</span><span class="va">ds</span>, r<span class="op">=</span><span class="fl">0.2</span>, r_max<span class="op">=</span><span class="fl">25</span>, stoyan<span class="op">=</span><span class="fl">0.15</span>, n_rank<span class="op">=</span><span class="fl">1</span><span class="op">)</span>

@@ -131,12 +131,11 @@ https://doi.org/10.1016/j.foreco.2009.09.050</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># it's advised against setting n_sim &lt; 199</span></span>
-<span class="r-in"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu">pat2dists</span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,</span>
-<span class="r-in">                max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu">pat2dists</span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg</span>, max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># verbose and returns one randomized pattern for debugging</span></span>
-<span class="r-in"><span class="va">ds_plus</span> <span class="op">&lt;-</span> <span class="fu">pat2dists</span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,</span>
-<span class="r-in">                     max_dist<span class="op">=</span><span class="fl">5</span>, n_sim<span class="op">=</span><span class="fl">3</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, save_pattern<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">ds_plus</span> <span class="op">&lt;-</span> <span class="fu">pat2dists</span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg</span>, max_dist<span class="op">=</span><span class="fl">5</span>, n_sim<span class="op">=</span><span class="fl">3</span>,</span>
+<span class="r-in">                     verbose<span class="op">=</span><span class="cn">TRUE</span>, save_pattern<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dists: e</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>

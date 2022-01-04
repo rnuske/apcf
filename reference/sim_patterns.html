@@ -60,26 +60,25 @@ Function presented in Nuske et al. (2009).</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="va">sim_area_wkb</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="va">sim_area</span>
 
-<span class="va">sim_pat_clust_wkb</span>
+<span class="va">sim_pat_clust</span>
 
-<span class="va">sim_pat_rand_wkb</span>
+<span class="va">sim_pat_rand</span>
 
-<span class="va">sim_pat_reg_wkb</span></code></pre></div>
+<span class="va">sim_pat_reg</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A set of <a href="https://en.wikipedia.org/wiki/Shapefile" class="external-link">shapefiles</a> and
-<a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry" class="external-link">WKB</a>
-containing the study area and three simulated patterns.</p>
-<table class="table table"><tr><td><strong>Dataset name</strong></td><td><strong>Shapefile</strong></td><td><strong>Description</strong></td></tr><tr><td><code>sim_area_wkb</code></td><td><code>sim_area.*</code></td><td>study area</td></tr><tr><td><code>sim_pat_reg_wkb</code></td><td><code>sim_pat_reg.*</code></td><td>simulated regular pattern</td></tr><tr><td><code>sim_pat_rand_wkb</code></td><td><code>sim_pat_rand.*</code></td><td>simulated random pattern</td></tr><tr><td><code>sim_pat_clust_wkb</code></td><td><code>sim_pat_clust.*</code></td><td>simulated clustered pattern</td></tr></table><p>The study area is a square of 100 m x 100 m. A set of n = 100 objects were
+    <p>A set of <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry" class="external-link">WKBs</a>
+of class <code><a href="https://paleolimbot.github.io/wk/reference/new_wk_wkb.html" class="external-link">wk_wkb</a></code> containing the study area and three simulated patterns.</p>
+<table class="table table"><tr><td><strong>Dataset name</strong></td><td><strong>Description</strong></td><td><code>sim_area</code></td></tr><tr><td>study area</td><td><code>sim_pat_reg</code></td><td>simulated regular pattern</td></tr><tr><td><code>sim_pat_rand</code></td><td>simulated random pattern</td><td><code>sim_pat_clust</code></td></tr></table><p>The study area is a square of 100 m x 100 m. A set of n = 100 objects were
 created and latter placed according to the designated spatial distribution.
 The size distribution and shapes of the objects are inspired by measurements
 of canopy gaps. The areas of the objects range from 1.6 m2 to 57.7 m2 with
 an arithmetic mean of 9.7 m2 and a median of 5.5 m2. The total area of all
-objects is 969.7 m2, meaning 9.7\<!-- % of the study area is covered by objects. --></p>
+objects is 969.7 m2, meaning 9.7% of the study area is covered by objects.</p>
 <p>For the <code>sim_pat_reg</code> dataset, the objects were arranged in a strict
 regular manner. A centric systematic grid was constructed, and the objects
 of the set were then randomly rotated and randomly placed by locating the
@@ -98,9 +97,6 @@ Matern’s cluster process with w = 0.0006 m^-2 or 6 cluster centres per ha,
 a dispersion radius of R = 10 m and on average y = 16.6 points per cluster.</p>
 <p>We used the R-package spatstat (Baddeley et al. 2015) for simulating
 the Binomial process and Matern’s cluster process.</p>
-<p>An object of class <code>WKB</code> of length 100.</p>
-<p>An object of class <code>WKB</code> of length 100.</p>
-<p>An object of class <code>WKB</code> of length 100.</p>
     </div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
@@ -119,8 +115,7 @@ https://doi.org/10.1016/j.foreco.2009.09.050</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,</span>
-<span class="r-in">                max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg</span>, max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

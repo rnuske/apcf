@@ -107,16 +107,16 @@
 <p>It returns an object of class <code>dists</code> containing a data.frame with the columns <code>sim</code>, <code>dist</code>, and <code>prop</code> with an indicator of the model run (<code>0:n_sim</code>), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># it's advised against setting n_sim &lt; 199</span>
-<span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area_wkb</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg_wkb</span>,
+<span class="va">dists</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pat2dists.html">pat2dists</a></span><span class="op">(</span>area<span class="op">=</span><span class="va">sim_area</span>, pattern<span class="op">=</span><span class="va">sim_pat_reg</span>, 
                    max_dist<span class="op">=</span><span class="fl">25</span>, n_sim<span class="op">=</span><span class="fl">9</span>, verbose<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dists</span><span class="op">)</span>
 <span class="co">##   sim     dist     ratio</span>
-<span class="co">## 1   0 24.65000 0.9238066</span>
-<span class="co">## 2   0 17.15157 1.0000000</span>
-<span class="co">## 3   0 20.22589 1.0000000</span>
+<span class="co">## 1   0 24.64786 0.9239901</span>
+<span class="co">## 2   0 17.15450 1.0000000</span>
+<span class="co">## 3   0 20.22583 1.0000000</span>
 <span class="co">## 4   0 20.04445 1.0000000</span>
-<span class="co">## 5   0 24.13877 0.9517043</span>
-<span class="co">## 6   0 19.67296 1.0000000</span></code></pre></div>
+<span class="co">## 5   0 24.13972 0.9517079</span>
+<span class="co">## 6   0 19.67695 1.0000000</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="from-distances-to-pcf">From Distances to PCF<a class="anchor" aria-label="anchor" href="#from-distances-to-pcf"></a>
@@ -133,12 +133,12 @@
 <span class="co">## Significance level of pointwise Monte Carlo test: 0.2</span>
 <span class="co">## </span>
 <span class="co">##     r           g       lwr      upr</span>
-<span class="co">## 1 0.2 0.000000000 0.7290457 1.226126</span>
-<span class="co">## 2 0.4 0.000000000 0.7588772 1.209802</span>
-<span class="co">## 3 0.6 0.000000000 0.7917958 1.225692</span>
-<span class="co">## 4 0.8 0.000000000 0.7947108 1.268356</span>
-<span class="co">## 5 1.0 0.005169545 0.7991125 1.278168</span>
-<span class="co">## 6 1.2 0.011976260 0.7890086 1.271738</span></code></pre></div>
+<span class="co">## 1 0.2 0.000000000 0.6923856 1.465033</span>
+<span class="co">## 2 0.4 0.000000000 0.7000570 1.382960</span>
+<span class="co">## 3 0.6 0.000000000 0.7228227 1.321355</span>
+<span class="co">## 4 0.8 0.000000000 0.7166693 1.248035</span>
+<span class="co">## 5 1.0 0.005704008 0.6927367 1.222244</span>
+<span class="co">## 6 1.2 0.012655955 0.6924349 1.206356</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="plotting-the-pcf">Plotting the PCF<a class="anchor" aria-label="anchor" href="#plotting-the-pcf"></a>

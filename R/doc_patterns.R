@@ -3,16 +3,15 @@
 #' The simulated patterns were created for testing the Adapted Pair Correlation
 #' Function presented in Nuske et al. (2009).
 #'
-#' @format A set of [shapefiles](https://en.wikipedia.org/wiki/Shapefile) and
-#'   [WKB](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
-#'   containing the study area and three simulated patterns.
+#' @format A set of [WKBs](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry)
+#'   of class \code{\link[wk:is_wk_wkb]{wk_wkb}} containing the study area and three simulated patterns.
 #'
 #' \tabular{lll}{
-#'   \strong{Dataset name} \tab \strong{Shapefile} \tab \strong{Description}\cr
-#'   `sim_area_wkb`      \tab `sim_area.*`      \tab study area\cr
-#'   `sim_pat_reg_wkb`   \tab `sim_pat_reg.*`   \tab simulated regular pattern\cr
-#'   `sim_pat_rand_wkb`  \tab `sim_pat_rand.*`  \tab simulated random pattern\cr
-#'   `sim_pat_clust_wkb` \tab `sim_pat_clust.*` \tab simulated clustered pattern\cr
+#'   \strong{Dataset name} \tab \strong{Description}\cr
+#'   `sim_area`      \tab study area\cr
+#'   `sim_pat_reg`   \tab simulated regular pattern\cr
+#'   `sim_pat_rand`  \tab simulated random pattern\cr
+#'   `sim_pat_clust` \tab simulated clustered pattern\cr
 #' }
 #'
 #' The study area is a square of 100 m x 100 m. A set of n = 100 objects were
@@ -20,7 +19,7 @@
 #' The size distribution and shapes of the objects are inspired by measurements
 #' of canopy gaps. The areas of the objects range from 1.6 m2 to 57.7 m2 with
 #' an arithmetic mean of 9.7 m2 and a median of 5.5 m2. The total area of all
-#' objects is 969.7 m2, meaning 9.7\% of the study area is covered by objects.
+#' objects is 969.7 m2, meaning 9.7% of the study area is covered by objects.
 #'
 #' For the `sim_pat_reg` dataset, the objects were arranged in a strict
 #' regular manner. A centric systematic grid was constructed, and the objects
@@ -57,18 +56,24 @@
 #' https://doi.org/10.1016/j.foreco.2009.09.050
 #'
 #' @examples
-#' ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-#'                 max_dist=25, n_sim=3)
+#' ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 #'
 #' @name sim_patterns
 #' @keywords datasets
-"sim_area_wkb"
+NULL
 
 #' @rdname sim_patterns
-"sim_pat_clust_wkb"
+#' @format NULL
+"sim_area"
 
 #' @rdname sim_patterns
-"sim_pat_rand_wkb"
+#' @format NULL
+"sim_pat_clust"
 
 #' @rdname sim_patterns
-"sim_pat_reg_wkb"
+#' @format NULL
+"sim_pat_rand"
+
+#' @rdname sim_patterns
+#' @format NULL
+"sim_pat_reg"

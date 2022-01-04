@@ -46,7 +46,7 @@ It returns an object of class `dists` containing a data.frame with the columns `
 
 ```{r}
 # it's advised against setting n_sim < 199
-dists <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
+dists <- pat2dists(area=sim_area, pattern=sim_pat_reg, 
                    max_dist=25, n_sim=9, verbose=FALSE)
 head(dists)
 ```

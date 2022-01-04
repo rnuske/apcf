@@ -39,8 +39,7 @@ remotes::install_github("rnuske/apcf")
 ```r
 # calculate distances between patches of original pattern and 3 nullmodels
 # number of nullmodels should by at least 199 and better yet 999
-ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                max_dist=25, n_sim=3)
+ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 
 # derive PCF and envelope from distances
 pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)

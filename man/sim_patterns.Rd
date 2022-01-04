@@ -3,22 +3,21 @@
 \docType{data}
 \name{sim_patterns}
 \alias{sim_patterns}
-\alias{sim_area_wkb}
-\alias{sim_pat_clust_wkb}
-\alias{sim_pat_rand_wkb}
-\alias{sim_pat_reg_wkb}
+\alias{sim_area}
+\alias{sim_pat_clust}
+\alias{sim_pat_rand}
+\alias{sim_pat_reg}
 \title{Simulated Patterns (sample data)}
 \format{
-A set of \href{https://en.wikipedia.org/wiki/Shapefile}{shapefiles} and
-\href{https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry}{WKB}
-containing the study area and three simulated patterns.
+A set of \href{https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry}{WKBs}
+of class \code{\link[wk:is_wk_wkb]{wk_wkb}} containing the study area and three simulated patterns.
 
 \tabular{lll}{
-\strong{Dataset name} \tab \strong{Shapefile} \tab \strong{Description}\cr
-\code{sim_area_wkb}      \tab \verb{sim_area.*}      \tab study area\cr
-\code{sim_pat_reg_wkb}   \tab \verb{sim_pat_reg.*}   \tab simulated regular pattern\cr
-\code{sim_pat_rand_wkb}  \tab \verb{sim_pat_rand.*}  \tab simulated random pattern\cr
-\code{sim_pat_clust_wkb} \tab \verb{sim_pat_clust.*} \tab simulated clustered pattern\cr
+\strong{Dataset name} \tab \strong{Description}\cr
+\code{sim_area}      \tab study area\cr
+\code{sim_pat_reg}   \tab simulated regular pattern\cr
+\code{sim_pat_rand}  \tab simulated random pattern\cr
+\code{sim_pat_clust} \tab simulated clustered pattern\cr
 }
 
 The study area is a square of 100 m x 100 m. A set of n = 100 objects were
@@ -26,7 +25,7 @@ created and latter placed according to the designated spatial distribution.
 The size distribution and shapes of the objects are inspired by measurements
 of canopy gaps. The areas of the objects range from 1.6 m2 to 57.7 m2 with
 an arithmetic mean of 9.7 m2 and a median of 5.5 m2. The total area of all
-objects is 969.7 m2, meaning 9.7\\% of the study area is covered by objects.
+objects is 969.7 m2, meaning 9.7\% of the study area is covered by objects.
 
 For the \code{sim_pat_reg} dataset, the objects were arranged in a strict
 regular manner. A centric systematic grid was constructed, and the objects
@@ -49,32 +48,25 @@ a dispersion radius of R = 10 m and on average y = 16.6 points per cluster.
 
 We used the R-package spatstat (Baddeley et al. 2015) for simulating
 the Binomial process and Matern’s cluster process.
-
-An object of class \code{WKB} of length 100.
-
-An object of class \code{WKB} of length 100.
-
-An object of class \code{WKB} of length 100.
 }
 \source{
 Nuske et al. (2009)
 }
 \usage{
-sim_area_wkb
+sim_area
 
-sim_pat_clust_wkb
+sim_pat_clust
 
-sim_pat_rand_wkb
+sim_pat_rand
 
-sim_pat_reg_wkb
+sim_pat_reg
 }
 \description{
 The simulated patterns were created for testing the Adapted Pair Correlation
 Function presented in Nuske et al. (2009).
 }
 \examples{
-ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                max_dist=25, n_sim=3)
+ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 
 }
 \references{

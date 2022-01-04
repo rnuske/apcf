@@ -58,12 +58,11 @@ with \href{https://libgeos.org}{GEOS}.
 }
 \examples{
 # it's advised against setting n_sim < 199
-ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                max_dist=25, n_sim=3)
+ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 
 # verbose and returns one randomized pattern for debugging
-ds_plus <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-                     max_dist=5, n_sim=3, verbose=TRUE, save_pattern=TRUE)
+ds_plus <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=5, n_sim=3,
+                     verbose=TRUE, save_pattern=TRUE)
 
 \dontrun{
   # wk's plot function needs additional package 'vctrs'

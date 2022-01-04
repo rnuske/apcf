@@ -78,8 +78,7 @@
 #'
 #' @examples
 #' # it's advised against setting n_sim < 199
-#' ds <- pat2dists(area=sim_area_wkb, pattern=sim_pat_reg_wkb,
-#'                 max_dist=25, n_sim=3)
+#' ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 #'
 #' # derive PCF and envelope
 #' pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)

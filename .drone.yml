@@ -1,4 +1,4 @@
-# rocker/geospatial is way to heavy. couldn't get r-devel to behave. 
+# rocker/geospatial is way to heavy. couldn't get r-devel to behave.
 # so went with r-ci (https://github.com/eddelbuettel/r-ci).
 
 kind: pipeline
@@ -12,6 +12,7 @@ steps:
   - ./run.sh bootstrap
   - apt-get install -y --no-install-recommends libgeos-dev
   - ./run.sh install_deps
+  - ./run.sh install_r wk  # needed since binary package of 'wk' still too old
   - export _R_CHECK_FORCE_SUGGESTS_="false"; ./run.sh run_tests
 
 #---

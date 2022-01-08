@@ -1,5 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl copied largely (w/o proj and gdal) from sf (https://github.com/r-spatial/sf)
+
 AC_INIT
 AC_CONFIG_SRCDIR([src/rand_dists_ratios.cpp])
 

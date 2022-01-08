@@ -5,15 +5,11 @@ geos_version <- function() {
     .Call(`_apcf_geos_version`)
 }
 
-gdal_version <- function(what = "RELEASE_NAME") {
-    .Call(`_apcf_gdal_version`, what)
-}
-
 pcf_envelope <- function(sim, dist, ratio, rs, area, nobj, stoyan, nrank) {
     .Call(`_apcf_pcf_envelope`, sim, dist, ratio, rs, area, nobj, stoyan, nrank)
 }
 
-rand_dists_ratios <- function(fn_pattern, fn_area, max_dist, n_simulations = 99L, max_tries = 100000L, save_randomized_patterns = FALSE, save_basename = "./pattern", verbose = FALSE) {
-    .Call(`_apcf_rand_dists_ratios`, fn_pattern, fn_area, max_dist, n_simulations, max_tries, save_randomized_patterns, save_basename, verbose)
+rand_dists_ratios_wkb <- function(wkb_pattern, wkb_area, max_dist, n_simulations = 99L, max_tries = 100000L, save_randomized_pattern = FALSE, verbose = FALSE) {
+    .Call(`_apcf_rand_dists_ratios_wkb`, wkb_pattern, wkb_area, max_dist, n_simulations, max_tries, save_randomized_pattern, verbose)
 }
 

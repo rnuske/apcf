@@ -6,29 +6,29 @@
 
 #include <vector>        // vector
 #include <Rcpp.h>        // Rcpp
-#include <geos_c.h>      // GEOS functions
-#include <ogr_srs_api.h> // OSR functions
 
 #include "import_export.h"
 #include "geos_stuff.h"
 
+
 // [[Rcpp::export]]
 Rcpp::DataFrame
-rand_dists_ratios(const char* fn_pattern,
-                  const char* fn_area,
-                  const double max_dist,
-                  const unsigned int n_simulations = 99,
-                  const unsigned int max_tries = 100000,
-                  const bool save_randomized_patterns = false,
-                  const char* save_basename = "./pattern",
-                  const bool verbose = false)
+rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
+                      const Rcpp::List & wkb_area,
+                      const double max_dist,
+                      const unsigned int n_simulations = 99,
+                      const unsigned int max_tries = 100000,
+                      const bool save_randomized_pattern = false,
+                      const bool verbose = false)
 {
     GEOSContextHandle_t geosCtxtH = geos_init();
 
+    bool save_randPattern = save_randomized_pattern;
+    Rcpp::List randPattern;
+
     // import -----------------------------------------------------------------
-    OGRSpatialReferenceH hSRS;
-    GEOSGeometry* area = import_polys(geosCtxtH, fn_area, NULL)[0];
-    std::vector<GEOSGeometry*> pattern = import_polys(geosCtxtH, fn_pattern, &hSRS);
+    GEOSGeometry* area = import_wkb(geosCtxtH, wkb_area)[0];
+    std::vector<GEOSGeometry*> pattern = import_wkb(geosCtxtH, wkb_pattern);
 
     double area_size;
     if(!GEOSArea_r(geosCtxtH, area, &area_size))
@@ -85,12 +85,11 @@ rand_dists_ratios(const char* fn_pattern,
             // randomize patches
             temp_pattern = randomize_pattern(geosCtxtH, pattern_sorted, area, max_tries, false);
 
-            // save randomized patterns for debugging
-            if(save_randomized_patterns)
+            // save one randomized pattern for debugging
+            if(save_randPattern)
             {
-                export_polys(geosCtxtH, temp_pattern,
-                             (save_basename + std::to_string(i) + ".shp").c_str(),
-                             NULL, "ESRI Shapefile",  hSRS);
+                randPattern = export_wkb(geosCtxtH, temp_pattern);
+                save_randPattern = false;
             }
 
             // calc distances and ratios
@@ -110,7 +109,6 @@ rand_dists_ratios(const char* fn_pattern,
         Rcpp::Rcout << std::endl;
 
     // clean up ---------------------------------------------------------------
-    OSRDestroySpatialReference(hSRS);
     GEOSGeom_destroy_r(geosCtxtH, area);
     for (unsigned int i = 0; i < n_patches; i++)
         GEOSGeom_destroy_r(geosCtxtH, pattern[i]);
@@ -119,14 +117,19 @@ rand_dists_ratios(const char* fn_pattern,
 
     // create data.frame ------------------------------------------------------
     Rcpp::DataFrame sdp_df = Rcpp::DataFrame::create(
-                                 Rcpp::Named("sim")  = sdp_v[0],
-                                 Rcpp::Named("dist") = sdp_v[1],
-                                 Rcpp::Named("ratio") = sdp_v[2]
-                             );
+        Rcpp::Named("sim")  = sdp_v[0],
+        Rcpp::Named("dist") = sdp_v[1],
+        Rcpp::Named("ratio") = sdp_v[2]
+        );
+
     sdp_df.attr("area")     = area_size;
     sdp_df.attr("n_obj")    = n_patches;
     sdp_df.attr("max_dist") = max_dist;
     sdp_df.attr("class")    = Rcpp::CharacterVector::create("dists", "data.frame");
+
+    if(save_randomized_pattern){
+        sdp_df.attr("randPattern") = randPattern;
+    }
 
     return sdp_df;
 }

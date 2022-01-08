@@ -64,9 +64,7 @@ according to (Besag and Diggle, 1977; Buckland, 1984; Stoyan and Stoyan, 1994).
 }
 \examples{
 # it's advised against setting n_sim < 199
-ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
-                pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
-                max_dist=25, n_sim=3)
+ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 
 # derive PCF and envelope
 pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
@@ -74,25 +72,29 @@ pcf <- dists2pcf(ds, r=0.2, r_max=25, stoyan=0.15, n_rank=1)
 }
 \references{
 Besag, J. and Diggle, P.J. (1977): Simple Monte Carlo tests for spatial
-pattern. Appl. Sta. 26, 327–333.
+pattern. Journal of the Royal Statistical Society. Series C (Applied
+Statistics), 26(3): 327–333. https://doi.org/10.2307/2346974
 
-Buckland, S.T. (1984). Monte Carlo Confidence Intervals. Biometrics, 40(3),
-811-817.
+Buckland, S.T. (1984). Monte Carlo Confidence Intervals. Biometrics, 40(3):
+811-817. https://doi.org/10.2307/2530926
 
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009): Adapting the
-pair-correlation function for analysing the spatial distribution of
-canopy gaps. Forest Ecology and Management (259): 107–116.
+Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
+pair-correlation function for analysing the spatial distribution of canopy
+gaps. Forest Ecology and Management, 259(1): 107–116.
+https://doi.org/10.1016/j.foreco.2009.09.050
 
-Penttinen, A., Stoyan, D., Henttonen, H., 1992. Marked point-processes in
-forest statistics. For. Sci. 38, 806–824.
+Penttinen A., Stoyan D., Henttonen H. M. (1992): Marked point processes in
+forest statistics. Forest Science, 38(4): 806–824.
+https://doi.org/10.1093/forestscience/38.4.806
 
-Ripley, B.D., 1981. Spatial Statistics. Wiley, New York.
+Ripley, B.D. (1981): Spatial Statistics. John Wiley & Sons, New York.
+https://doi.org/10.1002/0471725218
 
-Silverman, B.W., 1986. Density Estimation for Statistics and Data Analysis.
+Silverman, B.W. (1986): Density Estimation for Statistics and Data Analysis.
 Chapman and Hall, London.
 
 Stoyan, D. and Stoyan, H. (1994) Fractals, random shapes and point fields:
-methods of geometrical statistics. John Wiley and Sons.
+Methods of geometrical statistics. John Wiley & Sons, Chichester.
 }
 \seealso{
 \code{\link[=pat2dists]{pat2dists()}}, \code{\link[=plot.fv_pcf]{plot.fv_pcf()}}

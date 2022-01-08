@@ -10,39 +10,36 @@ pat2dists(
   max_dist,
   n_sim = 199,
   max_tries = 1e+05,
-  save_patterns = NULL,
+  save_pattern = FALSE,
   verbose = FALSE
 )
 }
 \arguments{
-\item{area, pattern}{Data source name of study area and pattern
-(interpretation varies by driver - for some drivers, dsn is a file
-name, but may also be a folder, or contain the name and access
-credentials of a database)}
+\item{area, pattern}{WKB (list of raw vectors) of study area and pattern.}
 
 \item{max_dist}{Maximum distance measured in the pattern. Usually smaller
 than half the diameter of the study area.}
 
 \item{n_sim}{Number of simulated patterns (randomizations) to be generated
-for computing the envelope and correcting the biased emperical pcf.
-Determines together with \code{n_rank} in \code{\link[=dists2pcf]{dists2pcf()}} the alpha level of
-the envelope. If \code{alpha} and \code{n_rank} are fix, n_sim can be
-calculated by \code{(n_rank*2/alpha)-1} eg. \code{(5*2/0.05)-1 = 199}.}
+for computing the envelope and correcting the biased empirical pcf.
+Determines together with \code{n_rank} in \code{\link[=dists2pcf]{dists2pcf()}} the alpha level of the
+envelope. If \code{alpha} and \code{n_rank} are fix, n_sim can be calculated by
+\code{(n_rank*2/alpha)-1} for instance \code{(5*2/0.05)-1 = 199}.}
 
-\item{max_tries}{How often shall a relocation of an object be tried
-while randomizing the pattern.}
+\item{max_tries}{How often shall a relocation of an object be tried while
+randomizing the pattern.}
 
-\item{save_patterns}{Shall the simulated patterns be saved as Shapefiles
-for debugging/later inspections. Might be a large number of files
-(4 * n_sim). Can be \code{NULL} (no export) or a character string
-providing a basename optionally including a valid/existing path.}
+\item{save_pattern}{Shall one simulated pattern be returned in the attributes
+for debugging/later inspections. The pattern is provided as  WKB (list of
+raw vectors) in the attribute \code{randPattern}.}
 
 \item{verbose}{Provide progress information in the console. Roman numerals
-(x: 10, C: 100, D: 500, M: 1000) indicate the progress of the
-simulation and 'e' the emperical PCF.}
+(x: 10, C: 100, D: 500, M: 1000) indicate the progress of the simulation
+and 'e' denotes the empirical PCF.}
 }
 \value{
-An object of class \link{dists}.
+An object of class \link{dists}. If \code{save_pattern = TRUE} an additional
+attribute \code{randPattern} is returned containing a WKB (list of raw vectors).
 }
 \description{
 Creates \code{n_sim} null models by permutation of the original pattern and
@@ -57,22 +54,27 @@ the biased pcf and constructing a pointwise critical envelope (cf. Nuske
 et al. 2009).
 
 Measuring distances between objects and permutation of the pattern is done
-with \href{https://libgeos.org}{GEOS} and spatial data are converted to
-GEOS geometries by \href{https://gdal.org}{GDAL/OGR}.
+with \href{https://libgeos.org}{GEOS}.
+
 }
 \examples{
 # it's advised against setting n_sim < 199
-ds <- pat2dists(area=system.file("shapes/sim_area.shp", package="apcf"),
-                pattern=system.file("shapes/sim_pat_reg.shp", package="apcf"),
-                max_dist=25, n_sim=3, verbose=TRUE)
+ds <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=25, n_sim=3)
 
+# verbose and returns one randomized pattern for debugging
+ds_plus <- pat2dists(area=sim_area, pattern=sim_pat_reg, max_dist=5, n_sim=3,
+                     verbose=TRUE, save_pattern=TRUE)
+
+\dontrun{
+  # wk's plot function needs additional package 'vctrs'
+  plot(attr(ds_plus, "randPattern"))
+}
 }
 \references{
-Nuske, R.S., Sprauer, S. and Saborowski J. (2009)
-Adapting the pair-correlation function for analysing the spatial
-distribution of canopy gaps.
-\emph{Forest Ecology and Management}, \bold{259}(1), 107-–116.
-\doi{10.1016/j.foreco.2009.09.050}
+Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
+pair-correlation function for analysing the spatial distribution of canopy
+gaps. Forest Ecology and Management, 259(1): 107–116.
+https://doi.org/10.1016/j.foreco.2009.09.050
 }
 \seealso{
 \code{\link[=dists2pcf]{dists2pcf()}}, \code{\link[=plot.fv_pcf]{plot.fv_pcf()}}

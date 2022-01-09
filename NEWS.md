@@ -1,10 +1,11 @@
-# apcf 0.1.7.902
-* using package wk for facilitating sf geometries
+# apcf 0.1.7.904
+* removed dependence on GDAL. `pat2dists()` takes now geometries as `WKB` (using GEOS capabilities). This reduced configure code and package size significantly.
+* Added package 'wk' for checking WKBs and reading sfc-geometries if package 'sf' available.
 
-## Changes in version 0.1.7
+# apcf 0.1.7
 * updated message generation in configure.ac as requested by CRAN
 
-## Changes in version 0.1.6
+# apcf 0.1.6
 * Windows: update to GDAL 3.2.1 and fix for UCRT support  (thanks @jeroen)
 * drop LazyData from description
 

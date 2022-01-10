@@ -35,7 +35,10 @@ rand_dists_ratios_wkb(const Rcpp::List & wkb_pattern,
         throw std::range_error("GEOSArea failed.");
     unsigned int n_patches = pattern.size();
 
-    // check import data at a later time
+    // check if pattern within area
+    if(!pattern_in_area(geosCtxtH, area, pattern, verbose))
+        throw std::range_error("Pattern not entirely within area!");
+
     // check parameter
 
     // sort pattern largest to smallest ---------------------------------------

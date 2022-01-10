@@ -83,6 +83,19 @@ location_okay(GEOSContextHandle_t geosCtxtH,
               const bool verbose = false);
 
 
+/* Check Pattern in Area
+ *-----------------------------------------------------------------------------
+ * checks if pattern is entirely within area
+ *
+ * throws exceptions
+ */
+bool
+pattern_in_area(GEOSContextHandle_t geosCtxtH,
+                const GEOSGeometry* area,
+                const std::vector<GEOSGeometry*> pattern,
+                const bool verbose);
+
+
 /* Get Extent of Geometry
  *-----------------------------------------------------------------------------
  * min and max in X- and Y-direction of a geometry

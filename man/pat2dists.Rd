@@ -55,7 +55,6 @@ et al. 2009).
 
 Measuring distances between objects and permutation of the pattern is done
 with \href{https://libgeos.org}{GEOS}.
-
 }
 \examples{
 # it's advised against setting n_sim < 199

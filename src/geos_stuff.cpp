@@ -397,6 +397,39 @@ location_okay(GEOSContextHandle_t geosCtxtH, const GEOSGeometry* patch,
 }
 
 
+/* Check Pattern in Area
+ *-----------------------------------------------------------------------------
+ * checks if pattern is entirely within area
+ *
+ * throws exceptions
+ */
+bool
+pattern_in_area(GEOSContextHandle_t geosCtxtH, const GEOSGeometry* area,
+                const std::vector<GEOSGeometry*> pattern, const bool verbose)
+{
+    // all patches of pattern must be within area
+    for (unsigned int i = 0; i < pattern.size(); i++)
+    {
+        switch(GEOSContains_r(geosCtxtH, area, pattern[i]))
+        {
+            case 0:   // false
+            {
+                if(verbose)
+                    Rcpp::Rcout << "STOP (not in area)" << std::endl;
+                return false;
+            }
+            case 1:   // true
+                break;
+            case 2:   // error code
+                default:
+                    throw std::range_error("GEOSContains failed.");
+        }
+    }
+
+    return true;
+}
+
+
 /* Get Extent of Geometry
  *-----------------------------------------------------------------------------
  * min and max in X- and Y-direction of a geometry

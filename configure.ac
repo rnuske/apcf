@@ -30,7 +30,7 @@ else
     if test [$RVER_MAJOR -lt 3] -o [$RVER_MAJOR -eq 3 -a $RVER_MINOR -lt 3]; then
         AC_MSG_ERROR([apcf is not compatible with R versions before 3.3.0])
     else
-        if test [$RVER_MINOR -eq 3]; then
+        if test [$RVER_MAJOR -eq 3 -a $RVER_MINOR -eq 3]; then
             CXX11=`"${RBIN}" CMD config CXX1X`
             CXX11STD=`"${RBIN}" CMD config CXX1XSTD`
         else

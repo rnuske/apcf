@@ -1,14 +1,13 @@
-VERSION = 3.2.1
-COMPILED_BY ?= gcc-4.6.3
-RWINLIB = ../windows/gdal3-$(VERSION)
+VERSION = 3.10.2
+RWINLIB = ../windows/geos-$(VERSION)
 TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 
 PKG_CPPFLAGS =\
-	-I$(RWINLIB)/include/geos-3.9.0
+	-I$(RWINLIB)/include
 
 PKG_LIBS = \
 	-L$(RWINLIB)/$(TARGET) \
-	-L$(RWINLIB)/lib$(R_ARCH)$(CRT) \
+	-L$(RWINLIB)/lib$(R_ARCH) \
 	-lgeos_c -lgeos
 
 all: clean winlibs

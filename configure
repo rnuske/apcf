@@ -2150,7 +2150,7 @@ GEOS_VERSION=`${GEOS_CONFIG} --version`
 { $as_echo "$as_me:${as_lineno-$LINENO}: GEOS: ${GEOS_VERSION}" >&5
 $as_echo "$as_me: GEOS: ${GEOS_VERSION}" >&6;}
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking GEOS version >= 3.4.0" >&5
-$as_echo_n "checking GEOS version >= 3.4.0... " >&6; } # GDAL 2.0.1 requires GEOS 3.1.0
+$as_echo_n "checking GEOS version >= 3.4.0... " >&6; }
 GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d ".[:alpha:]"`
 if test ${GEOS_VER_DOT} -lt 340 ; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -2161,12 +2161,12 @@ else
 $as_echo "yes" >&6; }
 fi
 
-PKG_CPPFLAGS="${INPKG_CPPFLAGS} ${PROJ_CPPFLAGS} ${GDAL_CPPFLAGS} ${GEOS_CPPFLAGS}"
+PKG_CPPFLAGS="${INPKG_CPPFLAGS} ${GEOS_CPPFLAGS}"
 
-PKG_LIBS="${INPKG_LIBS} ${GDAL_LIBS}"
+PKG_LIBS="${INPKG_LIBS}"
 
 if test "${NEED_DEPS}" = yes; then
-   PKG_LIBS="${PKG_LIBS} ${GDAL_DEP_LIBS}"
+   PKG_LIBS="${PKG_LIBS}"
 
 fi
 

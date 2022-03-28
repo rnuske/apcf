@@ -110,7 +110,7 @@ fi
 
 GEOS_VERSION=`${GEOS_CONFIG} --version`
 AC_MSG_NOTICE([GEOS: ${GEOS_VERSION}])
-AC_MSG_CHECKING([GEOS version >= 3.4.0]) # GDAL 2.0.1 requires GEOS 3.1.0
+AC_MSG_CHECKING([GEOS version >= 3.4.0])
 GEOS_VER_DOT=`echo $GEOS_VERSION | tr -d ".[[:alpha:]]"`
 if test ${GEOS_VER_DOT} -lt 340 ; then
   AC_MSG_RESULT(no)
@@ -119,10 +119,10 @@ else
   AC_MSG_RESULT(yes)
 fi
 
-AC_SUBST([PKG_CPPFLAGS], ["${INPKG_CPPFLAGS} ${PROJ_CPPFLAGS} ${GDAL_CPPFLAGS} ${GEOS_CPPFLAGS}"])
-AC_SUBST([PKG_LIBS], ["${INPKG_LIBS} ${GDAL_LIBS}"])
+AC_SUBST([PKG_CPPFLAGS], ["${INPKG_CPPFLAGS} ${GEOS_CPPFLAGS}"])
+AC_SUBST([PKG_LIBS], ["${INPKG_LIBS}"])
 if test "${NEED_DEPS}" = yes; then
-   AC_SUBST([PKG_LIBS], ["${PKG_LIBS} ${GDAL_DEP_LIBS}"])
+   AC_SUBST([PKG_LIBS], ["${PKG_LIBS}"])
 fi
 
 # honor PKG_xx overrides

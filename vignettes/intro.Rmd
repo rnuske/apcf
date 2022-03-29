@@ -36,7 +36,7 @@ To separate the computationally intensive part (randomization of the objects and
 ## Example Data
 To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). Shapefiles and WKB representations of the data are part of this package and documented as `?sim_patterns`.
 
-![Simulated patterns (a: regular, b: random, c: clustered)](simulated_patterns.png)
+![Simulated patterns (a: regular, b: random, c: clustered)](../man/figures/sim_pat.png)
 
 
 ## From Pattern to Distances
@@ -70,16 +70,15 @@ head(pcf)
 plot(pcf)
 ```
 
-```{r fig.show='hold', fig.width=7, fig.height=5}
-# a panel of four plots
-op <- par(mfrow=c(2,2), oma=c(3,3,0,0), mar=c(0,0,2,2),
-          mgp=c(2,0.5,0), tcl=-0.3)
-plot(pcf, xaxis='t', yaxis='o', ann=FALSE)
-plot(pcf, xaxis='t', yaxis='t', ann=FALSE)
-plot(pcf, xaxis='o', yaxis='o', ann=FALSE)
-plot(pcf, xaxis='o', yaxis='t')
-par(op)
-```
+
+A plot of PCFs of the simulated patterns shown above having (a) regular, (b) random, and (c) clustered objects.
+Black line: estimated function;
+white line: theoretical value of the function under the null hypothesis of complete spatial randomness;
+grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates.
+Values g(r) < 1 suggest inhibition between points and values g(r) > 1 suggest clustering.
+
+![PCF of simulated patterns (a: regular, b: random, c: clustered)](../man/figures/sim_pcf.png)
+
 
 
 ## Technical Details

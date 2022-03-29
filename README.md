@@ -14,6 +14,7 @@ The Adapted Pair Correlation Function transfers the concept of the Pair Correlat
 
 This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using only the GEOS library.
 
+![](./man/figures/sim_pat_pcf.png)
 
 ### Requirements
 For Unix-alikes GEOS (>= 3.4.0) is required.

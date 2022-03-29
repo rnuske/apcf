@@ -50,7 +50,7 @@ We used the R-package spatstat (Baddeley et al. 2015) for simulating
 the Binomial process and Matern’s cluster process.
 }
 \source{
-Nuske et al. (2009)
+Nuske et al. 2009
 }
 \usage{
 sim_area

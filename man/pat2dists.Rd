@@ -15,7 +15,10 @@ pat2dists(
 )
 }
 \arguments{
-\item{area, pattern}{WKB (list of raw vectors) of study area and pattern.}
+\item{area, pattern}{Geodata (polygons) of study area and pattern in the
+formats \code{WKB} (well known binary, list of raw vectors), \code{WKT} (well known
+text) or \code{sf}-objects if package \code{sf} is available. Via sf all file formats
+supported by GDAL/OGR are possible.}
 
 \item{max_dist}{Maximum distance measured in the pattern. Usually smaller
 than half the diameter of the study area.}
@@ -54,7 +57,7 @@ the biased pcf and constructing a pointwise critical envelope (cf. Nuske
 et al. 2009).
 
 Measuring distances between objects and permutation of the pattern is done
-with \href{https://libgeos.org}{GEOS}.
+using \href{https://libgeos.org}{GEOS}.
 }
 \examples{
 # it's advised against setting n_sim < 199

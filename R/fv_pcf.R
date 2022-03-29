@@ -9,7 +9,7 @@
 #'        critical envelope are passed along as well.
 #' @param n_sim Integer. Number of generated simulated patterns used for
 #'        computing the envelope
-#' @param n_rank Integer. Rank of the envelope value amongst the n_sim
+#' @param n_rank Integer. Rank of the envelope value amongst the `n_sim`
 #'        simulated values. A rank of 1 means that the minimum and maximum
 #'        simulated values will be used.
 #' @param correc String. Choice of edge correction (eg. "Ripley").

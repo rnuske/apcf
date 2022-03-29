@@ -33,14 +33,14 @@ An object of class \link{fv_pcf} containing the function values of the
 PCF and the envelope.
 }
 \description{
-Estimates the adapted Pair Correlation Function (PCF) of a pattern together
+Estimates the Adapted Pair Correlation Function (PCF) of a pattern together
 with a pointwise critical envelope based on distances and ratios calculated
 by \code{\link[=pat2dists]{pat2dists()}}.
 }
 \details{
 Since the pair-correlation function is a density function, we employ the
-frequently used Epanechnikov kernel (Silverman, 1986; Stoyan and Stoyan,
-1994; Nuske et al., 2009). The Epanechnikov kernel is a weight function
+frequently used Epanechnikov kernel (Silverman 1986, Stoyan and Stoyan
+1994, Nuske et al. 2009). The Epanechnikov kernel is a weight function
 putting maximal weight to pairs with distance exactly equal to \emph{r} but also
 incorporating pairs only roughly at distance \emph{r} with reduced weight. This
 weight falls to zero if the actual distance between the points differs from
@@ -60,7 +60,7 @@ area.
 
 The alpha level of the pointwise critical envelope is
 \eqn{\alpha = \frac{n\_rank * 2}{n\_sim + 1}}{alpha = (n_rank * 2) / (n_sim + 1)}
-according to (Besag and Diggle, 1977; Buckland, 1984; Stoyan and Stoyan, 1994).
+according to (Besag and Diggle 1977, Buckland 1984, Stoyan and Stoyan 1994).
 }
 \examples{
 # it's advised against setting n_sim < 199

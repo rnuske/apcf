@@ -24,7 +24,7 @@ critical envelope are passed along as well.}
 \item{n_sim}{Integer. Number of generated simulated patterns used for
 computing the envelope}
 
-\item{n_rank}{Integer. Rank of the envelope value amongst the n_sim
+\item{n_rank}{Integer. Rank of the envelope value amongst the \code{n_sim}
 simulated values. A rank of 1 means that the minimum and maximum
 simulated values will be used.}
 

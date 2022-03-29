@@ -43,12 +43,12 @@
 #' We used the R-package spatstat (Baddeley et al. 2015) for simulating
 #' the Binomial process and Matern’s cluster process.
 #'
-#' @source  Nuske et al. (2009)
+#' @source  Nuske et al. 2009
 #'
 #' @references
-#'  Baddeley A., Rubak E. and Turner, R. (2015): Spatial Point Patterns:
-#'  Methodology and Applications with R. Chapman and Hall/CRC, London.
-#'  https://doi.org/10.1201/b19708
+#' Baddeley A., Rubak E. and Turner, R. (2015): Spatial Point Patterns:
+#' Methodology and Applications with R. Chapman and Hall/CRC, London.
+#' https://doi.org/10.1201/b19708
 #'
 #' Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
 #' pair-correlation function for analysing the spatial distribution of canopy

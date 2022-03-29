@@ -11,9 +11,12 @@
 #' et al. 2009).
 #'
 #' Measuring distances between objects and permutation of the pattern is done
-#' with [GEOS](https://libgeos.org).
+#' using [GEOS](https://libgeos.org).
 #'
-#' @param area,pattern WKB (list of raw vectors) of study area and pattern.
+#' @param area,pattern Geodata (polygons) of study area and pattern in the
+#'   formats `WKB` (well known binary, list of raw vectors), `WKT` (well known
+#'   text) or `sf`-objects if package `sf` is available. Via sf all file formats
+#'   supported by GDAL/OGR are possible.
 #' @param max_dist Maximum distance measured in the pattern. Usually smaller
 #'   than half the diameter of the study area.
 #' @param n_sim Number of simulated patterns (randomizations) to be generated

@@ -1,7 +1,7 @@
 ---
 title: "Introduction to apcf"
 author: "Robert Nuske"
-date: "2020-02-20"
+date: "2020-03-30"
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -34,7 +34,7 @@ To separate the computationally intensive part (randomization of the objects and
 
 
 ## Example Data
-To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). Shapefiles and WKB representations of the data are part of this package and documented as `?sim_patterns`.
+To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). WKB representations of the data are part of this package and documented as `?sim_patterns`.
 
 ![Simulated patterns (a: regular, b: random, c: clustered)](../man/figures/sim_pat.png)
 
@@ -82,9 +82,9 @@ Values g(r) < 1 suggest inhibition between points and values g(r) > 1 suggest cl
 
 
 ## Technical Details
-The adapted pair-corelation functions was original implemented in the Geodatabase `PostGIS`. `PostGIS` offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the `GEOS` format for geometric operations rendered the process quite slow.
+The adapted pair-correlation functions was original implemented in the Geodatabase `PostGIS`. `PostGIS` offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create many temporary tables and countless transformations of the geodata stored as WKB in the database into the "GEOS" format for geometric operations made the process very slow.
 
-In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by [`GEOS`](https://libgeos.org). The geodata is read and transformed to `GEOS` format only once. All further manipulations are within the `GEOS` world. The usage of the GEOS library was made possible by [`Rcpp`](http://www.rcpp.org).
+In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by [`GEOS`](https://libgeos.org). The geodata is read and transformed to `GEOS` format only once. All further manipulations are within the `GEOS` world. Using the GEOS library from R was made possible by [`Rcpp`](https://www.rcpp.org).
 
 
 ## References

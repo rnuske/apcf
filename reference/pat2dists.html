@@ -80,7 +80,10 @@ and determines the fractions of the perimeter of buffers with distance
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>area, pattern</dt>
-<dd><p>WKB (list of raw vectors) of study area and pattern.</p></dd>
+<dd><p>Geodata (polygons) of study area and pattern in the
+formats <code>WKB</code> (well known binary, list of raw vectors), <code>WKT</code> (well known
+text) or <code>sf</code>-objects if package <code>sf</code> is available. Via sf all file formats
+supported by GDAL/OGR are possible.</p></dd>
 <dt>max_dist</dt>
 <dd><p>Maximum distance measured in the pattern. Usually smaller
 than half the diameter of the study area.</p></dd>
@@ -114,7 +117,7 @@ objects within the study area without overlap. They are used for correcting
 the biased pcf and constructing a pointwise critical envelope (cf. Nuske
 et al. 2009).</p>
 <p>Measuring distances between objects and permutation of the pattern is done
-with <a href="https://libgeos.org" class="external-link">GEOS</a>.</p>
+using <a href="https://libgeos.org" class="external-link">GEOS</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

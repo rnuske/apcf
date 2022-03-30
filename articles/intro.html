@@ -73,7 +73,7 @@
       <img src="" class="logo" alt=""><h1>Introduction to apcf</h1>
                         <h4 data-toc-skip class="author">Robert Nuske</h4>
             
-            <h4 data-toc-skip class="date">2020-02-20</h4>
+            <h4 data-toc-skip class="date">2020-03-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rnuske/apcf/blob/HEAD/vignettes/intro.Rmd" class="external-link"><code>vignettes/intro.Rmd</code></a></small>
       <div class="d-none name"><code>intro.Rmd</code></div>
@@ -98,9 +98,9 @@
 <div class="section level2">
 <h2 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
 </h2>
-<p>To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). Shapefiles and WKB representations of the data are part of this package and documented as <code><a href="../reference/sim_patterns.html">?sim_patterns</a></code>.</p>
+<p>To present the workflow we make use of the simulated patterns presented in Nuske et al. (2009). WKB representations of the data are part of this package and documented as <code><a href="../reference/sim_patterns.html">?sim_patterns</a></code>.</p>
 <div class="figure">
-<img src="simulated_patterns.png" alt=""><p class="caption">Simulated patterns (a: regular, b: random, c: clustered)</p>
+<img src="../reference/figures/sim_pat.png" alt=""><p class="caption">Simulated patterns (a: regular, b: random, c: clustered)</p>
 </div>
 </div>
 <div class="section level2">
@@ -135,13 +135,13 @@
 <span class="co">## Alternative: "two.sided"</span>
 <span class="co">## Significance level of pointwise Monte Carlo test: 0.2</span>
 <span class="co">## </span>
-<span class="co">##     r           g       lwr      upr</span>
-<span class="co">## 1 0.2 0.000000000 0.5858961 1.312276</span>
-<span class="co">## 2 0.4 0.000000000 0.5867639 1.233702</span>
-<span class="co">## 3 0.6 0.000000000 0.6101507 1.175998</span>
-<span class="co">## 4 0.8 0.000000000 0.6355355 1.183921</span>
-<span class="co">## 5 1.0 0.005753852 0.6616165 1.187268</span>
-<span class="co">## 6 1.2 0.012684938 0.6972302 1.188156</span></code></pre></div>
+<span class="co">##     r          g       lwr      upr</span>
+<span class="co">## 1 0.2 0.00000000 0.7718700 1.201015</span>
+<span class="co">## 2 0.4 0.00000000 0.7943878 1.199977</span>
+<span class="co">## 3 0.6 0.00000000 0.8252059 1.177915</span>
+<span class="co">## 4 0.8 0.00000000 0.8576438 1.202798</span>
+<span class="co">## 5 1.0 0.00547114 0.8648158 1.224403</span>
+<span class="co">## 6 1.2 0.01235724 0.8835140 1.242633</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="plotting-the-pcf">Plotting the PCF<a class="anchor" aria-label="anchor" href="#plotting-the-pcf"></a>
@@ -150,22 +150,16 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span><span class="op">)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" width="384"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a panel of four plots</span>
-<span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, oma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,
-          mgp<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">0.5</span>,<span class="fl">0</span><span class="op">)</span>, tcl<span class="op">=</span><span class="op">-</span><span class="fl">0.3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span>, xaxis<span class="op">=</span><span class="st">'t'</span>, yaxis<span class="op">=</span><span class="st">'o'</span>, ann<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span>, xaxis<span class="op">=</span><span class="st">'t'</span>, yaxis<span class="op">=</span><span class="st">'t'</span>, ann<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span>, xaxis<span class="op">=</span><span class="st">'o'</span>, yaxis<span class="op">=</span><span class="st">'o'</span>, ann<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span>, xaxis<span class="op">=</span><span class="st">'o'</span>, yaxis<span class="op">=</span><span class="st">'t'</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></code></pre></div>
-<p><img src="intro_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+<p>A plot of PCFs of the simulated patterns shown above having (a) regular, (b) random, and (c) clustered objects. Black line: estimated function; white line: theoretical value of the function under the null hypothesis of complete spatial randomness; grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates. Values g(r) &lt; 1 suggest inhibition between points and values g(r) &gt; 1 suggest clustering.</p>
+<div class="figure">
+<img src="../reference/figures/sim_pcf.png" alt=""><p class="caption">PCF of simulated patterns (a: regular, b: random, c: clustered)</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="technical-details">Technical Details<a class="anchor" aria-label="anchor" href="#technical-details"></a>
 </h2>
-<p>The adapted pair-corelation functions was original implemented in the Geodatabase <code>PostGIS</code>. <code>PostGIS</code> offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create lots of temporary tables and countless transformations of geodata from WKB stored in the table to the <code>GEOS</code> format for geometric operations rendered the process quite slow.</p>
-<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://libgeos.org" class="external-link"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once. All further manipulations are within the <code>GEOS</code> world. The usage of the GEOS library was made possible by <a href="http://www.rcpp.org" class="external-link"><code>Rcpp</code></a>.</p>
+<p>The adapted pair-correlation functions was original implemented in the Geodatabase <code>PostGIS</code>. <code>PostGIS</code> offers all necessary geoprocessing methods and is easy to handle knowing databases and SQL. The need to create many temporary tables and countless transformations of the geodata stored as WKB in the database into the “GEOS” format for geometric operations made the process very slow.</p>
+<p>In this package the geometric operations (measuring distances between objects, buffers, intersects, and randomly moving objects) are carried out by <a href="https://libgeos.org" class="external-link"><code>GEOS</code></a>. The geodata is read and transformed to <code>GEOS</code> format only once. All further manipulations are within the <code>GEOS</code> world. Using the GEOS library from R was made possible by <a href="https://www.rcpp.org" class="external-link"><code>Rcpp</code></a>.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

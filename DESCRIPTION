@@ -1,6 +1,6 @@
 Package: apcf
 Title: Adapted Pair Correlation Function
-Version: 0.1.7.904
+Version: 0.2.0
 Authors@R:
   person(given="Robert", 
          family="Nuske", 
@@ -11,8 +11,7 @@ Description: The adapted pair correlation function transfers the concept of the
   pair correlation function from point patterns to patterns of objects of 
   finite size and irregular shape (e.g. lakes within a country). This is a 
   reimplementation of the method suggested by Nuske et al. (2009) 
-  <doi:10.1016/j.foreco.2009.09.050> using the library 'GEOS' directly instead
-  of through 'PostGIS'. 
+  <doi:10.1016/j.foreco.2009.09.050> using the library 'GEOS'. 
 License: GPL (>= 3)
 URL: https://rnuske.github.io/apcf/, https://github.com/rnuske/apcf
 BugReports: https://github.com/rnuske/apcf/issues

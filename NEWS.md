@@ -1,6 +1,7 @@
-# apcf 0.1.7.904
-* removed dependence on GDAL. `pat2dists()` takes now geometries as `WKB` (using GEOS capabilities). This reduced configure code and package size significantly.
-* Added package 'wk' for checking WKBs and reading sfc-geometries if package 'sf' available.
+# apcf 0.2.0
+* removed dependence on GDAL. `pat2dists()` now takes geometries as `WKB` (using GEOS capabilities). This reduced configure code and package size significantly.
+* added package 'wk' for checking WKBs and reading sfc-geometries if package 'sf' is available.
+* fixed R version check in configure
 
 # apcf 0.1.7
 * updated message generation in configure.ac as requested by CRAN

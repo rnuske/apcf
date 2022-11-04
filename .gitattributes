@@ -3,3 +3,4 @@ data/* binary
 src/* text=lf
 R/* text=lf
 config* text=lf
+configure.ac text eol=lf

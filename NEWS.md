@@ -1,3 +1,7 @@
+# apcf devel
+* fix CRANs M1mac vsnprintf() warning
+* change maintainer email address
+
 # apcf 0.2.0
 * removed dependence on GDAL. `pat2dists()` now takes geometries as `WKB` (using GEOS capabilities). This reduced configure code and package size significantly.
 * added package 'wk' for checking WKBs and reading sfc-geometries if package 'sf' is available.

@@ -6,7 +6,7 @@
 
 #include <algorithm>    // std::max
 #include <cstdarg>      // va_list, va_start, va_end
-#include <cstdio>       // vsprintf
+#include <cstdio>       // vsnprintf
 #include <cstring>      // strlen
 #include <geos_c.h>     // GEOS functions
 #include <math.h>       // sin, cos, ...
@@ -39,7 +39,7 @@ static void __errorHandler(const char *fmt, ...)
     char buf[BUFSIZ], *p;
     va_list ap;
     va_start(ap, fmt);
-    vsprintf(buf, fmt, ap);
+    vsnprintf(buf, (size_t) BUFSIZ, fmt, ap);
     va_end(ap);
     p = buf + strlen(buf) - 1;
     if(strlen(buf) > 0 && *p == '\n') *p = '\0';
@@ -55,7 +55,7 @@ static void __warningHandler(const char *fmt, ...)
     char buf[BUFSIZ], *p;
     va_list ap;
     va_start(ap, fmt);
-    vsprintf(buf, fmt, ap);
+    vsnprintf(buf, (size_t) BUFSIZ, fmt, ap);
     va_end(ap);
     p = buf + strlen(buf) - 1;
     if(strlen(buf) > 0 && *p == '\n') *p = '\0';

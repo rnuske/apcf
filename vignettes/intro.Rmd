@@ -5,7 +5,7 @@ date: "2020-03-30"
 output: 
   rmarkdown::html_vignette:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
 vignette: >
   %\VignetteIndexEntry{Introduction to apcf}
   %\VignetteEngine{knitr::rmarkdown}
@@ -38,8 +38,8 @@ To present the workflow we make use of the simulated patterns presented in Nuske
 
 ![Simulated patterns (a: regular, b: random, c: clustered)](../man/figures/sim_pat.png)
 
-
-## From Pattern to Distances
+## Workflow
+### Pattern to Distances
 `pat2dists()` calculates distances between all object of a pattern closer than `max_dist` and determines the fraction of a buffer with distance `dist` inside the study area (needed for edge correction). It randomizes the original pattern to generate `n_sim` null models used for correcting the biased PCF and constructing an envelope. It's advised against setting `n_sim < 199`, better still is 999 or even 9999.
 
 It returns an object of class `dists` containing a data.frame with the columns `sim`, `dist`, and `prop` with an indicator of the model run (`0:n_sim`), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.
@@ -52,7 +52,7 @@ head(dists)
 ```
 
 
-## From Distances to PCF
+### Distances to PCF
 `dists2pcf()` estimates the adapted pair correlation function of a pattern of polygons together with a pointwise critical envelope using kernel methods based on distances between objects.
 
 It returns an object of class `fv_pcf` containing the function values of the PCF and the pointwise critical envelope. The number of null models, the rank of envelope value among the n_sim values and the bandwith/stoyan parameter are passed along.
@@ -63,7 +63,7 @@ head(pcf)
 ```
 
 
-## Plotting the PCF
+### Plotting the PCF
 `plot.fv_pcf()` is a plot method for the class `fv_pcf`. It draws a pair correlation function and a pointwise critical envelope if available.
 
 ```{r, fig.width=4, fig.height=3.5}

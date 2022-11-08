@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">apcf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.901</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.902</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,8 +104,11 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="from-pattern-to-distances">From Pattern to Distances<a class="anchor" aria-label="anchor" href="#from-pattern-to-distances"></a>
+<h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
+<div class="section level3">
+<h3 id="pattern-to-distances">Pattern to Distances<a class="anchor" aria-label="anchor" href="#pattern-to-distances"></a>
+</h3>
 <p><code><a href="../reference/pat2dists.html">pat2dists()</a></code> calculates distances between all object of a pattern closer than <code>max_dist</code> and determines the fraction of a buffer with distance <code>dist</code> inside the study area (needed for edge correction). It randomizes the original pattern to generate <code>n_sim</code> null models used for correcting the biased PCF and constructing an envelope. It’s advised against setting <code>n_sim &lt; 199</code>, better still is 999 or even 9999.</p>
 <p>It returns an object of class <code>dists</code> containing a data.frame with the columns <code>sim</code>, <code>dist</code>, and <code>prop</code> with an indicator of the model run (<code>0:n_sim</code>), distances between the objects of the patterns, and the proportion of a buffer with distance dist inside the study area. The size of the study area, the total number of objects, and the maximum distance are passed along as well.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -121,9 +124,9 @@
 <span><span class="co">## 5   0 24.13972 0.9517079</span></span>
 <span><span class="co">## 6   0 19.67695 1.0000000</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="from-distances-to-pcf">From Distances to PCF<a class="anchor" aria-label="anchor" href="#from-distances-to-pcf"></a>
-</h2>
+<div class="section level3">
+<h3 id="distances-to-pcf">Distances to PCF<a class="anchor" aria-label="anchor" href="#distances-to-pcf"></a>
+</h3>
 <p><code><a href="../reference/dists2pcf.html">dists2pcf()</a></code> estimates the adapted pair correlation function of a pattern of polygons together with a pointwise critical envelope using kernel methods based on distances between objects.</p>
 <p>It returns an object of class <code>fv_pcf</code> containing the function values of the PCF and the pointwise critical envelope. The number of null models, the rank of envelope value among the n_sim values and the bandwith/stoyan parameter are passed along.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -135,17 +138,17 @@
 <span><span class="co">## Alternative: "two.sided"</span></span>
 <span><span class="co">## Significance level of pointwise Monte Carlo test: 0.2</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">##     r          g       lwr      upr</span></span>
-<span><span class="co">## 1 0.2 0.00000000 0.8071789 1.283851</span></span>
-<span><span class="co">## 2 0.4 0.00000000 0.8327823 1.282892</span></span>
-<span><span class="co">## 3 0.6 0.00000000 0.8559688 1.305889</span></span>
-<span><span class="co">## 4 0.8 0.00000000 0.8675148 1.297905</span></span>
-<span><span class="co">## 5 1.0 0.00620358 0.8376833 1.285531</span></span>
-<span><span class="co">## 6 1.2 0.01375807 0.7837187 1.263082</span></span></code></pre></div>
+<span><span class="co">##     r           g       lwr      upr</span></span>
+<span><span class="co">## 1 0.2 0.000000000 0.7144298 1.210031</span></span>
+<span><span class="co">## 2 0.4 0.000000000 0.7433674 1.221983</span></span>
+<span><span class="co">## 3 0.6 0.000000000 0.7795689 1.219665</span></span>
+<span><span class="co">## 4 0.8 0.000000000 0.8159682 1.203742</span></span>
+<span><span class="co">## 5 1.0 0.005386527 0.8442421 1.186117</span></span>
+<span><span class="co">## 6 1.2 0.012131335 0.8522908 1.152310</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="plotting-the-pcf">Plotting the PCF<a class="anchor" aria-label="anchor" href="#plotting-the-pcf"></a>
-</h2>
+<div class="section level3">
+<h3 id="plotting-the-pcf">Plotting the PCF<a class="anchor" aria-label="anchor" href="#plotting-the-pcf"></a>
+</h3>
 <p><code><a href="../reference/plot.fv_pcf.html">plot.fv_pcf()</a></code> is a plot method for the class <code>fv_pcf</code>. It draws a pair correlation function and a pointwise critical envelope if available.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pcf</span><span class="op">)</span></span></code></pre></div>
@@ -153,6 +156,7 @@
 <p>A plot of PCFs of the simulated patterns shown above having (a) regular, (b) random, and (c) clustered objects. Black line: estimated function; white line: theoretical value of the function under the null hypothesis of complete spatial randomness; grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates. Values g(r) &lt; 1 suggest inhibition between points and values g(r) &gt; 1 suggest clustering.</p>
 <div class="figure">
 <img src="../reference/figures/sim_pcf.png" alt=""><p class="caption">PCF of simulated patterns (a: regular, b: random, c: clustered)</p>
+</div>
 </div>
 </div>
 <div class="section level2">

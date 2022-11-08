@@ -10,7 +10,6 @@
 #include <cstring>      // strlen
 #include <geos_c.h>     // GEOS functions
 #include <math.h>       // sin, cos, ...
-#include <random>       // random number generator
 #include <Rcpp.h>       // Rcpp
 #include <vector>       // vector
 
@@ -186,20 +185,10 @@ randomize_pattern(GEOSContextHandle_t geosCtxtH,
                   const unsigned int max_tries, const bool verbose)
 {
     // static stuff: do only once ---------------------------------------------
-    // create seed only once (either deterministic or using random_device)
-    // static int seed = 20170101;
-    static std::random_device rd;
-    static int seed = rd();
-
-    // get min/max of area, setup random number engine and desired distributions
+    // get min/max of area
     static std::vector<double> bbox = get_extent(geosCtxtH, area);
-    static std::mt19937 mt(seed);
-    static std::uniform_real_distribution<double> runif_angle(0.0, 2.0 * M_PI); // radians
-    static std::uniform_real_distribution<double> runif_x(bbox[0], bbox[2]);
-    static std::uniform_real_distribution<double> runif_y(bbox[1], bbox[3]);
 
-
-    // random move all patches ------------------------------------------------
+    // random move of all patches ---------------------------------------------
     GEOSGeometry* patch;
     std::vector<GEOSGeometry*> randomized;
 
@@ -207,7 +196,10 @@ randomize_pattern(GEOSContextHandle_t geosCtxtH,
     {
         // create random numbers and move => random_move
         patch = move_poly(geosCtxtH, pattern[i],
-                          runif_angle(mt), runif_x(mt), runif_y(mt), verbose);
+                          R::runif(0.0, 2.0 * M_PI),   // random angle (radians)
+                          R::runif(bbox[0], bbox[2]),  // random x
+                          R::runif(bbox[1], bbox[3]),  // random y
+                          verbose);
 
         unsigned int n_tries = 0;
         while( !location_okay(geosCtxtH, patch, area, randomized, false) )
@@ -216,7 +208,10 @@ randomize_pattern(GEOSContextHandle_t geosCtxtH,
             GEOSGeom_destroy_r(geosCtxtH, patch);
 
             patch = move_poly(geosCtxtH, pattern[i],
-                              runif_angle(mt), runif_x(mt), runif_y(mt), verbose);
+                              R::runif(0.0, 2.0 * M_PI),  // random angle (radians)
+                              R::runif(bbox[0], bbox[2]), // random x
+                              R::runif(bbox[1], bbox[3]), // random y
+                              verbose);
 
             // avoid infinite loop
             n_tries++;

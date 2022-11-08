@@ -1,4 +1,5 @@
 # apcf devel
+* use R's random number generator in Rcpp code
 * fix CRANs M1mac vsnprintf() warning
 * change maintainer email address
 

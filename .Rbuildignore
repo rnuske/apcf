@@ -6,9 +6,7 @@ TODO.md
 config.log
 config.status
 autom4te.cache
-^\.drone\.yml$
 ^windows
-A_Plan_to_drop_GDAL.md
 ^data-raw$
 ^_pkgdown\.yml$
 ^docs$

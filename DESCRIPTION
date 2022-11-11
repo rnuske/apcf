@@ -1,11 +1,9 @@
 Package: apcf
 Title: Adapted Pair Correlation Function
-Version: 0.2.0.902
+Version: 0.3.0
 Authors@R:
-  person(given="Robert", 
-         family="Nuske", 
-         role=c("aut", "cre"),
-         email="robert.nuske@mailbox.org",
+  person(given="Robert", family="Nuske", role=c("aut", "cre"),
+         email="robert.nuske@mailbox.org", 
          comment=c(ORCID="0000-0001-9773-2061"))
 Description: The adapted pair correlation function transfers the concept of the
   pair correlation function from point patterns to patterns of objects of
@@ -18,18 +16,12 @@ License: GPL (>= 3)
 URL: https://rnuske.github.io/apcf/, https://github.com/rnuske/apcf
 BugReports: https://github.com/rnuske/apcf/issues
 Encoding: UTF-8
-Depends:
-  R (>= 3.3.0)
-Imports:
-  Rcpp (>= 0.12),
-  wk (>= 0.6.0)
-Suggests:
-  knitr,
-  rmarkdown
-LinkingTo:
-  Rcpp
+Depends: R (>= 3.3.0)
+Imports: Rcpp (>= 0.12), wk (>= 0.6.0)
+Suggests: knitr, rmarkdown
+LinkingTo: Rcpp
 SystemRequirements: C++11, GEOS (>= 3.4.0)
 VignetteBuilder: knitr
 LazyData: true
 Roxygen: list(markdown=TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

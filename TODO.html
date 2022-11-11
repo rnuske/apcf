@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="index.html">apcf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.902</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,12 +53,32 @@
 <div id="todo" class="section level1">
 <div class="section level2">
 <h2 id="medium-term">Medium term<a class="anchor" aria-label="anchor" href="#medium-term"></a></h2>
-<p>[ ] look at parallelizing C++ part using RcppParallel [ ] allow sf geometries instead of importing from OGR files [ ] think about max_dist and kernel bandwidth (xlim &lt;- max_dist - bw/2) [ ] check imported geometries if assumptions are met [ ] unit testing [X] make it compile on windows [ ] proper way of seeding RNG (check <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2013/n3551.pdf" class="external-link">report</a> )</p>
-</div>
+<ul><li>
+<input type="checkbox" disabled>look at parallelizing C++ part using RcppParallel</li>
+<li>
+<input type="checkbox" disabled>think about max_dist and kernel bandwidth (xlim &lt;- max_dist - bw/2)</li>
+<li>
+<input type="checkbox" disabled>check imported geometries. Are my assumptions met?</li>
+<li>
+<input type="checkbox" disabled>unit testing</li>
+</ul></div>
 <div class="section level2">
 <h2 id="long-term">Long term<a class="anchor" aria-label="anchor" href="#long-term"></a></h2>
-<p>[ ] retest influence of quad_segs against very high number (sfr uses 30 as default for buffer) [ ] think about precision in wkb/GEOS. look at <a href="https://github.com/edzer/sfr" class="external-link">sfr</a>) [ ] figure out if GEOSGeometries need to be destroyed (and how) in case of userInterrupt [ ] Clean up (destroy GEOSGeometries) before throwing exception and in calling functions [ ] shall we try to guess a sensible max_dist if none provided by user? [ ] Think about PreparedGeometries [ ] shall we allow disjoint study areas?</p>
-</div>
+<ul><li>
+<input type="checkbox" disabled>retest influence of quad_segs against very high number (<a href="https://github.com/r-spatial/sf" class="external-link">sf</a> uses 30 as default for buffer)</li>
+<li>
+<input type="checkbox" disabled>think about precision in wkb/GEOS (cf. <a href="https://github.com/r-spatial/sf" class="external-link">sf</a>)</li>
+<li>
+<input type="checkbox" disabled>figure out if GEOSGeometries need to be destroyed (and how) in case of userInterrupt</li>
+<li>
+<input type="checkbox" disabled>Clean up (destroy GEOSGeometries) before throwing exception and in calling functions</li>
+<li>
+<input type="checkbox" disabled>shall we try to guess a sensible max_dist if none provided by user?</li>
+<li>
+<input type="checkbox" disabled>think about PreparedGeometries</li>
+<li>
+<input type="checkbox" disabled>shall we allow disjoint study areas?</li>
+</ul></div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

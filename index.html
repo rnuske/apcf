@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="index.html">apcf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.902</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,11 +82,11 @@
 <div class="page-header"><h1 id="apcf-adapted-pair-correlation-function">apcf: Adapted Pair Correlation Function<a class="anchor" aria-label="anchor" href="#apcf-adapted-pair-correlation-function"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end --><p>The Adapted Pair Correlation Function transfers the concept of the pair correlation function (PCF) from point patterns to patterns of objects of finite size and irregular shape (eg. lakes within a country). The pair correlation function describes the spatial distribution of objects. It assesses whether patterns are random, aggregated or regularly spaced. The PCF is non-cumulative and, thus, particularly suitable to reveal critical scales of the pattern. Under complete spatial randomness (CSR), <em>g(r) = 1</em>. Values <em>g(r) &lt; 1</em> suggest inhibition between objects and values <em>g(r) &gt; 1</em> suggest clustering.</p>
-<p>The following figure shows three simulated patterns (regular, random, clustered; from Nuske et al. 2009) to demonstrate the behavior of the PCF in three extreme cases (colored line: estimated function; white line: theoretical value of the function under the null hypothesis of complete spatial randomness; grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates).</p>
+<p>The apcf package provides a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++. It relies heavily on the <a href="https://libgeos.org" class="external-link">GEOS library</a> and is enabled by <a href="https://www.rcpp.org" class="external-link">Rcpp</a>.</p>
+<p>The Adapted Pair Correlation Function transfers the concept of the pair correlation function (PCF) from point patterns to patterns of objects of finite size and irregular shape (eg. lakes within a country). The pair correlation function describes the spatial distribution of objects. It assesses whether patterns are random, aggregated or regularly spaced. The PCF is non-cumulative and, thus, particularly suitable to reveal critical scales of the pattern.</p>
+<p>The following figure shows three simulated patterns (regular, random, clustered; from Nuske et al. 2009) to demonstrate the behavior of the PCF in three extreme cases (colored line: estimated function; white line: theoretical value of the function under the null hypothesis of complete spatial randomness; grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates). Under complete spatial randomness (CSR), <em>g(r) = 1</em>. Values <em>g(r) &lt; 1</em> suggest inhibition between objects and values <em>g(r) &gt; 1</em> suggest clustering.</p>
 <p><img src="./reference/figures/sim_pat_pcf.png"></p>
-<p> This is a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++ using the GEOS library.</p>
-<p>The main steps are (i) the construction of nullmodels by randomizing the objects of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the objects.</p>
+<p></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -100,6 +100,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<p>The main steps are (i) the construction of nullmodels by randomizing the objects of the original pattern within the study area, (ii) the edge correction by determining the proportion of a buffer within the study area, and (iii) the calculation of the shortest distances between the objects.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># calculate distances between patches of original pattern and 3 nullmodels</span></span>
 <span><span class="co"># number of nullmodels should by at least 199 and better yet 999</span></span>
@@ -114,16 +115,7 @@
 <div class="section level2">
 <h2 id="requirements">Requirements<a class="anchor" aria-label="anchor" href="#requirements"></a>
 </h2>
-<p>For Unix-alikes GEOS (&gt;= 3.4.0) is required.</p>
-<p>On Ubuntu bionic (18.04) and beyond one can install the dependency simply with <code>sudo apt install libgeos-dev</code>. In earlier Ubuntu version either add <a href="http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/" class="external-link">ubuntugis-unstable</a> to the <code>sources.list</code> and use above command or compile GEOS from source.</p>
-</div>
-<div class="section level2">
-<h2 id="links">Links<a class="anchor" aria-label="anchor" href="#links"></a>
-</h2>
-<ul>
-<li><a href="https://libgeos.org" class="external-link">GEOS</a></li>
-<li><a href="https://www.rcpp.org" class="external-link">Rcpp Website</a></li>
-</ul>
+<p>For Unix-alikes GEOS (&gt;= 3.4.0) is required. On Ubuntu bionic (18.04) and beyond one can install the dependency simply with <code>sudo apt install libgeos-dev</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -166,7 +158,6 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://cloud.drone.io/rnuske/apcf" class="external-link"><img src="https://cloud.drone.io/api/badges/rnuske/apcf/status.svg" alt="Drone.io Status"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat" alt="Package-License"></a></li>
 <li><a href="https://cran.r-project.org/package=apcf" class="external-link"><img src="https://www.r-pkg.org/badges/version/apcf" alt="CRAN"></a></li>
 <li><a href="https://cran.r-project.org/package=apcf" class="external-link"><img src="https://tinyverse.netlify.com/badge/apcf" alt="Dependencies"></a></li>

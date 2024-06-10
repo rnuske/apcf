@@ -4,7 +4,7 @@
 [![R-CMD-check](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml) 
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](https://www.r-pkg.org/badges/version/apcf)](https://cran.r-project.org/package=apcf) 
-[![Dependencies](https://tinyverse.netlify.com/badge/apcf)](https://cran.r-project.org/package=apcf) 
+[![Dependencies](https://tinyverse.netlify.app/badge/apcf)](https://cran.r-project.org/package=apcf) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
 <!-- badges: end -->
 

@@ -7,7 +7,7 @@ bibentry(
   license = "GPL-3.0-or-later",
   year="2022",
   version="0.3.0",
-  doi="https://doi.org/10.5281/zenodo.2535612"
+  doi="10.5281/zenodo.2535612"
 )
 
 bibentry(
@@ -24,5 +24,5 @@ bibentry(
   number="1",
   pages="107-116",
   year="2009",
-  doi="https://doi.org/10.1016/j.foreco.2009.09.050"
+  doi="10.1016/j.foreco.2009.09.050"
 )

@@ -12,3 +12,4 @@ autom4te.cache
 ^docs$
 ^pkgdown$
 ^\.github$
+^CITATION\.cff$

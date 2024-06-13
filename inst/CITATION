@@ -5,8 +5,8 @@ bibentry(
   title = "apcf: Adapted Pair Correlation Function",
   author=person("Robert", "Nuske"),
   license = "GPL-3.0-or-later",
-  year="2022",
-  version="0.3.0",
+  year="2024",
+  version="0.3.1",
   doi="10.5281/zenodo.2535612"
 )
 

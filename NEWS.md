@@ -1,5 +1,7 @@
 # apcf 0.3.1
 * dropped C++11 as a system requirement
+* fixed Wsign-compare warning in import_export.cpp
+* converted citEntry to bibentry in inst/CITATION and added CITATION.cff
 
 # apcf 0.3.0
 * switched to R's random number generator in C++ code

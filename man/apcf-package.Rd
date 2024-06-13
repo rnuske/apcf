@@ -2,6 +2,7 @@
 % Please edit documentation in R/apcf-package.R
 \docType{package}
 \name{apcf-package}
+\alias{apcf}
 \alias{apcf-package}
 \title{Adapted Pair Correlation Function}
 \description{
@@ -67,4 +68,17 @@ Nuske, R.S., Sprauer, S. and Saborowski, J. (2009): Adapting the
 pair-correlation function for analysing the spatial distribution of canopy
 gaps. Forest Ecology and Management, 259(1): 107–116.
 https://doi.org/10.1016/j.foreco.2009.09.050
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://rnuske.github.io/apcf/}
+  \item \url{https://github.com/rnuske/apcf}
+  \item Report bugs at \url{https://github.com/rnuske/apcf/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Robert Nuske \email{robert.nuske@mailbox.org} (\href{https://orcid.org/0000-0001-9773-2061}{ORCID})
+
 }

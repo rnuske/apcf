@@ -58,6 +58,5 @@
 #' gaps. Forest Ecology and Management, 259(1): 107–116.
 #' https://doi.org/10.1016/j.foreco.2009.09.050
 #'
-#' @docType package
 #' @name apcf-package
-NULL
+"_PACKAGE"

@@ -1,6 +1,6 @@
 Package: apcf
 Title: Adapted Pair Correlation Function
-Version: 0.3.0
+Version: 0.3.0.900
 Authors@R:
   person(given="Robert", family="Nuske", role=c("aut", "cre"),
          email="robert.nuske@mailbox.org", 
@@ -20,7 +20,7 @@ Depends: R (>= 3.3.0)
 Imports: Rcpp (>= 0.12), wk (>= 0.6.0)
 Suggests: knitr, rmarkdown
 LinkingTo: Rcpp
-SystemRequirements: C++11, GEOS (>= 3.4.0)
+SystemRequirements: GEOS (>= 3.4.0)
 VignetteBuilder: knitr
 LazyData: true
 Roxygen: list(markdown=TRUE)

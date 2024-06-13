@@ -1,3 +1,6 @@
+# apcf 0.3.1
+* dropped C++11 as a system requirement
+
 # apcf 0.3.0
 * switched to R's random number generator in C++ code
 * fixed CRANs M1mac vsnprintf() warning

@@ -3,7 +3,7 @@ pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   intro: intro.html
-last_built: 2024-06-13T19:15Z
+last_built: 2024-06-13T19:34Z
 urls:
   reference: https://rnuske.github.io/apcf/reference
   article: https://rnuske.github.io/apcf/articles

@@ -140,7 +140,7 @@ static void __errorHandler(const char *fmt, ...) {
 static void __warningHandler(const char *fmt, ...) {
     return;
 }
-int main() {
+int main(void) {
     GEOSContextHandle_t r = initGEOS_r((GEOSMessageHandler) __warningHandler, (GEOSMessageHandler) __errorHandler);
     finishGEOS_r(r);
 }

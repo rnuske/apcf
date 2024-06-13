@@ -75,7 +75,7 @@ export_wkb(GEOSContextHandle_t geosCtxtH,
     Rcpp::List output(vGeom.size());
     int endian = native_endian();
 
-    for (int i = 0; i < vGeom.size(); i++) {
+    for (int i = 0; i < (int)vGeom.size(); i++) {
         Rcpp::checkUserInterrupt();
 
         size_t nSize = 0;
@@ -97,8 +97,8 @@ export_wkb(GEOSContextHandle_t geosCtxtH,
         }
 
         // shove it into R (unsigned char buffer to list of raw vectors)
-        Rcpp::RawVector raw((int)nSize);
-        for (size_t j = 0; j < (int)nSize; j++)
+        Rcpp::RawVector raw((unsigned)nSize);
+        for (size_t j = 0; j < (unsigned)nSize; j++)
             raw[j] = pabyBuf[j];
         output[i] = raw; // raw vector to list
     }

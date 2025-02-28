@@ -1,3 +1,6 @@
+# apcf 0.3.1.99
+* fixed bashism in configure.ac
+
 # apcf 0.3.1
 * dropped C++11 as a system requirement
 * fixed Wsign-compare warning in import_export.cpp

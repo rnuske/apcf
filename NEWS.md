@@ -1,4 +1,4 @@
-# apcf 0.3.1.99
+# apcf 0.3.2
 * fixed bashism in configure.ac
 
 # apcf 0.3.1

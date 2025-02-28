@@ -1,4 +1,4 @@
-This is a minor update that also fixes the C++11 note.
+This is a patch release fixing the CRAN note regarding bashism in configure.ac
 
 We have checked the package on local Windows and Linux systems with released R versions, Winbuilder, and across a range of operating systems, compilers, and R versions using Rhub. No errors, no warnings, and no notes were found. 
 

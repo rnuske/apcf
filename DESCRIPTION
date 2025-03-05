@@ -11,7 +11,7 @@ Description: The adapted pair correlation function transfers the concept of the
   correlation function describes the spatial distribution of objects, e.g.
   random, aggregated or regularly spaced. This is a reimplementation of the
   method suggested by Nuske et al. (2009) <doi:10.1016/j.foreco.2009.09.050>
-  using the library 'GEOS'. 
+  using the library 'GEOS' <doi:10.5281/zenodo.11396894>. 
 License: GPL (>= 3)
 URL: https://rnuske.github.io/apcf/, https://github.com/rnuske/apcf
 BugReports: https://github.com/rnuske/apcf/issues

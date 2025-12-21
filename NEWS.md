@@ -1,6 +1,6 @@
 # apcf 0.3.3
+* updated Makevars for newer R on windows builds
 * removed CXX from Makevars to fix warnings from newer compilers (e.g. gcc 15, clang 21)
-* updated Makevars for newer windows builds
 
 # apcf 0.3.2
 * fixed bashism in configure.ac

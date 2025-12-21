@@ -1,7 +1,7 @@
-This is a patch release fixing the CRAN note regarding bashism in configure.ac
+This is a patch release fixing the CRAN warning "Unknown C++ standard ‘CXX’" for newer compilers and the note "Found '_ZSt4cerr', possibly from 'std::cerr' (C++)" in an older version of the employed library GEOS for r-release and r-devel under windows.
 
-We have checked the package on local Windows and Linux systems with released R versions, Winbuilder, and across a range of operating systems, compilers, and R versions using Rhub. No errors, no warnings, and no notes were found. 
+We have checked the package locally with r-release and r-devel, using Rhub on newer compilers with r-release and r-devel under ubuntu, windows and macos, and using the CRAN win builder service. We found no errors, warnings or notes.
 
-The large install size on some OS is due to the required library GEOS. This package can not use the R packages rgeos, rgdal, sf etc. because it links to GEOS from its C++ code. All calculations are done in C++ for performance reasons, comparable to package sf.
+The large install size on some OS is due to the required library GEOS. This package links to GEOS from its C++ code, comparable to package sf.
 
 Many thanks for your service 

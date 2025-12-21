@@ -1,19 +1,28 @@
+year <- "2025"
+version <- meta$Version
 
 bibentry(
-  bibtype= "Misc",
-  header = "The software package:",
-  title = "apcf: Adapted Pair Correlation Function",
-  author=person("Robert", "Nuske"),
+  bibtype="Misc",
+  header="The software package:",
+  title="apcf: Adapted Pair Correlation Function",
+  author=person(given="Robert", family = "Nuske",
+                comment=c(ORCID = "0000-0001-9773-2061")),
   license = "GPL-3.0-or-later",
-  year="2024",
-  version="0.3.1",
-  doi="10.5281/zenodo.2535612"
+  year=year,
+  version=meta$Version,
+  note = "[Software]",
+  publisher = "Zenodo",
+  doi="10.5281/zenodo.2535612",
+  textVersion = paste0("Nuske, R. (", year, "): ",
+    "apcf: Adapted Pair Correlation Function [Software]. ",
+    "Zenodo. Version ", version, ". ",
+    "https://doi.org/10.5281/zenodo.2535612")
 )
 
 bibentry(
-  bibtype= "Article",
-  header = "The article describing the method:",
-  title = "Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps",
+  bibtype="Article",
+  header="The article describing the method:",
+  title="Adapting the pair-correlation function for analysing the spatial distribution of canopy gaps",
   author=c(
     person(c("Robert", "S." ), "Nuske"),
     person("Susanne", "Sprauer"),

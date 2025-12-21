@@ -1,14 +1,14 @@
 # apcf: Adapted Pair Correlation Function
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml) 
+[![R-CMD-check](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check/badge.svg)](https://github.com/rnuske/apcf/actions/workflows/R-CMD-check) 
 [![Package-License](https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html) 
 [![CRAN](https://www.r-pkg.org/badges/version/apcf)](https://cran.r-project.org/package=apcf) 
 [![Dependencies](https://tinyverse.netlify.app/badge/apcf)](https://cran.r-project.org/package=apcf) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2535612.svg)](https://doi.org/10.5281/zenodo.2535612) 
 <!-- badges: end -->
 
-The apcf package provides a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++. It relies heavily on the [GEOS library](https://libgeos.org) and is enabled by [Rcpp](https://www.rcpp.org).
+The apcf package provides an implementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++. It relies heavily on the [GEOS library](https://libgeos.org) and is enabled by [Rcpp](https://www.rcpp.org).
 
 The Adapted Pair Correlation Function transfers the concept of the pair correlation function (PCF) from point patterns to patterns of objects of finite size and irregular shape (eg. lakes within a country). The pair correlation function describes the spatial distribution of objects. It assesses whether patterns are random, aggregated or regularly spaced. The PCF is non-cumulative and, thus, particularly suitable to reveal critical scales of the pattern. 
 

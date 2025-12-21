@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">apcf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2.901</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The apcf package provides a reimplementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++. It relies heavily on the <a href="https://libgeos.org" class="external-link">GEOS library</a> and is enabled by <a href="https://www.rcpp.org" class="external-link">Rcpp</a>.</p>
+<p>The apcf package provides an implementation of the Adapted Pair Correlation Function (Nuske et al. 2009) in C++. It relies heavily on the <a href="https://libgeos.org" class="external-link">GEOS library</a> and is enabled by <a href="https://www.rcpp.org" class="external-link">Rcpp</a>.</p>
 <p>The Adapted Pair Correlation Function transfers the concept of the pair correlation function (PCF) from point patterns to patterns of objects of finite size and irregular shape (eg. lakes within a country). The pair correlation function describes the spatial distribution of objects. It assesses whether patterns are random, aggregated or regularly spaced. The PCF is non-cumulative and, thus, particularly suitable to reveal critical scales of the pattern.</p>
 <p>The following figure shows three simulated patterns (regular, random, clustered; from Nuske et al. 2009) to demonstrate the behavior of the PCF in three extreme cases (colored line: estimated function; white line: theoretical value of the function under the null hypothesis of complete spatial randomness; grey area: 95% confidence envelope under the null hypothesis, computed by Monte Carlo simulation using 199 replicates). Under complete spatial randomness (CSR), <em>g(r) = 1</em>. Values <em>g(r) &lt; 1</em> suggest inhibition between objects and values <em>g(r) &gt; 1</em> suggest clustering.</p>
 <p><img src="./reference/figures/sim_pat_pcf.png"></p>
@@ -132,7 +132,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check" class="external-link"><img src="https://github.com/rnuske/apcf/actions/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://www.gnu.org/licenses/gpl-3.0.html" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-brightgreen.svg?style=flat" alt="Package-License"></a></li>
 <li><a href="https://cran.r-project.org/package=apcf" class="external-link"><img src="https://www.r-pkg.org/badges/version/apcf" alt="CRAN"></a></li>
 <li><a href="https://cran.r-project.org/package=apcf" class="external-link"><img src="https://tinyverse.netlify.app/badge/apcf" alt="Dependencies"></a></li>

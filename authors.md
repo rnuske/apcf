@@ -10,15 +10,17 @@
 Source:
 [`inst/CITATION`](https://github.com/rnuske/apcf/blob/master/inst/CITATION)
 
-Nuske R (2024). “apcf: Adapted Pair Correlation Function.”
-[doi:10.5281/zenodo.2535612](https://doi.org/10.5281/zenodo.2535612).
+Nuske, R. (2025): apcf: Adapted Pair Correlation Function \[Software\].
+Zenodo. Version 0.3.3. https://doi.org/10.5281/zenodo.2535612
 
     @Misc{,
       title = {apcf: Adapted Pair Correlation Function},
       author = {Robert Nuske},
       license = {GPL-3.0-or-later},
-      year = {2024},
-      version = {0.3.1},
+      year = {2025},
+      version = {0.3.3},
+      note = {[Software]},
+      publisher = {Zenodo},
       doi = {10.5281/zenodo.2535612},
     }
 

@@ -1,6 +1,6 @@
 # apcf: Adapted Pair Correlation Function
 
-The apcf package provides a reimplementation of the Adapted Pair
+The apcf package provides an implementation of the Adapted Pair
 Correlation Function (Nuske et al. 2009) in C++. It relies heavily on
 the [GEOS library](https://libgeos.org) and is enabled by
 [Rcpp](https://www.rcpp.org).

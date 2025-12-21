@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/rnuske/apcf/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/rnuske/apcf/blob/v0.3.3/inst/CITATION)
 
 Nuske, R. (2025): apcf: Adapted Pair Correlation Function \[Software\].
 Zenodo. Version 0.3.3. https://doi.org/10.5281/zenodo.2535612

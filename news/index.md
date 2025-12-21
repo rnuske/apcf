@@ -2,6 +2,8 @@
 
 ## apcf 0.3.3
 
+CRAN release: 2025-12-21
+
 - updated Makevars for newer R on windows builds
 - removed CXX from Makevars to fix warnings from newer compilers
   (e.g. gcc 15, clang 21)

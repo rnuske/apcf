@@ -1,4 +1,4 @@
-VERSION = 3.11.2
+VERSION = 3.10.2
 RWINLIB = ../windows/geos-$(VERSION)
 TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
 

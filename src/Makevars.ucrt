@@ -1,0 +1,14 @@
+
+ifeq (,$(shell pkg-config --version 2>/dev/null))
+  LIBSHARPYUV = $(or $(and $(wildcard $(R_TOOLS_SOFT)/lib/libsharpyuv.a),-lsharpyuv),)
+  PKG_LIBS = -lgeos_c -lgeos $(LIBSHARPYUV)
+else
+  PKG_LIBS = $(shell pkg-config --libs geos)
+endif
+
+all: clean winlibs
+
+clean:
+	rm -f $(SHLIB) $(OBJECTS)
+
+.PHONY: all winlibs clean
